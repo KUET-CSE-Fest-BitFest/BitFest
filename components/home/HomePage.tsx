@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import HomeNav from "./HomeNav";
 import ScheduleTraces from "./schedule/ScheduleTraces";
 import Programme from "./Programme";
+import PastGallery from "./PastGallery";
 import Partners from "./Partners";
 import Faq from "./Faq";
 import FinalCall from "./FinalCall";
@@ -17,6 +18,7 @@ export default function HomePage({ hero }: { hero: ReactNode }) {
         {hero}
         <ScheduleTraces />
         <Programme />
+        <PastGallery />
         <Partners />
         <Faq />
         <section className="relative py-24 md:py-32">

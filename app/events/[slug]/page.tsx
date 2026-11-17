@@ -9,7 +9,7 @@ import AiHackathonHero from "@/components/contests/AiHackathonHero";
 import DatathonHero from "@/components/datathon/Hero";
 import ThesisHero from "@/components/contests/ThesisHero";
 import ShowcaseHero from "@/components/contests/ShowcaseHero";
-import LfrHero from "@/components/contests/LfrHero";
+import LfrHero from "@/components/contests/LfrWaterfallHero";
 import SoccerHero from "@/components/soccer/Hero";
 import CtfHero from "@/components/contests/CtfHero";
 import CaseHero from "@/components/contests/CaseHero";

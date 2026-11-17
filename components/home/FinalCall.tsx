@@ -8,7 +8,7 @@ export default function FinalCall() {
   return (
     <div id="register" className="grid scroll-mt-28 gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
       <SectionHead
-        n="05"
+        n="06"
         label="Register"
         title="Choose your contest and register"
         sub="Registration opens on 30 November 2026 and closes on 12 January 2027. Fees are per team, and the AI Hackathon preliminary is free to enter."

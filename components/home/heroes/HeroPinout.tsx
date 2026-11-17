@@ -131,7 +131,10 @@ export default function HeroPinout({ glow = "current", seat = "float", lid = "me
             )}
             {seat === "float" && <ChipGlow kind={glow} />}
 
-            {/* Leaders and their signals. Drawn first, so each line comes out from behind the chip and its pin. */}
+            {/* Leaders and their signals. Drawn first, so each line comes out from behind the chip and its pin. The
+                signals start just outside the seat's frame line (12px out) and are clipped there, so a
+                light never travels across that line; each one runs out over its pin's end dot. On phones the
+                lines stay but the moving lights are left out. */}
             {events.map((e, ev) => {
               const left = ev < PER;
               const y = yOf(EV_IDX[ev % PER]);
@@ -145,7 +148,7 @@ export default function HeroPinout({ glow = "current", seat = "float", lid = "me
                   >
                     <span className={`absolute top-1/2 h-[5px] w-[5px] -translate-y-1/2 rounded-full transition-[background-color,box-shadow] duration-300 ${left ? "-left-[2px]" : "-right-[2px]"} ${on ? "bg-orange shadow-[0_0_10px_rgba(255,122,61,0.8)]" : "bg-white/30"}`} />
                   </span>
-                  <span className={`sig ${left ? "sig-l" : "sig-r"}`} data-on={on} style={{ top: y, width: "calc(18px + var(--pin) + var(--lead) + 12px)", ...(left ? { right: "calc(100% - 18px)" } : { left: "calc(100% - 18px)" }) }}>
+                  <span className={`sig hidden lg:block ${left ? "sig-l" : "sig-r"}`} data-on={on} style={{ top: y, width: "calc(var(--pin) + var(--lead) - 2px)", clipPath: "inset(-12px 0)", ...(left ? { right: "calc(100% + 14px)" } : { left: "calc(100% + 14px)" }) }}>
                     <i style={{ animationDelay: `${-(ev * 0.83) % 6.5}s` }} />
                   </span>
                 </div>
@@ -187,7 +190,8 @@ export default function HeroPinout({ glow = "current", seat = "float", lid = "me
                   <br />
                   <span className="lx-ink-warm">{fest.year}</span>
                 </h1>
-                <p className="relative z-[4] mt-[4%] text-[13px] font-medium tracking-[-0.005em] text-[#f2e6dc]/80 [text-shadow:0_1px_10px_rgba(0,0,0,0.35)] lg:text-[clamp(14px,1.15vw,18px)]">{fest.dates}</p>
+                {/* The date sits at the foot of the lid, centred under the title. */}
+                <p className="absolute inset-x-0 bottom-[7%] z-[4] text-[13px] font-medium tracking-[-0.005em] text-[#f2e6dc]/85 [text-shadow:0_1px_10px_rgba(0,0,0,0.35)] lg:text-[clamp(14px,1.15vw,18px)]">{fest.dates}</p>
               </div>
             ) : (
               <>
