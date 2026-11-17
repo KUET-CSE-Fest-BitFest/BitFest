@@ -93,10 +93,19 @@ export const schedule: Record<string, Milestone[]> = {
   gaming: [REG, { kind: "final", from: 60, label: "Group stages and finals, 10 am – 5 pm" }],
 };
 
+// "29 Jan" for a day offset. Formatted by hand and cached: the schedule asks for these labels hundreds of
+// times while the home page starts up, and toLocaleDateString is slow on budget devices.
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const dayLabels = new Map<number, string>();
 export const dayLabel = (d: number) => {
-  const t = new Date(SCHEDULE_START);
-  t.setDate(t.getDate() + d);
-  return t.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+  let label = dayLabels.get(d);
+  if (label === undefined) {
+    const t = new Date(SCHEDULE_START);
+    t.setDate(t.getDate() + d);
+    label = `${t.getDate()} ${MONTHS[t.getMonth()]}`;
+    dayLabels.set(d, label);
+  }
+  return label;
 };
 
 // Prize money in thousands of BDT. The proposal gives each contest's total only; the split between

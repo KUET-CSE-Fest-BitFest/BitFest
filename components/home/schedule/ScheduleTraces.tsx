@@ -7,6 +7,8 @@ import { useActiveEvent } from "../heroes/variants/useActiveEvent";
 import WarmLight from "../heroes/rebrand/WarmLight";
 import { KIND_LABEL, dayLabel, detail, range } from "./data";
 
+const REG = (schedule[events[0].slug] ?? []).find((m) => m.kind === "window");
+
 /* S-A — All roads to the finals. Each contest is a trace on the board, running left to right from
    30 November; its registration window, online round and shortlist sit on it as pads at their
    dates. Every trace bends into one lit chip on the right: the finals on campus. The contest in
@@ -156,25 +158,38 @@ export default function ScheduleTraces() {
           <div className="relative z-[4] flex flex-col gap-1 p-5">
             <span className="text-[13px] font-medium text-[#f2e6dc]/75">Finals · on campus</span>
             <span className="lx-ink-warm text-[52px] font-semibold leading-[0.95] tracking-[-0.05em]">29–30 Jan</span>
-            <span className="text-[14px] text-[#f2e6dc]/80 [text-shadow:0_1px_10px_rgba(0,0,0,0.4)]">Every road below ends here, at KUET · {fest.prizePool} BDT in prizes.</span>
+            {/* Registration is the same window for every contest, so it is said once here, not on each row. */}
+            <span className="mt-4 grid grid-cols-2 gap-4 border-t border-[rgba(255,214,190,0.14)] pt-4">
+              <span className="flex flex-col gap-1">
+                <span className="text-[12px] font-medium text-[#f2e6dc]/65">Registration</span>
+                <span className="text-[15px] font-semibold tabular-nums text-[#fbf1e9]">{REG ? range(REG) : "Opens 30 Nov"}</span>
+              </span>
+              <span className="flex flex-col gap-1">
+                <span className="text-[12px] font-medium text-[#f2e6dc]/65">Prize pool</span>
+                <span className="text-[15px] font-semibold tabular-nums text-[#fbf1e9]">{fest.prizePool} BDT</span>
+              </span>
+            </span>
           </div>
         </div>
         <ol className="-mt-6 flex flex-col lg:hidden">
-          {events.map((ev, i) => (
+          {events.map((ev) => (
             <li key={ev.slug} className="border-t border-line">
               {/* Each row opens its contest's page. */}
-              <a href={eventHref(ev)} className="sched-row group flex flex-col gap-2 py-5">
-                <span className="text-[12px] tabular-nums text-dim">Pin {pad2(i + 1)} · {ev.kind}</span>
+              <a href={eventHref(ev)} className="sched-row group flex flex-col gap-1.5 py-4">
                 <span className="flex items-baseline justify-between gap-4">
-                  <span className="flex items-center gap-2 text-[18px] font-semibold transition-colors group-hover:text-orange">
+                  <span className="flex items-center gap-2 text-[18px] font-semibold tracking-[-0.01em] transition-colors group-hover:text-orange">
                     {ev.name}
                     <svg aria-hidden width="14" height="14" viewBox="0 0 16 16" className="shrink-0 text-dim transition-[color,transform] duration-300 group-hover:translate-x-0.5 group-hover:text-orange"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.6" /></svg>
                   </span>
-                  <span className="text-[16px] font-semibold tabular-nums">{prizes[ev.slug]?.total ? `${prizes[ev.slug]!.total}K` : "TBA"} <span className="text-[12px] font-medium text-dim">BDT</span></span>
+                  <span className="shrink-0 text-[15px] font-semibold tabular-nums">{prizes[ev.slug]?.total ? `${prizes[ev.slug]!.total}K` : "TBA"} <span className="text-[12px] font-medium text-dim">BDT</span></span>
                 </span>
-                <span className="flex flex-wrap gap-x-4 gap-y-1 text-[14px] text-muted">
-                  {(schedule[ev.slug] ?? []).map((m, k) => (
-                    <span key={k} className={m.kind === "final" ? "text-orange" : ""}>{range(m)} · {KIND_LABEL[m.kind]}</span>
+                {/* One quiet line: the online round when there is one, then the final. */}
+                <span className="text-[14px] tabular-nums text-muted">
+                  {(schedule[ev.slug] ?? []).filter((m) => m.kind === "round").map((m) => (
+                    <span key="round">Online round {range(m)}<span aria-hidden className="mx-2 text-dim">·</span></span>
+                  ))}
+                  {(schedule[ev.slug] ?? []).filter((m) => m.kind === "final").map((m) => (
+                    <span key="final" className="text-orange">Final {range(m)}</span>
                   ))}
                 </span>
               </a>

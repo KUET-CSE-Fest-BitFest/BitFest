@@ -95,16 +95,19 @@ export default function EventAbout({ page }: { page: EventPage }) {
               </li>
             ))}
           </ol>
-          <dl data-reveal className="lidx relative grid grid-cols-2 rounded-[16px]">
-            <span className="lx lx-corner lx-tr lx-warm" style={{ width: "120%", opacity: 0.55 }} />
-            <span className="lx lx-rim" />
-            {page.facts.map((f, i) => (
-              <div key={f.k} className={`relative z-[4] flex flex-col gap-1 p-5 ${i % 2 ? "border-l border-[rgba(255,214,190,0.1)]" : ""} ${i > 1 ? "border-t border-[rgba(255,214,190,0.1)]" : ""}`}>
-                <dt className="text-[13px] font-medium text-[#f2e6dc]/65">{f.k}</dt>
-                <dd className="text-[18px] font-semibold tracking-[-0.01em] text-[#fbf1e9]">{f.v}</dd>
-              </div>
-            ))}
-          </dl>
+          {/* The lights sit on a wrapper so the list itself holds only dt/dd groups (screen readers). */}
+          <div data-reveal className="lidx relative rounded-[16px]">
+            <span aria-hidden className="lx lx-corner lx-tr lx-warm" style={{ width: "120%", opacity: 0.55 }} />
+            <span aria-hidden className="lx lx-rim" />
+            <dl className="relative z-[4] grid grid-cols-2">
+              {page.facts.map((f, i) => (
+                <div key={f.k} className={`flex flex-col gap-1 p-5 ${i % 2 ? "border-l border-[rgba(255,214,190,0.1)]" : ""} ${i > 1 ? "border-t border-[rgba(255,214,190,0.1)]" : ""}`}>
+                  <dt className="text-[13px] font-medium text-[#f2e6dc]/65">{f.k}</dt>
+                  <dd className="text-[18px] font-semibold tracking-[-0.01em] text-[#fbf1e9]">{f.v}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
           <div data-reveal className="flex flex-wrap gap-3">
             <RegisterButton href={page.registerHref} />
             {hasRulebook(page.rulebookHref) && <Button href={page.rulebookHref} variant="ghost">Read the rulebook</Button>}

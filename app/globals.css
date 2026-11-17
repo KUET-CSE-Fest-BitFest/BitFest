@@ -873,4 +873,6 @@ button:hover > .faq-toggle[data-on="false"] { color: var(--color-ink); box-shado
 @media (prefers-reduced-motion: reduce) { .gc-loupe { animation: none; } }
 /* Key dates on phones: each contest row is a link; a tap or hover warms it slightly. */
 .sched-row { -webkit-tap-highlight-color: transparent; transition: background 0.25s ease; border-radius: 10px; margin: 0 -10px; padding-left: 10px; padding-right: 10px; }
-.sched-row:hover, .sched-row:active { background: rgba(255, 122, 61, 0.05); }
+.sched-row:active { background: rgba(255, 122, 61, 0.05); }
+/* Hover only where there is a real pointer: on phones a tapped row would otherwise stay lit. */
+@media (hover: hover) { .sched-row:hover { background: rgba(255, 122, 61, 0.05); } }
