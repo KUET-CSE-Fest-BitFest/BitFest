@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionHead from "@/components/ui/SectionHead";
@@ -61,6 +61,10 @@ function Lid({ i, amount, active }: { i: number; amount: number; active: boolean
 export default function EventPrizes({ page }: { page: EventPage }) {
   const [ref, inView] = useInView<HTMLOListElement>("-120px");
   const listRef = useRef<HTMLOListElement | null>(null);
+  // Latched: once the podium has arrived it stays arrived. Following inView both ways made the light
+  // shrink and swell again whenever the list sat near the edge of the screen, which read as flicker.
+  const [arrived, setArrived] = useState(false);
+  useEffect(() => { if (inView) setArrived(true); }, [inView]);
 
   useEffect(() => {
     const list = listRef.current;
@@ -81,12 +85,12 @@ export default function EventPrizes({ page }: { page: EventPage }) {
         <SectionHead n="02" eyebrow="Prize money" title={page.prizes.places ? `BDT ${page.prizes.total},000 in prizes` : "Cash prizes for the best teams"} sub={page.prizes.note} />
         <ol
           ref={(el) => { ref.current = el; listRef.current = el; }}
-          data-in={inView}
+          data-in={arrived}
           className="podium grid gap-4 md:grid-cols-3 md:items-end"
         >
           {page.prizes.places
-            ? page.prizes.places.map((amount, i) => <Lid key={i} i={i} amount={amount} active={inView} />)
-            : <Total total={page.prizes.total} active={inView} />}
+            ? page.prizes.places.map((amount, i) => <Lid key={i} i={i} amount={amount} active={arrived} />)
+            : <Total total={page.prizes.total} active={arrived} />}
         </ol>
       </div>
     </section>
