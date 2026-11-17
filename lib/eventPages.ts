@@ -86,7 +86,7 @@ export const eventPages: Record<string, EventPage> = {
   iupc: {
     slug: "iupc",
     description: "The Inter-University Programming Contest at BitFest 2027: teams of three with a coach, ICPC rules, a five-hour main contest at KUET on 30 January.",
-    lead: "The flagship of BitFest. Teams of three solve algorithmic problems against the clock on an ICPC-style judge: a mock contest on Friday, then the five-hour main contest on Saturday, 30 January.",
+    lead: "The flagship of BitFest. Teams of three solve algorithmic problems on an ICPC-style judge: a mock contest on Friday, then the five-hour main contest on Saturday, 30 January.",
     about: "Three-member teams from universities across Bangladesh, each with a coach, solve algorithmic problems on an ICPC-style judge. A mock contest at 3 pm on Friday, 29 January lets every team try the setup; the five-hour main contest runs on Saturday, 30 January. Teams rank by problems solved, then by total penalty time.",
     points: [
       { t: "Read", d: "Work through the problem set as a team of three." },

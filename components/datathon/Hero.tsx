@@ -156,7 +156,7 @@ function Board() {
           <span className="hidden sm:inline">entries</span>
         </p>
       </div>
-      <div className="relative z-[4] grid grid-cols-[28px_minmax(0,1fr)_76px] gap-3 border-y border-[rgba(255,214,190,0.08)] px-4 py-2 text-[13px] font-medium text-[#f2e6dc]/50 md:grid-cols-[40px_minmax(0,1fr)_72px_120px_84px] md:px-6">
+      <div className="lb-cols relative z-[4] grid grid-cols-[28px_minmax(0,1fr)_76px] gap-3 border-y border-[rgba(255,214,190,0.08)] px-4 py-2 text-[13px] font-medium text-[#f2e6dc]/50 md:grid-cols-[40px_minmax(0,1fr)_72px_120px_84px] md:px-6">
         <span>#</span>
         <span>Team</span>
         <span className="hidden md:block">Entries</span>

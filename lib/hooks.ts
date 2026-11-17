@@ -44,20 +44,24 @@ export function useCountUp(target: string, active: boolean, ms = 1400) {
   const num = parseFloat(target.replace(/[^0-9.]/g, ""));
   const isNum = /^[\d,.\sKk]+$/.test(target) && !Number.isNaN(num);
   const [val, setVal] = useState(isNum ? "0" : target);
+  // One shot: once the number first comes into view it counts all the way up, even if it is
+  // scrolled away mid-count. Only unmounting stops it (so a value never freezes part-way).
+  const started = useRef(false);
+  const raf = useRef(0);
+  useEffect(() => () => { cancelAnimationFrame(raf.current); started.current = false; }, []);
   useEffect(() => {
     if (!isNum) { setVal(target); return; }
-    if (!active) return;
+    if (!active || started.current) return;
+    started.current = true;
+    const fmt = (v: number) => (target.toLowerCase().includes("k") ? v + "K" : v.toLocaleString());
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { setVal(fmt(num)); return; }
     const start = performance.now();
-    let raf = 0;
     const step = (t: number) => {
       const p = Math.min(1, (t - start) / ms);
-      const e = 1 - Math.pow(1 - p, 3);
-      const v = Math.round(num * e);
-      setVal(target.toLowerCase().includes("k") ? v + "K" : v.toLocaleString());
-      if (p < 1) raf = requestAnimationFrame(step);
+      setVal(fmt(Math.round(num * (1 - Math.pow(1 - p, 3)))));
+      if (p < 1) raf.current = requestAnimationFrame(step);
     };
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
+    raf.current = requestAnimationFrame(step);
   }, [active, isNum, num, ms, target]);
   return val;
 }
