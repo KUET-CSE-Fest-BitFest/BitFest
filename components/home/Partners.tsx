@@ -15,7 +15,7 @@ const V_DUR = [7.1, 5.8, 8.3, 6.4, 7.9, 6.1, 8.8, 5.5, 7.3];
 
 export default function Partners() {
   return (
-    <section id="partners" aria-labelledby="partners-h" className="relative scroll-mt-20 py-28 md:py-36">
+    <section id="partners" aria-labelledby="partners-h" className="relative scroll-mt-20 py-20 md:py-36">
       <div className="mx-auto max-w-[1440px] px-6 md:px-14">
         <div id="partners-h">
           <SectionHead n="03" label="Partners" title="Backed by industry" sub="The sponsors and media partner of BitFest 2025, the last edition. It drew 4,000 participants from 100 universities and 7,000 visitors." />

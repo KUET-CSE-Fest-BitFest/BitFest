@@ -110,16 +110,25 @@ function Bracket() {
       label="The Valorant knockout bracket, with matches finishing one after another until a champion is crowned."
       right={champ !== null ? <><span className="hidden sm:inline">Champion</span><span key={s.run} className="road-in font-semibold text-orange">{TEAMS[champ]}</span></> : <><LiveDot /><span>{ROUND[s.live]}</span></>}
     >
-      <div ref={ref} className="grid h-[150px] grid-cols-[minmax(0,1fr)_14px_minmax(0,1.1fr)_14px_minmax(0,1fr)] px-3 py-4 sm:h-[168px] md:grid-cols-[minmax(0,1fr)_22px_minmax(0,1fr)_22px_minmax(0,1.1fr)_22px_minmax(0,1fr)_22px_minmax(0,1fr)] md:px-6">
-        <div className="hidden flex-col justify-around md:flex">{[0, 1].map((m) => <Match key={m} s={s} m={m} />)}</div>
-        <Joins lit={[done(0), done(1)]} count={2} className="hidden md:block" />
+      <div ref={ref}>
+      {/* Phones: the semi-finals side by side with full names, the final centred under them. */}
+      <div className="flex flex-col gap-3 px-4 py-4 md:hidden">
+        <span className="text-[12px] font-medium text-[#f2e6dc]/55">Semi-finals</span>
+        <div className="grid grid-cols-2 gap-3"><Match s={s} m={4} /><Match s={s} m={5} /></div>
+        <span className="text-center text-[12px] font-medium text-[#f2e6dc]/55">Final</span>
+        <div className="mx-auto w-[min(100%,240px)]"><div data-on={champ !== null} className="gm-final rounded-[10px]"><Match s={s} m={6} /></div></div>
+      </div>
+      <div className="hidden h-[168px] px-6 py-4 md:grid md:grid-cols-[minmax(0,1fr)_22px_minmax(0,1fr)_22px_minmax(0,1.1fr)_22px_minmax(0,1fr)_22px_minmax(0,1fr)] ">
+        <div className="flex flex-col justify-around">{[0, 1].map((m) => <Match key={m} s={s} m={m} />)}</div>
+        <Joins lit={[done(0), done(1)]} count={2} />
         <div className="flex flex-col justify-around"><Match s={s} m={4} /></div>
         <Joins lit={[done(4)]} count={1} />
         <div className="flex flex-col justify-around"><div data-on={champ !== null} className="gm-final rounded-[10px]"><Match s={s} m={6} /></div></div>
         <Joins lit={[done(5)]} count={1} flip />
         <div className="flex flex-col justify-around"><Match s={s} m={5} /></div>
-        <Joins lit={[done(2), done(3)]} count={2} flip className="hidden md:block" />
-        <div className="hidden flex-col justify-around md:flex">{[2, 3].map((m) => <Match key={m} s={s} m={m} />)}</div>
+        <Joins lit={[done(2), done(3)]} count={2} flip />
+        <div className="flex flex-col justify-around">{[2, 3].map((m) => <Match key={m} s={s} m={m} />)}</div>
+      </div>
       </div>
     </HeroPanel>
   );

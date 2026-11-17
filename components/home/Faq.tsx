@@ -34,7 +34,7 @@ const QA = [
 
 export default function Faq() {
   return (
-    <section id="faq" aria-labelledby="faq-h" className="relative scroll-mt-20 py-28 md:py-36">
+    <section id="faq" aria-labelledby="faq-h" className="relative scroll-mt-20 py-20 md:py-36">
       <div className="mx-auto max-w-[1440px] px-3 md:px-14">
         {/* The questions sit in a lid: dark face, grain, thin warm rim, lit from the bottom-left. */}
         <div className="lidx relative rounded-[24px] md:rounded-[32px]">

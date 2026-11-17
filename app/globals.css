@@ -49,7 +49,8 @@ html.lenis body {
   outline-offset: 3px;
 }
 
-/* film grain over the whole page */
+/* film grain over the whole page (desktop only: on phones a fixed full-screen layer costs every
+   scroll frame for a texture too faint to see) */
 .grain::after {
   content: "";
   position: fixed;
@@ -57,8 +58,9 @@ html.lenis body {
   pointer-events: none;
   z-index: 60;
   opacity: 0.035;
-  background-image: url("/grain.svg");
+  background-image: url("/noise.webp");
 }
+@media (max-width: 767px) { .grain::after { display: none; } }
 
 /* Small section label, as on the landing page: plain Geist, sentence case. */
 .eyebrow {
@@ -149,7 +151,7 @@ html.lenis body {
   mask-image: radial-gradient(ellipse 52% 58% at 50% 50%, #000 18%, transparent 72%);
 }
 .hero-noise {
-  background-image: url("/noise.svg");
+  background-image: url("/noise.webp");
   background-size: 300px 300px;
   opacity: 0.05;
 }
@@ -234,7 +236,7 @@ html.lenis body {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("/noise.svg");
+  background-image: url("/noise.webp");
   background-size: 200px 200px;
   opacity: 0.05;
   pointer-events: none;
@@ -275,10 +277,12 @@ html.lenis body {
 }
 .sig-l > i::after { left: 0; background: linear-gradient(90deg, #fff0e4, #ffc79e 30%, rgba(255, 140, 80, 0.85) 60%, rgba(255, 122, 61, 0)); box-shadow: -2px 0 8px rgba(255, 122, 61, 0.9); }
 .sig-r > i::after { right: 0; background: linear-gradient(270deg, #fff0e4, #ffc79e 30%, rgba(255, 140, 80, 0.85) 60%, rgba(255, 122, 61, 0)); box-shadow: 2px 0 8px rgba(255, 122, 61, 0.9); }
-.sig-l > i { animation: sig-l-idle 6.5s linear infinite; }
-.sig-r > i { animation: sig-r-idle 6.5s linear infinite; }
-.sig-l[data-on="true"] > i { animation: sig-l 1.1s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
-.sig-r[data-on="true"] > i { animation: sig-r 1.1s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+/* Slow and calm: the active contest's light takes about two seconds to run its line; the others
+   travel for about two seconds every eleven. */
+.sig-l > i { animation: sig-l-idle 11s linear infinite; }
+.sig-r > i { animation: sig-r-idle 11s linear infinite; }
+.sig-l[data-on="true"] > i { animation: sig-l 2.2s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+.sig-r[data-on="true"] > i { animation: sig-r 2.2s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
 @keyframes sig-l {
   0% { transform: translateX(100%); opacity: 1; }
   88% { opacity: 1; }
@@ -541,16 +545,17 @@ html.lenis body {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("/noise.svg");
+  background-image: url("/noise.webp");
   background-size: 180px 180px;
   opacity: 0.07;
   pointer-events: none;
   z-index: 3;
 }
+/* No will-change here: most lights never move, and promoting every one (some are twice their lid's
+   size) cost phones tens of MB of graphics memory. Animated lights get promoted while they run. */
 .lx {
   position: absolute;
   pointer-events: none;
-  will-change: transform, opacity;
 }
 /* A light centred on one corner, about twice the lid's width (the gradient's radius is ~1 lid width). */
 .lx-corner { width: 196%; aspect-ratio: 1; translate: -50% -50%; }

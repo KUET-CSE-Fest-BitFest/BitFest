@@ -5,7 +5,7 @@ import EventAbout from "@/components/event/EventAbout";
 import EventPrizes from "@/components/event/EventPrizes";
 import EventFaq from "@/components/event/EventFaq";
 import EventCta from "@/components/event/EventCta";
-import type { EventPage } from "@/lib/eventPages";
+import { registerCta, type EventPage } from "@/lib/eventPages";
 
 /* Every contest page: the landing nav, the contest's own hero, About with the timeline, prize
    money, questions and the closing call, then the footer revealed underneath. */
@@ -14,7 +14,7 @@ export default function EventPageLayout({ page, name, hero }: { page: EventPage;
     <>
       <HomeNav
         sub={name}
-        cta={{ href: page.registerHref, label: "Register team" }}
+        cta={{ href: registerCta(page.registerHref).href, label: "Register" }}
         links={[
           { href: "#about", label: "About" },
           { href: "#timeline", label: "Timeline" },

@@ -73,10 +73,10 @@ export default function HomeFooter() {
               </p>
             </div>
             {cols.map((c) => (
-              <nav key={c.h} aria-label={c.h} className="flex flex-col gap-2.5">
-                <span className="text-[13px] font-medium text-dim">{c.h}</span>
+              <nav key={c.h} aria-label={c.h} className="flex flex-col gap-0.5 md:gap-1">
+                <span className="mb-1 text-[13px] font-medium text-dim">{c.h}</span>
                 {c.l.map(([t, h, ext]) => (
-                  <a key={t} href={h} {...(ext ? { target: "_blank", rel: "noreferrer" } : {})} className="w-fit text-[15px] text-soft transition-colors hover:text-ink">
+                  <a key={t} href={h} {...(ext ? { target: "_blank", rel: "noreferrer" } : {})} className="w-fit py-2 text-[15px] text-soft transition-colors hover:text-ink md:py-1">
                     {t}
                   </a>
                 ))}

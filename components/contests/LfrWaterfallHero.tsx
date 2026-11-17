@@ -91,7 +91,7 @@ function Waterfall() {
     >
       <div className="grid gap-5 px-4 py-4 md:grid-cols-[minmax(0,1fr)_230px] md:gap-7 md:px-6">
         <div className="flex gap-3">
-          <div aria-hidden className="flex flex-col justify-between py-0.5 text-[11px] tabular-nums text-[#f2e6dc]/40">
+          <div aria-hidden className="flex flex-col justify-between py-0.5 text-[12px] tabular-nums text-[#f2e6dc]/40">
             {Array.from({ length: ROWS }, (_, i) => <span key={i}>S{i + 1}</span>)}
           </div>
           <canvas ref={ref} className="h-[168px] min-w-0 flex-1 md:h-[184px]" />
@@ -107,7 +107,7 @@ function Waterfall() {
               <span className="absolute left-1/2 top-[-3px] h-[12px] w-px bg-[rgba(255,214,190,0.3)]" />
               <span className="absolute top-1/2 h-[12px] w-[12px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_40%_40%,#fff1d6,#ff7a3d_65%)] shadow-[0_0_12px_rgba(255,122,61,0.8)] transition-[left] duration-200" style={{ left: `${50 + read.err * 46}%` }} />
             </span>
-            <span className="flex justify-between text-[11px] text-[#f2e6dc]/40"><span>Left</span><span>Right</span></span>
+            <span className="flex justify-between text-[12px] text-[#f2e6dc]/40"><span>Left</span><span>Right</span></span>
           </div>
         </div>
       </div>

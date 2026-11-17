@@ -10,7 +10,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 /* 02 · Programme. The festival in four chips on one bus (a trace with a signal running along it, like
    the hero's): the online rounds, Friday, Saturday, and the closing night. The chip in focus lights
-   from its top-right corner; the chips rise in when the section arrives. Times are the proposal's
+   from its top-right corner (on phones every chip stays lit, with no hover change); the chips rise
+   in when the section arrives. Times are the proposal's
    indicative timetable; final clock times and venues come with each rulebook. */
 
 type Row = [slug: string, what: string, when: string];
@@ -84,7 +85,7 @@ export default function Programme() {
   }, []);
 
   return (
-    <section id="programme" aria-labelledby="programme-h" className="relative scroll-mt-20 overflow-hidden py-28 md:py-36">
+    <section id="programme" aria-labelledby="programme-h" className="relative scroll-mt-20 overflow-hidden py-20 md:py-36">
       <div aria-hidden className="hero-dots pointer-events-none absolute inset-0 opacity-50" />
       <div className="relative mx-auto max-w-[1440px] px-6 md:px-14">
         <div id="programme-h">
@@ -105,15 +106,15 @@ export default function Programme() {
                   data-site
                   onPointerEnter={() => { hold.current = true; setActive(i); }}
                   onPointerLeave={() => { hold.current = false; }}
-                  className="lidx relative flex min-h-[340px] flex-col gap-6 rounded-[16px] p-6"
+                  className="lidx relative flex flex-col gap-6 rounded-[16px] p-6 lg:min-h-[340px]"
                 >
-                  <span aria-hidden className={`lx lx-corner lx-tr lx-warm transition-opacity duration-700 ${on ? "opacity-100" : "opacity-0"}`} style={{ width: "150%" }} />
+                  <span aria-hidden className={`lx lx-corner lx-tr lx-warm transition-opacity duration-700 opacity-100 ${on ? "lg:opacity-100" : "lg:opacity-0"}`} style={{ width: "150%" }} />
                   <span className="lx lx-rim" />
                   {/* Pins where the bus meets the chip. */}
                   <span aria-hidden className={`absolute -left-[4px] top-[96px] z-[5] hidden h-[7px] w-[7px] -translate-y-1/2 rounded-full transition-colors duration-500 lg:block ${on ? "bg-orange shadow-[0_0_10px_rgba(255,122,61,0.8)]" : "bg-white/25"}`} />
                   <span aria-hidden className={`absolute -right-[4px] top-[96px] z-[5] hidden h-[7px] w-[7px] -translate-y-1/2 rounded-full transition-colors duration-500 lg:block ${on ? "bg-orange shadow-[0_0_10px_rgba(255,122,61,0.8)]" : "bg-white/25"}`} />
                   <div className="relative z-[4] flex flex-col gap-2">
-                    <span className={`text-[13px] font-medium tabular-nums transition-colors duration-500 ${on ? "text-[#fbf1e9]" : "text-orange"}`}>{v.label}</span>
+                    <span className={`text-[13px] font-medium tabular-nums text-[#fbf1e9] transition-colors duration-500 ${on ? "" : "lg:text-orange"}`}>{v.label}</span>
                     <h3 className="lx-ink-warm text-[24px] font-semibold leading-tight tracking-[-0.02em]">{v.name}</h3>
                   </div>
                   <ul className="relative z-[4] mt-auto flex flex-col gap-3">

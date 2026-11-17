@@ -118,7 +118,7 @@ export default function TraceWordmark({ look = "chamfer", className = "" }: { lo
   return (
     <div className={className}>
       <canvas ref={canvasRef} aria-hidden className="absolute inset-0 h-full w-full" />
-      <p className="sr-only">BitFest 27</p>
+      <p className="sr-only">BitFest 2027</p>
     </div>
   );
 }

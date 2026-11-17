@@ -13,6 +13,7 @@ import { eventPages } from "@/lib/eventPages";
 
 const page = eventPages.ctf;
 const CATS = ["Web", "Crypto", "Forensics", "Reversing", "Pwn"];
+const SHORT = ["Web", "Crypto", "Forens.", "Rev.", "Pwn"]; // phones
 const VALUES = [100, 200, 300, 400, 500];
 const TEAMS = ["nullbyte", "rootkit ramen", "segv", "xor shift", "heap of trouble", "bit flip"];
 // Solves at the start: easy flags are well taken, hard ones mostly open.
@@ -62,7 +63,7 @@ function Board() {
         <div className="grid grid-cols-5 gap-px bg-[rgba(255,214,190,0.07)]">
           {CATS.map((cat, c) => (
             <div key={cat} className="flex flex-col gap-px">
-              <span className="truncate bg-[#050406] px-2 py-2.5 text-center text-[12px] font-medium text-[#f2e6dc]/60 sm:text-[13px] md:px-3">{cat}</span>
+              <span className="truncate bg-[#050406] px-2 py-2.5 text-center text-[12px] font-medium text-[#f2e6dc]/60 sm:text-[13px] md:px-3"><span className="sm:hidden">{SHORT[c]}</span><span className="hidden sm:inline">{cat}</span></span>
               {VALUES.map((val, v) => {
                 const k = solves[c][v];
                 const hit = last && last.c === c && last.v === v ? last : null;
@@ -70,7 +71,7 @@ function Board() {
                   <span key={val} data-taken={k > 0} className="ctf-cell relative flex h-[52px] flex-col items-center justify-center bg-[#050406] md:h-[56px]">
                     {hit && <span key={hit.n} aria-hidden className={`ctf-flash ${hit.first ? "is-first" : ""}`} />}
                     <span className="relative text-[17px] font-semibold tabular-nums md:text-[19px]">{val}</span>
-                    <span className="relative text-[11px] tabular-nums text-[#f2e6dc]/45 md:text-[12px]">{k ? `${k} solve${k > 1 ? "s" : ""}` : "open"}</span>
+                    <span className="relative text-[12px] tabular-nums text-[#f2e6dc]/45 md:text-[12px]">{k ? `${k} solve${k > 1 ? "s" : ""}` : "open"}</span>
                   </span>
                 );
               })}

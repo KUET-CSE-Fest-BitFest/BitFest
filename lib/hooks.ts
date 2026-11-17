@@ -28,9 +28,10 @@ export function useReducedMotion() {
   return reduce;
 }
 
-/** Sets a canvas's backing store to its CSS size × devicePixelRatio (capped at 2). Returns the scale. */
+/** Sets a canvas's backing store to its CSS size × devicePixelRatio, capped at 2 (1.5 on phones, where
+    the extra pixels cost more than they show). Returns the scale. */
 export function fitCanvas(canvas: HTMLCanvasElement, w: number, h: number) {
-  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  const dpr = Math.min(window.innerWidth < 768 ? 1.5 : 2, window.devicePixelRatio || 1);
   canvas.width = Math.round(w * dpr);
   canvas.height = Math.round(h * dpr);
   const ctx = canvas.getContext("2d")!;

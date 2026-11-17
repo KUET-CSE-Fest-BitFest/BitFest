@@ -43,7 +43,7 @@ function Floor() {
             const state = i === at ? "here" : i < at ? "scored" : "waiting";
             return (
               <li key={i} data-state={state} className="sc-stall relative flex h-[36px] flex-col justify-between rounded-[7px] px-1.5 py-1 md:h-[40px] md:px-2">
-                <span className="text-[11px] leading-none tabular-nums md:text-[12px]">{String(i + 1).padStart(2, "0")}</span>
+                <span className="text-[12px] leading-none tabular-nums md:text-[12px]">{String(i + 1).padStart(2, "0")}</span>
                 <span aria-hidden className="sc-mark h-[3px] rounded-full" style={{ width: `${Math.round(SCORE[i] * 100)}%` }} />
               </li>
             );

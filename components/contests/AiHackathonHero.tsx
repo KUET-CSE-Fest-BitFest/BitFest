@@ -133,12 +133,15 @@ function Net() {
       }
     };
 
-    let raf = 0, visible = true, last = performance.now();
+    let raf = 0, visible = true, last = performance.now(), frame = 0;
+    // Phones draw at 30 fps; the signals keep their speed because each step uses real elapsed time.
+    const every = window.innerWidth < 768 ? 2 : 1;
     const loop = (now: number) => {
-      step(Math.min(0.05, (now - last) / 1000));
+      raf = visible ? requestAnimationFrame(loop) : 0;
+      if (++frame % every) return;
+      step(Math.min(0.08, (now - last) / 1000));
       last = now;
       draw();
-      raf = visible ? requestAnimationFrame(loop) : 0;
     };
     const kick = () => { if (!raf && !reduce) { last = performance.now(); raf = requestAnimationFrame(loop); } };
 

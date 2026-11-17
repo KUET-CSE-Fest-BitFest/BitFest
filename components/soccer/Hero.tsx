@@ -57,11 +57,13 @@ export default function Hero() {
     if (!inView || reduce) return () => ro.disconnect();
 
     const ctx = canvas.getContext("2d")!;
-    let raf = 0;
+    let raf = 0, frame = 0;
+    // Phones draw at 30 fps (the match still runs at full speed); desktops draw every frame.
+    const every = window.innerWidth < 768 ? 2 : 1;
     const loop = () => {
       raf = requestAnimationFrame(loop);
       sim.step();
-      sim.draw(ctx, w, h);
+      if (++frame % every === 0) sim.draw(ctx, w, h);
     };
     loop();
     return () => {

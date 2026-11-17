@@ -354,3 +354,10 @@ export const eventPages: Record<string, EventPage> = {
     rulebookHref: "#", // [RULEBOOK PDF URL]
   },
 };
+
+/** The register button: the form once its URL is set; until then it says when registration opens and
+    scrolls to the contest's timeline, so the button never leads nowhere. */
+export const registerCta = (href: string) =>
+  href && href !== "#" ? { href, label: "Register your team", short: "Register" } : { href: "#timeline", label: "Registration opens 30 Nov", short: "Register" };
+/** The rulebook button only shows once there is a rulebook to open. */
+export const hasRulebook = (href: string) => Boolean(href) && href !== "#";

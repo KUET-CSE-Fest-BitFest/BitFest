@@ -2,6 +2,8 @@ import type { ReactNode } from "react";
 import { events, fest, pad2 } from "@/lib/fest";
 import { Button } from "@/components/ui/Button";
 import BottomLight from "@/components/home/heroes/BottomLight";
+import { hasRulebook } from "@/lib/eventPages";
+import RegisterButton from "./RegisterButton";
 
 /* Every contest page opens the same way, on the landing hero's ground: the dot field, grain, top
    light and the warm bottom-corner lights that follow the cursor. The title sits at the top; each
@@ -58,8 +60,8 @@ export default function EventHero({
           {lead}
         </p>
         <div className="hero-in pointer-events-auto mt-8 flex flex-wrap justify-center gap-3" style={{ animationDelay: "0.3s" }}>
-          <Button href={registerHref}>Register your team</Button>
-          <Button href={rulebookHref} variant="ghost">Read the rulebook</Button>
+          <RegisterButton href={registerHref} />
+          {hasRulebook(rulebookHref) && <Button href={rulebookHref} variant="ghost">Read the rulebook</Button>}
         </div>
       </div>
 

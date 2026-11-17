@@ -136,6 +136,9 @@ export default function WarmLight({
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
+    // Phones and tablets keep the static gradient underneath: the light only follows a mouse, and a
+    // WebGL context plus a shader every frame is wasted battery and smoothness on a budget phone.
+    if (window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 1024) return;
     const gl = canvas.getContext("webgl", { antialias: false, alpha: false, preserveDrawingBuffer: false, powerPreference: "low-power" });
     if (!gl) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

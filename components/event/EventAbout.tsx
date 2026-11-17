@@ -5,7 +5,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Button } from "@/components/ui/Button";
 import SectionHead from "@/components/ui/SectionHead";
-import type { EventPage } from "@/lib/eventPages";
+import { hasRulebook, type EventPage } from "@/lib/eventPages";
+import RegisterButton from "./RegisterButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -78,7 +79,7 @@ export default function EventAbout({ page }: { page: EventPage }) {
   }, []);
 
   return (
-    <section id="about" className="relative scroll-mt-20 overflow-x-clip py-28 md:py-36">
+    <section id="about" className="relative scroll-mt-20 overflow-x-clip py-20 md:py-36">
       <div className="mx-auto grid max-w-[1440px] gap-20 px-6 md:px-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-24">
         <div className="flex flex-col gap-10 lg:sticky lg:top-28 lg:self-start">
           <SectionHead n="01" eyebrow="About the contest" title={page.points.map((p) => p.t).join(". ") + "."} />
@@ -105,8 +106,8 @@ export default function EventAbout({ page }: { page: EventPage }) {
             ))}
           </dl>
           <div data-reveal className="flex flex-wrap gap-3">
-            <Button href={page.registerHref}>Register your team</Button>
-            <Button href={page.rulebookHref} variant="ghost">Read the rulebook</Button>
+            <RegisterButton href={page.registerHref} />
+            {hasRulebook(page.rulebookHref) && <Button href={page.rulebookHref} variant="ghost">Read the rulebook</Button>}
           </div>
         </div>
 

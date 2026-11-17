@@ -75,7 +75,7 @@ export default function EventPrizes({ page }: { page: EventPage }) {
   }, []);
 
   return (
-    <section id="prizes" className="relative scroll-mt-20 overflow-hidden py-28 md:py-36">
+    <section id="prizes" className="relative scroll-mt-20 overflow-hidden py-20 md:py-36">
       <div aria-hidden className="hero-dots pointer-events-none absolute inset-0 opacity-50" />
       <div className="relative mx-auto flex max-w-[1440px] flex-col gap-16 px-6 md:px-14">
         <SectionHead n="02" eyebrow="Prize money" title={page.prizes.places ? `BDT ${page.prizes.total},000 in prizes` : "Cash prizes for the best teams"} sub={page.prizes.note} />

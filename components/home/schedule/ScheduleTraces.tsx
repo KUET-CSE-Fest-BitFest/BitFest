@@ -34,7 +34,7 @@ export default function ScheduleTraces() {
   const prize = prizes[e.slug];
 
   return (
-    <section ref={sec} id="schedule" className="relative scroll-mt-20 overflow-hidden py-28 md:py-36">
+    <section ref={sec} id="schedule" className="relative scroll-mt-20 overflow-hidden py-20 md:py-36">
       <div aria-hidden className="hero-dots pointer-events-none absolute inset-0 opacity-60" />
       <div className="relative mx-auto flex max-w-[1440px] flex-col gap-16 px-6 md:px-14">
         <SectionHead n="01" label="Key dates" title="Every road ends on campus" sub={`Registration runs from 30 November to 12 January, and online rounds from 13 to 22 January. Every final is on the KUET campus on 29 and 30 January, with ${fest.prizePool} BDT in prizes.`} />

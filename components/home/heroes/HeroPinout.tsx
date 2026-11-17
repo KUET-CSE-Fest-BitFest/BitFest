@@ -149,7 +149,7 @@ export default function HeroPinout({ glow = "current", seat = "float", lid = "me
                     <span className={`absolute top-1/2 h-[5px] w-[5px] -translate-y-1/2 rounded-full transition-[background-color,box-shadow] duration-300 ${left ? "-left-[2px]" : "-right-[2px]"} ${on ? "bg-orange shadow-[0_0_10px_rgba(255,122,61,0.8)]" : "bg-white/30"}`} />
                   </span>
                   <span className={`sig hidden lg:block ${left ? "sig-l" : "sig-r"}`} data-on={on} style={{ top: y, width: "calc(var(--pin) + var(--lead) - 70px)", clipPath: "inset(-12px 0)", ...(left ? { right: "calc(100% + 14px)" } : { left: "calc(100% + 14px)" }) }}>
-                    <i style={{ animationDelay: `${-(ev * 0.83) % 6.5}s` }} />
+                    <i style={{ animationDelay: `${-(ev * 1.4) % 11}s` }} />
                   </span>
                 </div>
               );
