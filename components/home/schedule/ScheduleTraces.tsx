@@ -161,17 +161,23 @@ export default function ScheduleTraces() {
         </div>
         <ol className="-mt-6 flex flex-col lg:hidden">
           {events.map((ev, i) => (
-            <li key={ev.slug} className="flex flex-col gap-2 border-t border-line py-5">
-              <span className="text-[12px] tabular-nums text-dim">Pin {pad2(i + 1)} · {ev.kind}</span>
-              <span className="flex items-baseline justify-between gap-4">
-                <span className="text-[18px] font-semibold">{ev.name}</span>
-                <span className="text-[16px] font-semibold tabular-nums">{prizes[ev.slug]?.total ? `${prizes[ev.slug]!.total}K` : "TBA"} <span className="text-[12px] font-medium text-dim">BDT</span></span>
-              </span>
-              <span className="flex flex-wrap gap-x-4 gap-y-1 text-[14px] text-muted">
-                {(schedule[ev.slug] ?? []).map((m, k) => (
-                  <span key={k} className={m.kind === "final" ? "text-orange" : ""}>{range(m)} · {KIND_LABEL[m.kind]}</span>
-                ))}
-              </span>
+            <li key={ev.slug} className="border-t border-line">
+              {/* Each row opens its contest's page. */}
+              <a href={eventHref(ev)} className="sched-row group flex flex-col gap-2 py-5">
+                <span className="text-[12px] tabular-nums text-dim">Pin {pad2(i + 1)} · {ev.kind}</span>
+                <span className="flex items-baseline justify-between gap-4">
+                  <span className="flex items-center gap-2 text-[18px] font-semibold transition-colors group-hover:text-orange">
+                    {ev.name}
+                    <svg aria-hidden width="14" height="14" viewBox="0 0 16 16" className="shrink-0 text-dim transition-[color,transform] duration-300 group-hover:translate-x-0.5 group-hover:text-orange"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.6" /></svg>
+                  </span>
+                  <span className="text-[16px] font-semibold tabular-nums">{prizes[ev.slug]?.total ? `${prizes[ev.slug]!.total}K` : "TBA"} <span className="text-[12px] font-medium text-dim">BDT</span></span>
+                </span>
+                <span className="flex flex-wrap gap-x-4 gap-y-1 text-[14px] text-muted">
+                  {(schedule[ev.slug] ?? []).map((m, k) => (
+                    <span key={k} className={m.kind === "final" ? "text-orange" : ""}>{range(m)} · {KIND_LABEL[m.kind]}</span>
+                  ))}
+                </span>
+              </a>
             </li>
           ))}
         </ol>

@@ -9,9 +9,9 @@ export type NavLink = { href: string; label: string };
 const HOME_LINKS: NavLink[] = [
   { href: "#schedule", label: "Schedule" },
   { href: "#programme", label: "Programme" },
-  { href: "#gallery", label: "Gallery" },
   { href: "#partners", label: "Partners" },
   { href: "#faq", label: "FAQ" },
+  { href: "#gallery", label: "Gallery" },
 ];
 
 /** The site's one navigation bar. Event pages pass their own section links, a page name and a CTA. */

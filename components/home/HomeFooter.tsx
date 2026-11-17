@@ -52,7 +52,7 @@ export default function HomeFooter() {
   }, []);
 
   const cols = [
-    { h: "Fest", l: [["Key dates", "/#schedule"], ["Programme", "/#programme"], ["Gallery", "/#gallery"], ["Partners", "/#partners"], ["FAQ", "/#faq"]] },
+    { h: "Fest", l: [["Key dates", "/#schedule"], ["Programme", "/#programme"], ["Partners", "/#partners"], ["FAQ", "/#faq"], ["Gallery", "/#gallery"]] },
     { h: "Contests", l: events.map((e) => [e.name, eventHref(e), isExternal(e) ? "ext" : ""]) },
     { h: "Contact", l: [[fest.email, `mailto:${fest.email}`, ""], [fest.phone, `tel:${fest.phone.replace(/[^+\d]/g, "")}`, ""], ["Facebook", fest.facebook, "ext"], ["KUET, Khulna 9203", "https://www.kuet.ac.bd", "ext"]] },
   ];

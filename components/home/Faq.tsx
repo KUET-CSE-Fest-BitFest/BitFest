@@ -42,7 +42,7 @@ export default function Faq() {
           <span className="lx lx-rim" />
           <div className="relative z-[4] grid gap-12 px-6 py-12 md:p-14 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
         <div id="faq-h">
-          <SectionHead n="05" label="Questions" title="Before you register" />
+          <SectionHead n="04" label="Questions" title="Before you register" />
         </div>
         <FaqList items={QA} />
           </div>
