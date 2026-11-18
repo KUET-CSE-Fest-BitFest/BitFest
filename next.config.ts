@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  output: "export",
+  images: { unoptimized: true },
   // Lets a production build sit beside the dev server's .next (NEXT_DIST_DIR=.next-prod).
   distDir: process.env.NEXT_DIST_DIR || ".next",
 };

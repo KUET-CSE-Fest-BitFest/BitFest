@@ -9,18 +9,29 @@ const title = "BitFest 2027 — 3rd KUET CSE National Fest";
 const description =
   "Ten national competitions in programming, AI, data science, research, robotics, cybersecurity, business and esports. 29–30 January 2027 at KUET, Khulna. 700K BDT in prizes.";
 
-// Social previews need absolute image URLs. On Vercel this is the production domain (a custom domain
-// once one is added); NEXT_PUBLIC_SITE_URL overrides it for any other host.
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "https://bitfest2027.vercel.app");
+// Social previews and canonicals need absolute URLs. NEXT_PUBLIC_SITE_URL overrides the production domain.
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://kuetbitfest2027.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title,
   description,
+  applicationName: "BitFest 2027",
+  keywords: [
+    "BitFest 2027", "BitFest", "KUET", "KUET CSE", "KUET CSE Fest", "national tech fest Bangladesh", "IUPC",
+    "programming contest", "AI hackathon", "datathon", "CTF", "robotics", "Line Following Robot", "Soccer Bot",
+    "3 Minute Thesis", "project showcase", "IT business case", "esports", "Khulna",
+  ],
+  authors: [{ name: "Department of CSE, KUET" }],
+  creator: "Department of CSE, KUET",
+  publisher: "Khulna University of Engineering & Technology",
+  category: "technology",
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } },
+  formatDetection: { telephone: false },
   openGraph: {
     type: "website",
+    locale: "en_US",
     siteName: "BitFest 2027",
     title,
     description,

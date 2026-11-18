@@ -30,3 +30,16 @@ npm run build && npm start
 | `public/og/*.jpg` | Social preview cards (1200×630): `home.jpg` and one per contest slug |
 
 Content comes from the BitFest 2027 sponsorship proposal (Department of CSE, KUET).
+
+## Deploy (Cloudflare)
+
+The site is a static export (`output: "export"` → `out/`) served as a Cloudflare Worker with static assets
+(`wrangler.jsonc`), live at https://kuetbitfest2027.com.
+
+```bash
+npm run deploy   # next build && wrangler deploy
+```
+
+With Workers Builds connected to the repo: build command `npm run build`, deploy command `npx wrangler deploy`.
+SEO lives in `app/layout.tsx` (site-wide metadata, `metadataBase`), `app/robots.ts`, `app/sitemap.ts`, the
+JSON-LD in `app/page.tsx`, and each contest's `generateMetadata`. Set `NEXT_PUBLIC_SITE_URL` to change the domain.
