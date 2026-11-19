@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { eventHref, events, isExternal } from "@/lib/fest";
+import { events } from "@/lib/fest";
+import ContestLink from "@/components/ui/ContestLink";
 import SectionHead from "./SectionHead";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -128,13 +129,13 @@ export default function Programme() {
                       }
                       return (
                         <li key={slug + what}>
-                          <a href={eventHref(e)} {...(isExternal(e) ? { target: "_blank", rel: "noreferrer" } : {})} className="group flex items-baseline justify-between gap-3 border-t border-[rgba(255,214,190,0.1)] pt-3">
+                          <ContestLink e={e} className="group flex items-baseline justify-between gap-3 border-t border-[rgba(255,214,190,0.1)] pt-3">
                             <span className="flex flex-col">
                               <span className="font-semibold text-[#fbf1e9] transition-colors group-hover:text-orange">{e.name}</span>
                               <span className="text-[14px] text-[#f2e6dc]/60">{what}</span>
                             </span>
                             <span className="shrink-0 text-[14px] tabular-nums text-[#f2e6dc]/80">{when}</span>
-                          </a>
+                          </ContestLink>
                         </li>
                       );
                     })}

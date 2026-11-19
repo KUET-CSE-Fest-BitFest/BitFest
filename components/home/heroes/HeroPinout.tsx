@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { eventHref, events, fest, isExternal, pad2 } from "@/lib/fest";
+import { events, fest, money, pad2 } from "@/lib/fest";
+import ContestLink from "@/components/ui/ContestLink";
 import { HeroActions } from "./shared";
 import ChipGlow, { type GlowId } from "./ChipGlow";
 import WarmLight from "./rebrand/WarmLight";
@@ -225,9 +226,8 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                     className="hero-in absolute -translate-y-1/2"
                     style={{ animationDelay: `${0.4 + (i % PER) * 0.06}s`, top: yOf(EV_IDX[i % PER]), ...(left ? { right: "calc(100% + var(--pin) + var(--lead) + 14px)" } : { left: "calc(100% + var(--pin) + var(--lead) + 14px)" }) }}
                   >
-                    <a
-                      href={eventHref(e)}
-                      {...(isExternal(e) ? { target: "_blank", rel: "noreferrer" } : {})}
+                    <ContestLink
+                      e={e}
                       onPointerEnter={() => pick(i)}
                       onPointerLeave={() => pick(-1)}
                       onFocus={() => pick(i)}
@@ -236,10 +236,10 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                     >
                       <span className="text-[12px] tabular-nums">
                         <span className={on ? "text-orange" : "text-dim"}>Pin {pad2(i + 1)}</span>
-                        <span className="text-dim"> · {on ? `${e.day} · ${e.pool === "TBA" ? "Prizes TBA" : `${e.pool} BDT`}` : e.kind}</span>
+                        <span className="text-dim"> · {on ? `${e.day} · ${money(e.pool)} BDT` : e.kind}</span>
                       </span>
                       <span className={`text-[17px] font-semibold transition-colors ${on ? "text-ink" : "text-muted"}`}>{e.name}</span>
-                    </a>
+                    </ContestLink>
                   </li>
                 );
               })}

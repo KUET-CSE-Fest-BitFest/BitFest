@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionHead from "@/components/ui/SectionHead";
 import { useCountUp, useInView } from "@/lib/hooks";
 import type { EventPage } from "@/lib/eventPages";
+import { PRIZES_ANNOUNCED } from "@/lib/fest";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,7 +17,8 @@ gsap.registerPlugin(ScrollTrigger);
 const PLACES = ["Champion", "1st runner-up", "2nd runner-up"];
 
 function Total({ total, active }: { total: number; active: boolean }) {
-  const v = useCountUp(`${total}K`, active, 1400);
+  // "??" until prizes are announced (the count-up shows text as it is).
+  const v = useCountUp(PRIZES_ANNOUNCED ? `${total}K` : "??", active, 1400);
   return (
     <li data-lid className="lidx relative flex min-h-[300px] flex-col justify-between gap-12 rounded-[18px] p-7 md:col-span-3 md:min-h-[360px] md:p-10">
       <span className="podium-light lx lx-corner lx-tr lx-warm" style={{ width: "58%" }} />
@@ -27,14 +29,14 @@ function Total({ total, active }: { total: number; active: boolean }) {
           {v}
           <span className="ml-3 text-xl font-medium tracking-normal text-muted">BDT</span>
         </span>
-        <span className="max-w-[300px] text-[15px] leading-relaxed text-[#f2e6dc]/70 md:text-right">In cash. How it splits between the places comes with the rulebook.</span>
+        <span className="max-w-[300px] text-[15px] leading-relaxed text-[#f2e6dc]/70 md:text-right">{PRIZES_ANNOUNCED ? "In cash. How it splits between the places comes with the rulebook." : "In cash. The amount is announced with the rulebook."}</span>
       </div>
     </li>
   );
 }
 
 function Lid({ i, amount, active }: { i: number; amount: number; active: boolean }) {
-  const v = useCountUp(`${amount}K`, active, 1200);
+  const v = useCountUp(PRIZES_ANNOUNCED ? `${amount}K` : "??", active, 1200);
   const champ = i === 0;
   return (
     <li
@@ -82,7 +84,7 @@ export default function EventPrizes({ page }: { page: EventPage }) {
     <section id="prizes" className="relative scroll-mt-20 overflow-hidden py-20 md:py-36">
       <div aria-hidden className="hero-dots pointer-events-none absolute inset-0 opacity-50" />
       <div className="relative mx-auto flex max-w-[1440px] flex-col gap-16 px-6 md:px-14">
-        <SectionHead n="02" eyebrow="Prize money" title={page.prizes.places ? `BDT ${page.prizes.total},000 in prizes` : "Cash prizes for the best teams"} sub={page.prizes.note} />
+        <SectionHead n="02" eyebrow="Prize money" title={page.prizes.places && PRIZES_ANNOUNCED ? `BDT ${page.prizes.total},000 in prizes` : "Cash prizes for the best teams"} sub={page.prizes.note} />
         <ol
           ref={(el) => { ref.current = el; listRef.current = el; }}
           data-in={arrived}

@@ -2,7 +2,7 @@ import type { ComponentType } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import EventPageLayout from "@/components/event/EventPageLayout";
-import { events, fest } from "@/lib/fest";
+import { events, fest, CONTEST_PAGES_LIVE } from "@/lib/fest";
 import { eventPages } from "@/lib/eventPages";
 import IupcHero from "@/components/contests/IupcHero";
 import AiHackathonHero from "@/components/contests/AiHackathonHero";
@@ -47,6 +47,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title,
     description: page.description,
     alternates: { canonical: `/events/${slug}` },
+    // Kept out of search results until the contest pages are public.
+    ...(CONTEST_PAGES_LIVE ? {} : { robots: { index: false, follow: false } }),
     openGraph: { type: "website", siteName: `${fest.name} ${fest.year}`, title, description: page.description, url: `/events/${slug}`, images: [image] },
     twitter: { card: "summary_large_image", title, description: page.description, images: [image.url] },
   };

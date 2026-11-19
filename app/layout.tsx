@@ -2,12 +2,12 @@ import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/ui/SmoothScroll";
+import { festDescription } from "@/lib/fest";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
 
 const title = "BitFest 4.0 — 4th KUET CSE National Fest";
-const description =
-  "Ten national competitions in programming, AI, data science, research, robotics, cybersecurity, business and esports. 5–6 February 2027 at KUET, Khulna. 700K BDT in prizes.";
+const description = festDescription;
 
 // Social previews and canonicals need absolute URLs. NEXT_PUBLIC_SITE_URL overrides the production domain.
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://kuetbitfest2027.com";

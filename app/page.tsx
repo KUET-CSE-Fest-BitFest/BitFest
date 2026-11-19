@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import HomePage from "@/components/home/HomePage";
 import HeroPinout from "@/components/home/heroes/HeroPinout";
-import { events } from "@/lib/fest";
+import { CONTEST_PAGES_LIVE, events, festDescription } from "@/lib/fest";
 
 const SITE = "https://kuetbitfest2027.com";
 const kuet = {
@@ -35,15 +35,14 @@ const festJsonLd = {
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     location: kuet,
     image: [`${SITE}/og/${e.slug}.jpg`],
-    url: `${SITE}/events/${e.slug}`,
+    url: CONTEST_PAGES_LIVE ? `${SITE}/events/${e.slug}` : SITE,
     organizer,
   })),
 };
 
 export const metadata: Metadata = {
   title: "BitFest 4.0 — 4th KUET CSE National Fest",
-  description:
-    "Ten national competitions in programming, AI, data science, research, robotics, cybersecurity, business and esports. 5–6 February 2027 at KUET, Khulna. 700K BDT in prizes.",
+  description: festDescription,
   alternates: { canonical: "/" },
 };
 

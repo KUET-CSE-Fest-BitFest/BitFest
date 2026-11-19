@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { events } from "@/lib/fest";
+import { CONTEST_PAGES_LIVE, events } from "@/lib/fest";
 
 export const dynamic = "force-static";
 
@@ -9,7 +9,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   return [
     { url: SITE, lastModified: now, changeFrequency: "weekly", priority: 1 },
-    ...events.map((e) => ({
+    // Contest pages join the sitemap once they are public (nothing links to them before that).
+    ...(CONTEST_PAGES_LIVE ? events : []).map((e) => ({
       url: `${SITE}/events/${e.slug}`,
       lastModified: now,
       changeFrequency: "weekly" as const,

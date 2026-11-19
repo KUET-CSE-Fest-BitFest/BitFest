@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-import { eventHref, events, fest, isExternal, pad2, prizes, schedule } from "@/lib/fest";
+import { CONTEST_PAGES_LIVE, PRIZES_ANNOUNCED, events, fest, money, pad2, prizes, schedule } from "@/lib/fest";
+import ContestLink from "@/components/ui/ContestLink";
 import SectionHead from "../SectionHead";
 import { useActiveEvent } from "../heroes/variants/useActiveEvent";
 import { KIND_LABEL, dayLabel, detail, range } from "./data";
@@ -38,7 +39,7 @@ export default function ScheduleTraces() {
     <section ref={sec} id="schedule" className="relative scroll-mt-20 overflow-hidden py-20 md:py-36">
       <div aria-hidden className="hero-dots pointer-events-none absolute inset-0 opacity-60" />
       <div className="relative mx-auto flex max-w-[1440px] flex-col gap-16 px-6 md:px-14">
-        <SectionHead n="01" label="Key dates" title="Every road ends on campus" sub={`Registration runs from 30 November to 12 January, and online rounds from 13 to 22 January. Every final is on the KUET campus on 5 and 6 February, with ${fest.prizePool} BDT in prizes.`} />
+        <SectionHead n="01" label="Key dates" title="Every road ends on campus" sub={`Registration runs from 30 November to 12 January, and online rounds from 13 to 22 January. Every final is on the KUET campus on 5 and 6 February, ${PRIZES_ANNOUNCED ? `with ${fest.prizePool} BDT in prizes` : "with cash prizes in every contest"}.`} />
 
         {/* Desktop: the board. */}
         <div className="hidden lg:grid lg:grid-cols-[210px_minmax(0,1fr)_340px] lg:gap-0">
@@ -48,9 +49,8 @@ export default function ScheduleTraces() {
               const on = i === active;
               return (
                 <li key={ev.slug} className="absolute right-6 -translate-y-1/2 text-right" style={{ top: rowY(i) }}>
-                  <a
-                    href={eventHref(ev)}
-                    {...(isExternal(ev) ? { target: "_blank", rel: "noreferrer" } : {})}
+                  <ContestLink
+                    e={ev}
                     onPointerEnter={() => pick(i)}
                     onPointerLeave={() => pick(-1)}
                     onFocus={() => pick(i)}
@@ -59,7 +59,7 @@ export default function ScheduleTraces() {
                   >
                     <span className={`text-[12px] tabular-nums ${on ? "text-orange" : "text-dim"}`}>Pin {pad2(i + 1)} · {ev.kind}</span>
                     <span className={`text-[17px] font-semibold transition-colors duration-300 ${on ? "text-ink" : "text-muted"}`}>{ev.name}</span>
-                  </a>
+                  </ContestLink>
                 </li>
               );
             })}
@@ -136,7 +136,7 @@ export default function ScheduleTraces() {
                     </span>
                     <span className="flex flex-col gap-1">
                       <span className="text-[12px] font-medium text-[#f2e6dc]/65">Prize pool · BDT</span>
-                      <span className="text-[30px] font-semibold leading-none tracking-[-0.035em] tabular-nums text-[#ffb27a]">{prize?.total ? `${prize.total}K` : "TBA"}</span>
+                      <span className="text-[30px] font-semibold leading-none tracking-[-0.035em] tabular-nums text-[#ffb27a]">{prize?.total ? money(`${prize.total}K`) : "TBA"}</span>
                     </span>
                   </div>
                   <span className="text-[13px] tabular-nums text-[#f2e6dc]/70">Team {e.team} · {e.fee} · {e.onsite} onsite · {e.club}</span>
@@ -165,7 +165,7 @@ export default function ScheduleTraces() {
               </span>
               <span className="flex flex-col gap-1">
                 <span className="text-[12px] font-medium text-[#f2e6dc]/65">Prize pool</span>
-                <span className="text-[15px] font-semibold tabular-nums text-[#fbf1e9]">{fest.prizePool} BDT</span>
+                <span className="text-[15px] font-semibold tabular-nums text-[#fbf1e9]">{money(fest.prizePool)} BDT</span>
               </span>
             </span>
           </div>
@@ -173,14 +173,14 @@ export default function ScheduleTraces() {
         <ol className="-mt-6 flex flex-col lg:hidden">
           {events.map((ev) => (
             <li key={ev.slug} className="border-t border-line">
-              {/* Each row opens its contest's page. */}
-              <a href={eventHref(ev)} className="sched-row group flex flex-col gap-1.5 py-4">
+              {/* Each row opens its contest's page (once the pages are public; until then it only lights). */}
+              <ContestLink e={ev} className="sched-row group flex flex-col gap-1.5 py-4">
                 <span className="flex items-baseline justify-between gap-4">
                   <span className="flex items-center gap-2 text-[18px] font-semibold tracking-[-0.01em] transition-colors group-hover:text-orange">
                     {ev.name}
-                    <svg aria-hidden width="14" height="14" viewBox="0 0 16 16" className="shrink-0 text-dim transition-[color,transform] duration-300 group-hover:translate-x-0.5 group-hover:text-orange"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.6" /></svg>
+                    {CONTEST_PAGES_LIVE && <svg aria-hidden width="14" height="14" viewBox="0 0 16 16" className="shrink-0 text-dim transition-[color,transform] duration-300 group-hover:translate-x-0.5 group-hover:text-orange"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.6" /></svg>}
                   </span>
-                  <span className="shrink-0 text-[15px] font-semibold tabular-nums">{prizes[ev.slug]?.total ? `${prizes[ev.slug]!.total}K` : "TBA"} <span className="text-[12px] font-medium text-dim">BDT</span></span>
+                  <span className="shrink-0 text-[15px] font-semibold tabular-nums">{prizes[ev.slug]?.total ? money(`${prizes[ev.slug]!.total}K`) : "TBA"} <span className="text-[12px] font-medium text-dim">BDT</span></span>
                 </span>
                 {/* One quiet line: the online round when there is one, then the final. */}
                 <span className="text-[14px] tabular-nums text-muted">
@@ -191,7 +191,7 @@ export default function ScheduleTraces() {
                     <span key="final" className="text-orange">Final {range(m)}</span>
                   ))}
                 </span>
-              </a>
+              </ContestLink>
             </li>
           ))}
         </ol>

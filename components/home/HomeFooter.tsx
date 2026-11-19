@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { eventHref, events, fest, isExternal } from "@/lib/fest";
+import { CONTEST_PAGES_LIVE, eventHref, events, fest, isExternal } from "@/lib/fest";
 import TraceWordmark from "./TraceWordmark";
 import BottomLight from "./heroes/BottomLight";
 
@@ -53,7 +53,8 @@ export default function HomeFooter() {
 
   const cols = [
     { h: "Fest", l: [["Key dates", "/#schedule"], ["Programme", "/#programme"], ["Gallery", "/#gallery"], ["Partners", "/#partners"], ["FAQ", "/#faq"]] },
-    { h: "Contests", l: events.map((e) => [e.name, eventHref(e), isExternal(e) ? "ext" : ""]) },
+    // Contest names link to their pages once those are public; until then they only light on hover.
+    { h: "Contests", l: events.map((e) => [e.name, CONTEST_PAGES_LIVE ? eventHref(e) : "", isExternal(e) ? "ext" : ""]) },
     { h: "Contact", l: [[fest.email, `mailto:${fest.email}`, ""], [fest.phone, `tel:${fest.phone.replace(/[^+\d]/g, "")}`, ""], ["Facebook", fest.facebook, "ext"], ["KUET, Khulna 9203", "https://www.kuet.ac.bd", "ext"]] },
   ];
   return (
@@ -75,10 +76,12 @@ export default function HomeFooter() {
             {cols.map((c) => (
               <nav key={c.h} aria-label={c.h} className="flex flex-col gap-0.5 md:gap-1">
                 <span className="mb-1 text-[13px] font-medium text-dim">{c.h}</span>
-                {c.l.map(([t, h, ext]) => (
+                {c.l.map(([t, h, ext]) => h ? (
                   <a key={t} href={h} {...(ext ? { target: "_blank", rel: "noreferrer" } : {})} className="w-fit py-2 text-[15px] text-soft transition-colors hover:text-ink md:py-1">
                     {t}
                   </a>
+                ) : (
+                  <span key={t} className="w-fit py-2 text-[15px] text-soft transition-colors hover:text-ink md:py-1">{t}</span>
                 ))}
               </nav>
             ))}
