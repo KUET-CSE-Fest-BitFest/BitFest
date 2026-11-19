@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { fest, money } from "@/lib/fest";
+import { fest } from "@/lib/fest";
 import { Button, TextLink } from "@/components/ui/Button";
 import { fitCanvas } from "@/lib/hooks";
 
@@ -16,7 +16,7 @@ export function HeroActions({ className = "", style }: { className?: string; sty
 
 export function FestFacts({ className = "" }: { className?: string }) {
   const items = [
-    ["Prize pool", `${money(fest.prizePool)} BDT`],
+    ["Prize pool", `${fest.prizePool} BDT`],
     ["Events", "8"],
     ["Dates", fest.dates.replace("February", "Feb")],
   ];

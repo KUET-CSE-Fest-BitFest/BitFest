@@ -6,7 +6,7 @@ import { festDescription } from "@/lib/fest";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
 
-const title = "BitFest 4.0 — 4th KUET CSE National Fest";
+const title = "BitFest 4.0 · 4th KUET CSE National Fest";
 const description = festDescription;
 
 // Social previews and canonicals need absolute URLs. NEXT_PUBLIC_SITE_URL overrides the production domain.

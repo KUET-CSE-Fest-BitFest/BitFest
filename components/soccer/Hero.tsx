@@ -14,7 +14,7 @@ gsap.registerPlugin(ScrollTrigger);
 /* Soccer Bot hero, on the landing hero's ground: the same dot field, grain and top light, and the same
    warm bottom-corner lights that follow the cursor. The title sits at the top; below it two bots
    (orange and cream) play a live match on their own, drawn on a transparent pitch so the ground shows
-   through. Nothing to drive — it is a scene, not a control panel. */
+   through. Nothing to drive: it is a scene, not a control panel. */
 
 const page = eventPages["soccer-bot"];
 

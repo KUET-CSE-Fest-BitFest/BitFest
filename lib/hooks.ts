@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-/** True while the element is (nearly) on screen — used to pause canvases off-screen. */
+/** True while the element is (nearly) on screen; used to pause canvases off-screen. */
 export function useInView<T extends Element>(rootMargin = "100px") {
   const ref = useRef<T | null>(null);
   const [inView, setInView] = useState(false);

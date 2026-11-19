@@ -5,7 +5,7 @@ import { fest } from "@/lib/fest";
 import { HeroActions } from "../shared";
 import WarmLight from "./WarmLight";
 
-/* R4 — Up close. The camera sits right on the lid: the hero is the chip's face, edge to edge, with
+/* R4: Up close. The camera sits right on the lid: the hero is the chip's face, edge to edge, with
    its thin warm rim and the light coming in from the top right. The page's words are the lid's
    markings. The light leans toward the pointer anywhere on the face. */
 

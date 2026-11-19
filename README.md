@@ -12,9 +12,9 @@ npm run build && npm start
 
 ## Pages
 
-- `/` — the home page: chip hero, key dates, programme, partners, FAQ, last edition's photos.
-- `/r4` — the alternative home hero (Up close), kept as a second version.
-- `/events/<slug>` — one page per contest (`iupc`, `ai-hackathon`, `datathon`, `3mt`, `project-showcase`, `lfr`, `soccer-bot`, `ctf`, `it-case`, `gaming`), each with its own live hero.
+- `/`: the home page: chip hero, key dates, programme, partners, FAQ, last edition's photos.
+- `/r4`: the alternative home hero (Up close), kept as a second version.
+- `/events/<slug>`: one page per contest (`iupc`, `ai-hackathon`, `datathon`, `3mt`, `project-showcase`, `lfr`, `soccer-bot`, `ctf`, `it-case`, `gaming`), each with its own live hero.
 
 ## Where things live
 

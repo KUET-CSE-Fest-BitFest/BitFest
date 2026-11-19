@@ -755,6 +755,23 @@ button:hover > .faq-toggle[data-on="false"] { color: var(--color-ink); box-shado
 }
 @media (prefers-reduced-motion: reduce) { .ps-row { animation: none; } .ps-viewer, .ps-big { animation: none; } }
 
+/* Hero chip: a soft light sweeps across the prize pool now and then. One background-position
+   animation on a small text box (CSS only, nothing to load); still under reduced motion. */
+.pool-shimmer {
+  background: linear-gradient(100deg, #fbf1e9 0%, #fbf1e9 40%, #ffc49e 45%, #ff8a4c 50%, #ffc49e 55%, #fbf1e9 60%, #fbf1e9 100%);
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: pool-shimmer 4.5s cubic-bezier(0.45, 0, 0.25, 1) 1.4s infinite;
+}
+@keyframes pool-shimmer {
+  0% { background-position: 100% 0; }
+  38%, 100% { background-position: 0% 0; }
+}
+@media (prefers-reduced-motion: reduce) { .pool-shimmer { animation: none; background: none; color: #fbf1e9; } }
+
 /* Theme quote (ThemeQuote): letters start faint; the scroll brings each one up (set inline). */
 .tq-c { opacity: 0.14; }
 @media (prefers-reduced-motion: reduce) { .tq-c { opacity: 1; } }

@@ -2,7 +2,7 @@ import { fest, sponsors } from "@/lib/fest";
 import { TextLink } from "@/components/ui/Button";
 import SectionHead from "./SectionHead";
 
-/* 04 · Partners — BitFest 2025's sponsors and media partner on one board (2027 partners are not
+/* 04 · Partners: BitFest 2025's sponsors and media partner on one board (2027 partners are not
    confirmed yet), with the way to partner for 2027 underneath. Glowing signals run along the grid's
    lines, each cell carrying a runner on its top and left edges with its own timing, so light keeps
    moving here and there across the board. The cells are not links, so they have no hover. Names stand in

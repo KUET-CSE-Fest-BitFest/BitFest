@@ -61,13 +61,13 @@ export const oldSite = (slug: string) => (OLD[slug] ? `https://bitfest2025.netli
 /** Contest pages are not public yet: contest names keep their hover but do not link anywhere. Set to
     true when the pages are ready and every contest name links to its page again. */
 export const CONTEST_PAGES_LIVE = false;
-/** Prize money is not announced yet: every amount shows as "??" and sentences say "cash prizes".
-    Set to true to show the figures again. */
+/** Each contest's prize money is not announced yet: those amounts show as "??". The fest's total
+    pool (fest.prizePool) is public and always shows. Set to true to show every contest's figure. */
 export const PRIZES_ANNOUNCED = false;
-/** A prize amount ready to show ("175K"), or "??" until prizes are announced. */
+/** A contest's prize amount ready to show ("175K"), or "??" until those are announced. */
 export const money = (amount: string) => (PRIZES_ANNOUNCED ? amount : "??");
 /** The fest in one line, for search results and link previews. */
-export const festDescription = `Ten national competitions in programming, AI, data science, research, robotics, cybersecurity, business and esports. ${fest.dates} at KUET, Khulna. ${PRIZES_ANNOUNCED ? `${fest.prizePool} BDT in prizes.` : "Cash prizes in every contest."}`;
+export const festDescription = `Ten national competitions in programming, AI, data science, research, robotics, cybersecurity, business and esports. ${fest.dates} at KUET, Khulna. ${fest.prizePool} BDT in prizes.`;
 
 export const eventHref = (e: FestEvent) => (e.href !== "#" ? e.href : oldSite(e.slug));
 export const isExternal = (e: FestEvent) => e.href === "#" && Boolean(OLD[e.slug]);

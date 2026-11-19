@@ -29,7 +29,7 @@ const general: { q: string; a: string }[] = [
     q: "What can we win?",
     a: PRIZES_ANNOUNCED
       ? "BDT 7,00,000 in cash prizes across the ten competitions, from BDT 35,000 for 3 Minute Thesis to BDT 1,75,000 for IUPC."
-      : "Cash prizes in all ten competitions. The amounts are announced soon, with each contest's rulebook.",
+      : "BDT 7,00,000 in cash prizes across the ten competitions. Each contest's share is announced with its rulebook.",
   },
   {
     q: "Who organises BitFest?",

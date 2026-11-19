@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const e = events.find((x) => x.slug === slug);
   const page = eventPages[slug];
   if (!e || !page) return {};
-  const title = `${e.name} — ${fest.name} ${fest.year}`;
+  const title = `${e.name} · ${fest.name} ${fest.year}`;
   // Each contest has its own 1200x630 card in public/og (name, final date, prize money, team size).
   const image = { url: `/og/${slug}.jpg`, width: 1200, height: 630, alt: `${e.name} at ${fest.name} ${fest.year}, ${fest.dates} at ${fest.venue}.` };
   return {

@@ -4,7 +4,7 @@ import HeroCloseup from "@/components/home/heroes/rebrand/HeroCloseup";
 import { festDescription } from "@/lib/fest";
 
 export const metadata: Metadata = {
-  title: "BitFest 4.0 — 4th KUET CSE National Fest",
+  title: "BitFest 4.0 · 4th KUET CSE National Fest",
   description: festDescription,
   robots: { index: false },
 };

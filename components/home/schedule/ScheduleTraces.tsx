@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { CONTEST_PAGES_LIVE, PRIZES_ANNOUNCED, events, fest, money, pad2, prizes, schedule } from "@/lib/fest";
+import { CONTEST_PAGES_LIVE, events, fest, money, pad2, prizes, schedule } from "@/lib/fest";
 import ContestLink from "@/components/ui/ContestLink";
 import SectionHead from "../SectionHead";
 import { useActiveEvent } from "../heroes/variants/useActiveEvent";
@@ -9,7 +9,7 @@ import { KIND_LABEL, dayLabel, detail, range } from "./data";
 
 const REG = (schedule[events[0].slug] ?? []).find((m) => m.kind === "window");
 
-/* S-A — All roads to the finals. Each contest is a trace on the board, running left to right from
+/* S-A: All roads to the finals. Each contest is a trace on the board, running left to right from
    30 November; its registration window, online round and shortlist sit on it as pads at their
    dates. Every trace bends into one lit chip on the right: the finals on campus. The contest in
    focus lights its trace and a signal runs along it into the chip, whose small corner light stays
@@ -39,7 +39,7 @@ export default function ScheduleTraces() {
     <section ref={sec} id="schedule" className="relative scroll-mt-20 overflow-hidden py-20 md:py-36">
       <div aria-hidden className="hero-dots pointer-events-none absolute inset-0 opacity-60" />
       <div className="relative mx-auto flex max-w-[1440px] flex-col gap-16 px-6 md:px-14">
-        <SectionHead n="01" label="Key dates" title="Every road ends on campus" sub={`Registration runs from 30 November to 12 January, and online rounds from 13 to 22 January. Every final is on the KUET campus on 5 and 6 February, ${PRIZES_ANNOUNCED ? `with ${fest.prizePool} BDT in prizes` : "with cash prizes in every contest"}.`} />
+        <SectionHead n="01" label="Key dates" title="Every road ends on campus" sub={`Registration runs from 30 November to 12 January, and online rounds from 13 to 22 January. Every final is on the KUET campus on 5 and 6 February, with ${fest.prizePool} BDT in prizes.`} />
 
         {/* Desktop: the board. */}
         <div className="hidden lg:grid lg:grid-cols-[210px_minmax(0,1fr)_340px] lg:gap-0">
@@ -165,7 +165,7 @@ export default function ScheduleTraces() {
               </span>
               <span className="flex flex-col gap-1">
                 <span className="text-[12px] font-medium text-[#f2e6dc]/65">Prize pool</span>
-                <span className="text-[15px] font-semibold tabular-nums text-[#fbf1e9]">{money(fest.prizePool)} BDT</span>
+                <span className="text-[15px] font-semibold tabular-nums text-[#fbf1e9]">{fest.prizePool} BDT</span>
               </span>
             </span>
           </div>

@@ -1,4 +1,4 @@
-// Everything marked [LIKE THIS] is a placeholder — replace with the official details.
+// Everything marked [LIKE THIS] is a placeholder; replace it with the official details.
 
 export const event = {
   name: "Soccer Bot",
@@ -7,7 +7,7 @@ export const event = {
   total: "08",
   tagline: "Build it. Drive it. Score.",
   intro:
-    "Teams bring their own robot cars and battle head-to-head on the arena — outplaying the other bot to put the ball in its goal.",
+    "Teams bring their own robot cars and battle head-to-head on the arena, outplaying the other bot to put the ball in its goal.",
   registerHref: "#register",
   rulebookHref: "#", // [RULEBOOK PDF URL]
   registrationUrl: "#", // [REGISTRATION FORM URL]
@@ -22,7 +22,7 @@ export const facts = [
 ];
 
 export const about = [
-  { k: "01", t: "Build", d: "Design and wire your own robot within the spec — chassis, drive, kicker, power." },
+  { k: "01", t: "Build", d: "Design and wire your own robot within the spec: chassis, drive, kicker and power." },
   { k: "02", t: "Drive", d: "Control it live on the arena. Speed matters, but control wins matches." },
   { k: "03", t: "Score", d: "Outplay the opponent bot and put the ball in their net before the whistle." },
 ];
@@ -60,11 +60,11 @@ export const prizes = [
 ] as const;
 
 export const faqs = [
-  { q: "Who can participate?", a: "[ELIGIBILITY — e.g. university and college students from any institution in Bangladesh.]" },
+  { q: "Who can participate?", a: "[ELIGIBILITY, e.g. university and college students from any institution in Bangladesh.]" },
   { q: "Can one person be in two teams?", a: "[ANSWER]" },
   { q: "Do we need to bring our own controller and batteries?", a: "[ANSWER]" },
   { q: "Is there a registration fee?", a: "[FEE AND PAYMENT METHOD]" },
-  { q: "What happens if our bot fails inspection?", a: "[ANSWER — e.g. you get one chance to fix it before your first match.]" },
+  { q: "What happens if our bot fails inspection?", a: "[ANSWER, e.g. you get one chance to fix it before your first match.]" },
 ];
 
 export const otherEvents = [

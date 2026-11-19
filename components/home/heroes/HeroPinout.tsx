@@ -8,7 +8,7 @@ import ChipGlow, { type GlowId } from "./ChipGlow";
 import WarmLight from "./rebrand/WarmLight";
 import BottomLight from "./BottomLight";
 
-/* Hero — Pinout. The fest is one chip: a substrate with a machined metal lid and ten contest pins
+/* Hero: Pinout. The fest is one chip: a substrate with a machined metal lid and ten contest pins
    (five a side) labelled like a datasheet. Built from plain HTML and CSS so it paints with the first response;
    the only motion is transform/opacity (glow, sheen, signals), and one timer steps the active pin. */
 
@@ -192,6 +192,8 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                   <span className="lx-ink-warm">{fest.year}</span>
                 </h1>
                 {/* The date sits at the foot of the lid, centred under the title. */}
+                {/* The prize pool heads the lid, drawn like the date at its foot. */}
+                <p className="absolute inset-x-0 top-[7%] z-[4] text-[13px] font-medium tracking-[-0.005em] text-[#f2e6dc]/85 [text-shadow:0_1px_10px_rgba(0,0,0,0.35)] lg:text-[clamp(14px,1.15vw,18px)]"><span className="pool-shimmer font-semibold">{fest.prizePool} BDT</span> prize pool</p>
                 <p className="absolute inset-x-0 bottom-[7%] z-[4] text-[13px] font-medium tracking-[-0.005em] text-[#f2e6dc]/85 [text-shadow:0_1px_10px_rgba(0,0,0,0.35)] lg:text-[clamp(14px,1.15vw,18px)]">{fest.dates}</p>
               </div>
             ) : (
