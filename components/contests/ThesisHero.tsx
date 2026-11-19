@@ -27,7 +27,7 @@ function Figure({ k }: { k: number }) {
   return (
     <div aria-hidden className="flex h-16 items-end gap-1.5">
       {bars.map((h, i) => (
-        <span key={i} className="w-3 rounded-t-[3px]" style={{ height: `${h * 100}%`, background: i === bars.length - 1 ? "linear-gradient(180deg,#ffd27a,#ff7a3d)" : "rgba(242,230,220,0.22)" }} />
+        <span key={i} className="w-3 rounded-t-[3px]" style={{ height: `${h * 100}%`, background: i === bars.length - 1 ? "linear-gradient(180deg,#ffc49e,#ff7a3d)" : "rgba(242,230,220,0.22)" }} />
       ))}
     </div>
   );
@@ -65,7 +65,7 @@ function Talk() {
               <circle cx="56" cy="56" r={R} fill="none" stroke="url(#tm-ring)" strokeWidth="5" strokeLinecap="round" strokeDasharray={C} strokeDashoffset={C * (1 - left / FULL)} style={{ transition: left === FULL ? "none" : "stroke-dashoffset 1s linear" }} />
               <defs>
                 <linearGradient id="tm-ring" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#ffd27a" /><stop offset="55%" stopColor="#ff7a3d" /><stop offset="100%" stopColor="#c2335a" />
+                  <stop offset="0%" stopColor="#ffc49e" /><stop offset="55%" stopColor="#ff7a3d" /><stop offset="100%" stopColor="#a33a14" />
                 </linearGradient>
               </defs>
             </svg>

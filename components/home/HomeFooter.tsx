@@ -52,7 +52,7 @@ export default function HomeFooter() {
   }, []);
 
   const cols = [
-    { h: "Fest", l: [["Key dates", "/#schedule"], ["Programme", "/#programme"], ["Partners", "/#partners"], ["FAQ", "/#faq"], ["Gallery", "/#gallery"]] },
+    { h: "Fest", l: [["Key dates", "/#schedule"], ["Programme", "/#programme"], ["Gallery", "/#gallery"], ["Partners", "/#partners"], ["FAQ", "/#faq"]] },
     { h: "Contests", l: events.map((e) => [e.name, eventHref(e), isExternal(e) ? "ext" : ""]) },
     { h: "Contact", l: [[fest.email, `mailto:${fest.email}`, ""], [fest.phone, `tel:${fest.phone.replace(/[^+\d]/g, "")}`, ""], ["Facebook", fest.facebook, "ext"], ["KUET, Khulna 9203", "https://www.kuet.ac.bd", "ext"]] },
   ];
@@ -67,9 +67,9 @@ export default function HomeFooter() {
           </div>
           <div className="fr-cols grid gap-10 border-t border-[rgba(255,214,190,0.12)] pt-10 md:grid-cols-[minmax(0,1.3fr)_repeat(3,minmax(0,1fr))]">
             <div className="flex flex-col gap-4">
-              <span className="text-xl font-bold tracking-[0.04em]">BITFEST<span className="text-orange">/27</span></span>
+              <span className="text-xl font-bold tracking-[0.04em]">BITFEST<span className="text-orange"> 4.0</span></span>
               <p className="max-w-[320px] leading-relaxed text-soft">
-                The 3rd KUET CSE National Fest. Organised by the Department of Computer Science and Engineering, KUET, Khulna.
+                The 4th KUET CSE National Fest. Organised by the Department of Computer Science and Engineering, KUET, Khulna.
               </p>
             </div>
             {cols.map((c) => (

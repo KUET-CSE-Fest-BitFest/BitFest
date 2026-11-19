@@ -10,9 +10,10 @@
   --color-line: #221e20;
   --color-line-2: #322d2f;
   --color-orange: #ff7a3d;
-  /* The second team colour (was cyan): a raspberry plum, so the site stays warm. */
-  --color-cyan: #c2458a;
-  --color-plum: #c2458a;
+  /* Orange only: the one accent. The second team (Soccer Bot) and other "second" marks use cream,
+     and lights fade from cream through orange into deep rust and black. */
+  --color-cyan: #f2e6dc;
+  --color-plum: #f2e6dc;
 
   --font-display: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -126,21 +127,6 @@ html.lenis body {
   }
 }
 
-/* Light behind the package: one blurred disc that turns (colour moves round), one still edge light. */
-.chip-glow-turn {
-  background: conic-gradient(#ff7a3d, #ffb26b 22%, #ff5a2a 40%, #4cc9ff 58%, #ff9a52 76%, #ff7a3d);
-  filter: blur(70px);
-  will-change: transform;
-  animation: chip-turn 18s linear infinite;
-}
-.chip-glow-edge {
-  background: linear-gradient(135deg, #ffb26b, #ff7a3d 45%, #4cc9ff);
-  filter: blur(22px);
-}
-@keyframes chip-turn {
-  to { transform: rotate(360deg); }
-}
-
 .chip-substrate {
   background: linear-gradient(135deg, #1a1719, #0c0a0c);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -188,7 +174,7 @@ html.lenis body {
 }
 .chip-rim {
   padding: 1px;
-  background: linear-gradient(135deg, rgba(255, 178, 107, 0.8), rgba(255, 178, 107, 0) 35%, rgba(154, 58, 154, 0) 65%, rgba(154, 58, 154, 0.5));
+  background: linear-gradient(135deg, rgba(255, 196, 158, 0.8), rgba(255, 196, 158, 0) 35%, rgba(163, 58, 20, 0) 65%, rgba(163, 58, 20, 0.5));
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
@@ -200,7 +186,7 @@ html.lenis body {
   color: transparent;
 }
 .chip-ink-orange {
-  background: linear-gradient(180deg, #ffc08f 0%, #ff7a3d 55%, #e2551c 100%);
+  background: linear-gradient(180deg, #ffc49e 0%, #ff7a3d 55%, #e0571f 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -265,7 +251,7 @@ html.lenis body {
   .draw { stroke-dashoffset: 0; animation: none; }
 }
 
-/* Chip glow options (transform/opacity only). */
+/* The chip glow turns (transform only). */
 .glow-spin {
   animation: glow-spin var(--spin, 12s) linear infinite;
   will-change: transform;
@@ -273,26 +259,6 @@ html.lenis body {
 @keyframes glow-spin {
   to { transform: rotate(360deg); }
 }
-.glow-drift {
-  animation: glow-drift var(--d, 14s) ease-in-out infinite;
-  will-change: transform;
-}
-/* Corner to corner round the chip, a little outside its edges (percentages of the light's own size). */
-@keyframes glow-drift {
-  0%, 100% { transform: translate(-24%, -24%); }
-  25% { transform: translate(141%, -24%); }
-  50% { transform: translate(141%, 141%); }
-  75% { transform: translate(-24%, 141%); }
-}
-.glow-breathe {
-  animation: glow-breathe 6s ease-in-out infinite alternate;
-  will-change: opacity, transform;
-}
-@keyframes glow-breathe {
-  from { opacity: 0.18; transform: scale(0.99); }
-  to { opacity: 0.42; transform: scale(1.025); }
-}
-
 /* ── How the chip sits in the page (no floating) ──────────────────────── */
 .chip-lid.is-set {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), inset 0 -1px 0 rgba(0, 0, 0, 0.7);
@@ -344,7 +310,7 @@ html.lenis body {
 
 /* ── Buttons and text links (components/ui/Button.tsx) ─────────────────
    One button everywhere, drawn as a small BitFest lid: a black face, the lid's warm light rising from
-   just past the bottom-left corner (cream, amber, orange, raspberry, plum, black) and the same warm
+   just past the bottom-left corner (cream, orange, rust, black) and the same warm
    hairline rim. On hover the light glides along the bottom edge to the arrow and a second arrow
    crosses in. The light is a gradient painted once; only its transform moves. */
 .btn {
@@ -370,7 +336,7 @@ html.lenis body {
   width: 118%;
   aspect-ratio: 1;
   translate: -50% -50%;
-  background: radial-gradient(closest-side, #fff2da 0%, #ffd27a 9%, #ffa64a 19%, #ff7a3d 31%, #ea4f2e 43%, #a82e5a 56%, #5e1f63 69%, rgba(42, 15, 47, 0.55) 80%, rgba(11, 8, 9, 0) 90%);
+  background: radial-gradient(closest-side, #fff3ea 0%, #ffc49e 10%, #ff9a60 19%, #ff7a3d 30%, #e0571f 43%, #a33a14 57%, #561d0b 70%, rgba(36, 16, 10, 0.55) 80%, rgba(11, 8, 9, 0) 90%);
   transition: transform 0.75s cubic-bezier(0.25, 0.8, 0.25, 1);
   will-change: transform;
 }
@@ -488,16 +454,16 @@ html.lenis body {
 .lx-bl { left: 0; top: 100%; }
 .lx-tr { left: 100%; top: 0; }
 .lx-br { left: 100%; top: 100%; }
-/* Warm only: cream and amber at the corner, through oranges to raspberry and a little plum, then black. */
+/* Orange only: cream at the corner, through orange to deep rust and brown, then black. */
 .lx-warm {
-  background: radial-gradient(closest-side, #fff1d6 0%, #ffd27a 7%, #ffa84a 14.5%, #ff7a3d 23.5%, #f0522e 34.5%, #b8325a 45.5%, #6a2370 54.5%, #2e1238 61.8%, #150818 67.3%, rgba(3, 3, 8, 0) 72.7%);
+  background: radial-gradient(closest-side, #fff3ea 0%, #ffc49e 8%, #ff9a60 15%, #ff7a3d 24%, #e0571f 35%, #a33a14 46%, #561d0b 55%, #24100a 62%, #110807 67%, rgba(3, 3, 8, 0) 72.7%);
 }
 .lx-warm-2 {
-  background: radial-gradient(closest-side, #fff6e2 0%, #ffe2a0 9%, #ffbf66 17%, #ff9548 27%, #ff6a35 38%, #d8424a 48%, #8a2a74 57%, #3a1648 64%, #170a1c 69%, rgba(3, 3, 8, 0) 74%);
+  background: radial-gradient(closest-side, #fff6ef 0%, #ffd2b4 9%, #ffa670 18%, #ff8446 28%, #ec6428 39%, #b4431a 50%, #63220d 59%, #2a120b 65%, #130907 70%, rgba(3, 3, 8, 0) 74%);
 }
-/* The purple accent light: peach core into rose and plum. */
+/* The second, smaller light (was plum): a softer peach-to-rust light. */
 .lx-plum {
-  background: radial-gradient(closest-side, #ffd9c2 0%, #ff9a6a 10%, #e8557a 25%, #9a3a9a 42%, #4a1f5a 58%, rgba(3, 3, 8, 0) 72%);
+  background: radial-gradient(closest-side, #ffe0cc 0%, #ffa878 10%, #f06a34 25%, #a33a14 42%, #4a1a0b 58%, rgba(3, 3, 8, 0) 72%);
 }
 /* Horizon: a wide, low light along the bottom edge. */
 .lx-horizon {
@@ -506,7 +472,7 @@ html.lenis body {
   width: 170%;
   aspect-ratio: 2.2;
   translate: -50% -50%;
-  background: radial-gradient(closest-side, #fff1d6 0%, #ffcf7a 9%, #ff9a45 20%, #ff6a35 32%, #d8424a 44%, #8a2a74 56%, #3a1648 66%, rgba(3, 3, 8, 0) 76%);
+  background: radial-gradient(closest-side, #fff3ea 0%, #ffc49e 9%, #ff9a60 20%, #f06a30 32%, #b4431a 44%, #63220d 56%, #2a120b 66%, rgba(3, 3, 8, 0) 76%);
   animation: lx-sway 14s ease-in-out infinite alternate;
 }
 @keyframes lx-sway {
@@ -598,14 +564,14 @@ html.lenis body {
   animation: bottom-light-in 1.4s ease-out both;
 }
 .bl-band, .bl-corner { position: absolute; inset: 0; will-change: transform, opacity; }
-.bl-band { background: linear-gradient(to top, rgba(242, 96, 50, 0.16), rgba(184, 50, 92, 0.07) 16%, rgba(7, 6, 7, 0) 34%); }
+.bl-band { background: linear-gradient(to top, rgba(240, 100, 44, 0.16), rgba(163, 58, 20, 0.07) 16%, rgba(7, 6, 7, 0) 34%); }
 .bl-left {
   transform-origin: 0% 100%;
-  background: radial-gradient(30% 72% at 0% 100%, rgba(255, 226, 160, 0.6) 0%, rgba(255, 166, 80, 0.47) 14%, rgba(242, 96, 50, 0.34) 32%, rgba(184, 50, 92, 0.19) 56%, rgba(98, 32, 102, 0.07) 80%, rgba(7, 6, 7, 0) 100%);
+  background: radial-gradient(30% 72% at 0% 100%, rgba(255, 214, 186, 0.6) 0%, rgba(255, 150, 90, 0.47) 14%, rgba(240, 100, 44, 0.34) 32%, rgba(163, 58, 20, 0.19) 56%, rgba(86, 29, 11, 0.07) 80%, rgba(7, 6, 7, 0) 100%);
 }
 .bl-right {
   transform-origin: 100% 100%;
-  background: radial-gradient(28% 82% at 100% 100%, rgba(255, 226, 160, 0.6) 0%, rgba(255, 166, 80, 0.47) 14%, rgba(242, 96, 50, 0.34) 32%, rgba(184, 50, 92, 0.19) 56%, rgba(98, 32, 102, 0.07) 80%, rgba(7, 6, 7, 0) 100%);
+  background: radial-gradient(28% 82% at 100% 100%, rgba(255, 214, 186, 0.6) 0%, rgba(255, 150, 90, 0.47) 14%, rgba(240, 100, 44, 0.34) 32%, rgba(163, 58, 20, 0.19) 56%, rgba(86, 29, 11, 0.07) 80%, rgba(7, 6, 7, 0) 100%);
 }
 @keyframes bottom-light-in { from { opacity: 0; } }
 @media (max-width: 1023px) {
@@ -625,13 +591,13 @@ html.lenis body {
 @media (prefers-reduced-motion: reduce) { .trace-run { display: none; } }
 
 /* Event pages: the scroll-drawn timeline. */
-.tl-fill { background: linear-gradient(to bottom, rgba(154, 58, 154, 0.5), rgba(232, 85, 90, 0.85) 60%, #ff7a3d); box-shadow: 0 0 10px rgba(255, 122, 61, 0.35); will-change: transform; }
+.tl-fill { background: linear-gradient(to bottom, rgba(163, 58, 20, 0.5), rgba(224, 87, 31, 0.85) 60%, #ff7a3d); box-shadow: 0 0 10px rgba(255, 122, 61, 0.35); will-change: transform; }
 .tl-head { width: 0; height: 0; will-change: transform, opacity; transition: opacity 0.35s ease; }
 .tl-head::before { content: ""; position: absolute; left: -26px; top: -26px; width: 52px; height: 52px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 170, 100, 0.38), rgba(255, 122, 61, 0.12) 45%, rgba(255, 122, 61, 0) 70%); }
 .tl-tail { position: absolute; left: -1px; bottom: 0; width: 2px; height: 110px; border-radius: 2px; background: linear-gradient(to bottom, rgba(255, 122, 61, 0), rgba(255, 140, 80, 0.75) 70%, #fff1e2); }
 .tl-core { position: absolute; left: -5px; top: -5px; width: 10px; height: 10px; border-radius: 50%; background: #fff6ee; box-shadow: 0 0 0 3px rgba(255, 122, 61, 0.35), 0 0 18px 6px rgba(255, 122, 61, 0.6); }
 .tl-pad { background: #0b0809; box-shadow: inset 0 0 0 1.5px rgba(255, 214, 190, 0.24); transition: box-shadow 0.5s ease; }
-.tl-dot { width: 8px; height: 8px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #ffe2a8, #ff7a3d 58%, #c2335a); transform: scale(0); transition: transform 0.5s cubic-bezier(0.3, 1.6, 0.5, 1); }
+.tl-dot { width: 8px; height: 8px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #ffd2b4, #ff7a3d 58%, #a33a14); transform: scale(0); transition: transform 0.5s cubic-bezier(0.3, 1.6, 0.5, 1); }
 .tl-ring { position: absolute; inset: -1px; border-radius: 50%; box-shadow: 0 0 0 1.5px rgba(255, 122, 61, 0.9); opacity: 0; }
 .tl-lead { background: linear-gradient(90deg, rgba(255, 122, 61, 0.85), rgba(255, 122, 61, 0.15)); transform: scaleX(0); transform-origin: left; transition: transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) 0.06s; }
 .event-timeline .tl-text { opacity: 0.34; transition: opacity 0.5s ease; }
@@ -674,10 +640,17 @@ html.lenis body {
 
 /* FAQ toggles: small rounded lids with the warm rim; open, they light with the button's gradient. */
 .faq-toggle { color: var(--color-soft); background: #0c0a0b; box-shadow: inset 0 0 0 1px rgba(255, 214, 190, 0.2); transition: color 0.3s ease, box-shadow 0.3s ease; overflow: hidden; isolation: isolate; }
-.faq-toggle::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: radial-gradient(120% 120% at 0% 100%, #ffd27a 0%, #ff7a3d 32%, #c2335a 64%, #3d1248 100%); opacity: 0; transition: opacity 0.4s ease; }
+.faq-toggle::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: radial-gradient(120% 120% at 0% 100%, #ffc49e 0%, #ff7a3d 32%, #a33a14 66%, #2a120b 100%); opacity: 0; transition: opacity 0.4s ease; }
 .faq-toggle[data-on="true"] { color: #fff6ee; box-shadow: inset 0 0 0 1px rgba(255, 214, 190, 0.35), 0 8px 22px -12px rgba(255, 122, 61, 0.8); }
 .faq-toggle[data-on="true"]::before { opacity: 1; }
 button:hover > .faq-toggle[data-on="false"] { color: var(--color-ink); box-shadow: inset 0 0 0 1px rgba(255, 214, 190, 0.38); }
+/* FaqBrowser: the "Show all" bar lights like a toggle on hover; the search field drops the browser's
+   own clear cross (it has a Clear button); the topic row scrolls without a visible bar on phones. */
+.faq-more:hover { color: var(--color-ink); box-shadow: inset 0 0 0 1px rgba(255, 214, 190, 0.38); }
+.faq-more:focus-visible { outline: 2px solid var(--color-orange); outline-offset: 3px; }
+.faq-search::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+.faq-chips { scrollbar-width: none; }
+.faq-chips::-webkit-scrollbar { display: none; }
 
 /* Footer reveal: one variable (0 → 1 as the page lifts off the footer) drives the parallax. */
 .bottom-light.is-contained { height: 78%; }
@@ -723,44 +696,127 @@ button:hover > .faq-toggle[data-on="false"] { color: var(--color-ink); box-shado
 /* Event hero panels (HeroPanel): when the content runs past the first screen, the panel fades out
    over its last stretch, rim and corners included. */
 .hero-panel[data-fade="true"] { -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 96px), rgba(0, 0, 0, 0.4) calc(100% - 40px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 96px), rgba(0, 0, 0, 0.4) calc(100% - 40px), transparent); }
-/* IUPC: a verdict lights its problem for a moment (orange accepted, plum rejected). */
+/* IUPC: a verdict lights its problem for a moment (orange accepted, cream rejected). */
 .iupc-flash { position: absolute; inset: 0; pointer-events: none; animation: iupc-flash 1.2s ease-out both; }
-.iupc-flash.is-ok { background: radial-gradient(120% 140% at 0% 100%, rgba(255, 140, 70, 0.32), rgba(194, 51, 90, 0.1) 60%, transparent); box-shadow: inset 0 0 0 1px rgba(255, 122, 61, 0.7); }
-.iupc-flash.is-no { background: rgba(194, 69, 138, 0.12); box-shadow: inset 0 0 0 1px rgba(194, 69, 138, 0.5); }
+.iupc-flash.is-ok { background: radial-gradient(120% 140% at 0% 100%, rgba(255, 140, 70, 0.32), rgba(163, 58, 20, 0.1) 60%, transparent); box-shadow: inset 0 0 0 1px rgba(255, 122, 61, 0.7); }
+.iupc-flash.is-no { background: rgba(242, 230, 220, 0.06); box-shadow: inset 0 0 0 1px rgba(242, 230, 220, 0.35); }
 @keyframes iupc-flash { 0% { opacity: 1; } 60% { opacity: 0.8; } 100% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .iupc-flash { display: none; } }
 /* CTF: captured cells read warmer; a capture flashes its cell, a first blood flashes brighter. */
 .ctf-cell { color: rgba(242, 230, 220, 0.45); transition: color 0.4s ease; }
 .ctf-cell[data-taken="true"] { color: #fbf1e9; background-image: linear-gradient(180deg, rgba(255, 122, 61, 0.05), transparent); }
 .ctf-flash { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(110% 120% at 50% 100%, rgba(255, 140, 70, 0.3), transparent 70%); box-shadow: inset 0 0 0 1px rgba(255, 122, 61, 0.65); animation: iupc-flash 1.2s ease-out both; }
-.ctf-flash.is-first { background: radial-gradient(110% 120% at 50% 100%, rgba(255, 210, 122, 0.45), rgba(255, 122, 61, 0.2) 50%, transparent 80%); box-shadow: inset 0 0 0 1.5px #ffb27a, 0 0 18px rgba(255, 122, 61, 0.5); animation-duration: 1.8s; }
+.ctf-flash.is-first { background: radial-gradient(110% 120% at 50% 100%, rgba(255, 196, 158, 0.45), rgba(255, 122, 61, 0.2) 50%, transparent 80%); box-shadow: inset 0 0 0 1.5px #ffb27a, 0 0 18px rgba(255, 122, 61, 0.5); animation-duration: 1.8s; }
 @media (prefers-reduced-motion: reduce) { .ctf-flash { display: none; } }
 /* Gaming bracket: the live match glows; a decided one settles; the champion's lid lights. */
 .gm-match { box-shadow: inset 0 0 0 1px rgba(255, 214, 190, 0.12); transition: box-shadow 0.4s ease; }
 .gm-match[data-live="true"] { box-shadow: inset 0 0 0 1px rgba(255, 122, 61, 0.85), 0 0 18px rgba(255, 122, 61, 0.25); }
 .gm-final .gm-match { transition: box-shadow 0.4s ease, background 0.6s ease; }
-.gm-final[data-on="true"] .gm-match { background: radial-gradient(130% 160% at 0% 100%, rgba(255, 210, 122, 0.4) 0%, rgba(255, 122, 61, 0.26) 35%, rgba(194, 51, 90, 0.12) 65%, transparent 100%), #0b0809; box-shadow: inset 0 0 0 1px rgba(255, 178, 122, 0.9), 0 10px 28px -10px rgba(255, 122, 61, 0.8); }
+.gm-final[data-on="true"] .gm-match { background: radial-gradient(130% 160% at 0% 100%, rgba(255, 196, 158, 0.4) 0%, rgba(255, 122, 61, 0.26) 35%, rgba(163, 58, 20, 0.12) 65%, transparent 100%), #0b0809; box-shadow: inset 0 0 0 1px rgba(255, 178, 122, 0.9), 0 10px 28px -10px rgba(255, 122, 61, 0.8); }
 /* IT Business Case: each criterion fills in turn; its number and the total land after. */
-.case-bar { background: linear-gradient(90deg, #c2335a, #ff7a3d 70%, #ffb27a); transform: scaleX(var(--s)); animation: case-fill 1s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.case-bar { background: linear-gradient(90deg, #a33a14, #ff7a3d 70%, #ffb27a); transform: scaleX(var(--s)); animation: case-fill 1s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 @keyframes case-fill { from { transform: scaleX(0); } to { transform: scaleX(var(--s)); } }
 .case-num { animation: hero-in 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 /* Project Showcase: stalls waiting, scored (a warm mark) and the one the judges are at (lit). */
 .sc-stall { background: #0b0809; color: rgba(242, 230, 220, 0.4); box-shadow: inset 0 0 0 1px rgba(255, 214, 190, 0.1); transition: box-shadow 0.4s ease, color 0.4s ease, background 0.4s ease; }
 .sc-mark { background: rgba(255, 214, 190, 0.08); transition: background 0.4s ease; }
 .sc-stall[data-state="scored"] { color: rgba(242, 230, 220, 0.7); }
-.sc-stall[data-state="scored"] .sc-mark { background: linear-gradient(90deg, #c2335a, #ff7a3d); }
-.sc-stall[data-state="here"] { color: #fff6ee; background: radial-gradient(120% 140% at 0% 100%, rgba(255, 170, 100, 0.45), rgba(194, 51, 90, 0.25) 55%, #0b0809); box-shadow: inset 0 0 0 1px rgba(255, 140, 80, 0.9), 0 0 18px rgba(255, 122, 61, 0.35); }
-.sc-stall[data-state="here"] .sc-mark { background: #ffd27a; }
+.sc-stall[data-state="scored"] .sc-mark { background: linear-gradient(90deg, #a33a14, #ff7a3d); }
+.sc-stall[data-state="here"] { color: #fff6ee; background: radial-gradient(120% 140% at 0% 100%, rgba(255, 170, 100, 0.45), rgba(163, 58, 20, 0.25) 55%, #0b0809); box-shadow: inset 0 0 0 1px rgba(255, 140, 80, 0.9), 0 0 18px rgba(255, 122, 61, 0.35); }
+.sc-stall[data-state="here"] .sc-mark { background: #ffc49e; }
 @media (prefers-reduced-motion: reduce) { .case-bar, .case-num { animation: none; } }
 
 /* Home gallery · contact sheet: the loupe eases in; frames brighten under focus, which gets an
    orange grease-pencil mark. */
-.gc-loupe { animation: gc-in 0.6s ease both; }
-@keyframes gc-in { from { opacity: 0; transform: scale(1.04); } to { opacity: 1; transform: none; } }
-.gc-frame > span:first-child { opacity: 0.55; transition: opacity 0.25s ease; }
-.gc-frame:hover > span:first-child, .gc-frame[data-on="true"] > span:first-child { opacity: 1; }
-.gc-frame[data-on="true"] > span:first-child::after { content: ""; position: absolute; inset: -1px; border: 2px solid #ff7a3d; border-radius: 8px 10px 7px 9px; transform: rotate(-1.2deg); box-shadow: 0 0 12px rgba(255, 122, 61, 0.5); }
-@media (prefers-reduced-motion: reduce) { .gc-loupe { animation: none; } }
+/* Prize-night strip (PrizeStrip): two rows drift in opposite directions; each row holds its photos
+   twice, so moving it by half its length loops without a seam. Pointing at the strip stops both rows;
+   off screen (or behind the large view) they rest. */
+.ps-strip { -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.ps-row { display: flex; gap: 16px; width: max-content; animation: ps-left 70s linear infinite; animation-play-state: paused; }
+.ps-row.ps-right { animation-name: ps-right; animation-duration: 80s; }
+.ps-strip[data-run="true"] .ps-row { animation-play-state: running; }
+.ps-strip[data-run="true"]:hover .ps-row { animation-play-state: paused; }
+@keyframes ps-left { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(calc(-50% - 8px), 0, 0); } }
+@keyframes ps-right { from { transform: translate3d(calc(-50% - 8px), 0, 0); } to { transform: translate3d(0, 0, 0); } }
+.ps-tile { position: relative; flex: 0 0 auto; height: 240px; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 14px; background: #0e0b0c; transition: transform 0.4s cubic-bezier(0.2, 0.75, 0.2, 1); }
+.ps-tile > button { cursor: zoom-in; }
+.ps-tile img { transition: transform 0.6s cubic-bezier(0.2, 0.75, 0.2, 1), filter 0.4s ease; filter: brightness(0.82); }
+.ps-tile:hover img { transform: scale(1.04); filter: brightness(1); }
+.ps-tile > button:focus-visible { outline: 2px solid var(--color-orange); outline-offset: -2px; border-radius: 14px; }
+.ps-viewer { animation: ps-fade 0.3s ease both; }
+.ps-big { animation: ps-big 0.45s cubic-bezier(0.2, 0.75, 0.2, 1) both; }
+@keyframes ps-fade { from { opacity: 0; } }
+@keyframes ps-big { from { opacity: 0; transform: scale(0.97); } }
+@media (max-width: 767px) {
+  .ps-tile { height: 150px; border-radius: 12px; }
+  .ps-row { gap: 10px; }
+  @keyframes ps-left { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(calc(-50% - 5px), 0, 0); } }
+  @keyframes ps-right { from { transform: translate3d(calc(-50% - 5px), 0, 0); } to { transform: translate3d(0, 0, 0); } }
+}
+@media (prefers-reduced-motion: reduce) { .ps-row { animation: none; } .ps-viewer, .ps-big { animation: none; } }
+
+/* Theme quote (ThemeQuote): letters start faint; the scroll brings each one up (set inline). */
+.tq-c { opacity: 0.14; }
+@media (prefers-reduced-motion: reduce) { .tq-c { opacity: 1; } }
+
+/* Teams slider (TeamsSlider): one photo in the middle, neighbours dimmed at the sides, the row fading
+   into the page at both edges. The track moves by transform only; --i is the photo in view and --dx
+   the live drag. */
+.ts-view {
+  overflow: hidden;
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.ts-view.is-drag { cursor: grabbing; }
+/* The photo's width, also used by the caption row: up to 68% of the page, 1000px, or what keeps the
+   photo and its caption inside the window. */
+.ts-root { --tsw: min(68%, 1000px, calc((100svh - 230px) * 1.5)); }
+.ts-caprow { width: var(--tsw); }
+/* Every photo stands in the one cell, the width of the photo in view, centred, and is moved to its
+   place round the loop (--o, in photo widths) and by the drag (--dx). */
+.ts-track {
+  --gap: 22px;
+  display: grid;
+  grid-template-columns: var(--tsw);
+  justify-content: center;
+}
+.ts-view.is-drag .ts-slide { transition: none; }
+.ts-slide {
+  --at: calc(var(--o) * (100% + var(--gap)) + var(--dx, 0px));
+  position: relative;
+  grid-area: 1 / 1;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 22px;
+  background: #0e0b0c;
+  transform: translate3d(var(--at), 0, 0) scale(0.9);
+  opacity: 0.38;
+  cursor: pointer;
+  transition: transform 0.85s cubic-bezier(0.2, 0.75, 0.2, 1), opacity 0.6s ease;
+}
+.ts-slide:hover { opacity: 0.55; }
+.ts-slide[data-on="true"] { z-index: 1; transform: translate3d(var(--at), 0, 0); opacity: 1; cursor: inherit; }
+/* Off screen: moved at once, so the photo that wraps round never crosses the view. */
+.ts-slide[data-far="true"] { transition: none; visibility: hidden; }
+.ts-slide img { pointer-events: none; }
+/* A soft dark foot so the photo settles into the black page. */
+.ts-shade { position: absolute; inset: auto 0 0 0; height: 30%; z-index: 1; pointer-events: none; background: linear-gradient(to top, rgba(7, 6, 7, 0.45), rgba(7, 6, 7, 0)); }
+.ts-caption { animation: ts-caption 0.6s ease both; }
+@keyframes ts-caption { from { opacity: 0; transform: translateY(6px); } }
+.ts-step:hover { color: var(--color-ink); box-shadow: inset 0 0 0 1px rgba(255, 214, 190, 0.4); }
+.ts-step:hover::before { opacity: 0.35; }
+.ts-step:focus-visible { outline: 2px solid var(--color-orange); outline-offset: 3px; }
+@media (max-width: 767px) {
+  .ts-root { --tsw: 88%; }
+  .ts-caprow { width: 100%; }
+  .ts-track { --gap: 10px; }
+  .ts-slide { border-radius: 16px; transform: translate3d(var(--at), 0, 0) scale(0.94); }
+  .ts-view { -webkit-mask-image: none; mask-image: none; }
+}
+@media (prefers-reduced-motion: reduce) { .ts-slide { transition: none; } .ts-caption { animation: none; } }
 /* Key dates on phones: each contest row is a link; a tap or hover warms it slightly. */
 .sched-row { -webkit-tap-highlight-color: transparent; transition: background 0.25s ease; border-radius: 10px; margin: 0 -10px; padding-left: 10px; padding-right: 10px; }
 .sched-row:active { background: rgba(255, 122, 61, 0.05); }

@@ -4,7 +4,6 @@ import { useRef } from "react";
 import { eventHref, events, fest, isExternal, pad2, prizes, schedule } from "@/lib/fest";
 import SectionHead from "../SectionHead";
 import { useActiveEvent } from "../heroes/variants/useActiveEvent";
-import WarmLight from "../heroes/rebrand/WarmLight";
 import { KIND_LABEL, dayLabel, detail, range } from "./data";
 
 const REG = (schedule[events[0].slug] ?? []).find((m) => m.kind === "window");
@@ -12,10 +11,10 @@ const REG = (schedule[events[0].slug] ?? []).find((m) => m.kind === "window");
 /* S-A — All roads to the finals. Each contest is a trace on the board, running left to right from
    30 November; its registration window, online round and shortlist sit on it as pads at their
    dates. Every trace bends into one lit chip on the right: the finals on campus. The contest in
-   focus lights its trace, a signal runs along it into the chip, and the chip's light swings toward
-   that pin. */
+   focus lights its trace and a signal runs along it into the chip, whose small corner light stays
+   put. */
 
-const FINAL_DAY = 60; // 29 Jan: where traces reach the chip
+const FINAL_DAY = 67; // 5 Feb: where traces reach the chip
 const X_END = 80; // % of the field where the dated part ends and traces bend into the chip
 const N = events.length;
 const ROW = 58;
@@ -25,7 +24,7 @@ const CHIP_TOP = (H - CHIP_H) / 2;
 const xOf = (d: number) => (Math.min(d, FINAL_DAY) / FINAL_DAY) * X_END;
 const rowY = (i: number) => ROW / 2 + ROW * i;
 const pinY = (i: number) => CHIP_TOP + CHIP_H * (0.14 + (0.72 * i) / (N - 1));
-const TICKS = [0, 16, 32, 43, 53, FINAL_DAY]; // 30 Nov, 16 Dec, 1 Jan, 12 Jan, 22 Jan, 29 Jan
+const TICKS = [0, 16, 32, 43, 53, FINAL_DAY]; // 30 Nov, 16 Dec, 1 Jan, 12 Jan, 22 Jan, 5 Feb
 
 export default function ScheduleTraces() {
   const sec = useRef<HTMLElement>(null);
@@ -39,7 +38,7 @@ export default function ScheduleTraces() {
     <section ref={sec} id="schedule" className="relative scroll-mt-20 overflow-hidden py-20 md:py-36">
       <div aria-hidden className="hero-dots pointer-events-none absolute inset-0 opacity-60" />
       <div className="relative mx-auto flex max-w-[1440px] flex-col gap-16 px-6 md:px-14">
-        <SectionHead n="01" label="Key dates" title="Every road ends on campus" sub={`Registration runs from 30 November to 12 January, and online rounds from 13 to 22 January. Every final is on the KUET campus on 29 and 30 January, with ${fest.prizePool} BDT in prizes.`} />
+        <SectionHead n="01" label="Key dates" title="Every road ends on campus" sub={`Registration runs from 30 November to 12 January, and online rounds from 13 to 22 January. Every final is on the KUET campus on 5 and 6 February, with ${fest.prizePool} BDT in prizes.`} />
 
         {/* Desktop: the board. */}
         <div className="hidden lg:grid lg:grid-cols-[210px_minmax(0,1fr)_340px] lg:gap-0">
@@ -120,8 +119,8 @@ export default function ScheduleTraces() {
           {/* The chip: the finals. */}
           <div className="relative" style={{ height: H }}>
             <div className="lidx absolute inset-x-0 rounded-[12px]" style={{ top: CHIP_TOP, height: CHIP_H }}>
-              <span className="lx lx-corner lx-tr lx-warm" style={{ width: "170%" }} />
-              <WarmLight track={sec} rest={[1, 0]} radius={0.85} lean={0.25} box={[0.65, -0.3, 1.3, 0.35]} />
+              {/* One small, still light in the top-right corner; it never grows into the chip. */}
+              <span className="lx lx-corner lx-tr lx-warm" style={{ width: "130%" }} />
               <span className="lx lx-rim" />
               <div key={e.slug} className="relative z-[4] flex h-full flex-col justify-between p-6">
                 <p className="text-[13px] font-medium text-[#f2e6dc]/75">Finals · on campus</p>
@@ -133,7 +132,7 @@ export default function ScheduleTraces() {
                   <div className="grid grid-cols-2 gap-4 border-t border-[rgba(255,214,190,0.14)] pt-4">
                     <span className="flex flex-col gap-1">
                       <span className="text-[12px] font-medium text-[#f2e6dc]/65">Final</span>
-                      <span className="whitespace-nowrap text-[28px] font-semibold leading-none tracking-[-0.035em] tabular-nums text-[#fbf1e9]">{final ? range(final) : "29–30 Jan"}</span>
+                      <span className="whitespace-nowrap text-[28px] font-semibold leading-none tracking-[-0.035em] tabular-nums text-[#fbf1e9]">{final ? range(final) : "5–6 Feb"}</span>
                     </span>
                     <span className="flex flex-col gap-1">
                       <span className="text-[12px] font-medium text-[#f2e6dc]/65">Prize pool · BDT</span>
@@ -153,11 +152,11 @@ export default function ScheduleTraces() {
 
         {/* Phones and tablets: the finals chip, then one row per contest with its dates in order. */}
         <div className="lidx relative rounded-[14px] lg:hidden">
-          <span className="lx lx-corner lx-tr lx-warm" style={{ width: "120%" }} />
+          <span className="lx lx-corner lx-tr lx-warm" style={{ width: "105%" }} />
           <span className="lx lx-rim" />
           <div className="relative z-[4] flex flex-col gap-1 p-5">
             <span className="text-[13px] font-medium text-[#f2e6dc]/75">Finals · on campus</span>
-            <span className="lx-ink-warm text-[52px] font-semibold leading-[0.95] tracking-[-0.05em]">29–30 Jan</span>
+            <span className="lx-ink-warm text-[52px] font-semibold leading-[0.95] tracking-[-0.05em]">5–6 Feb</span>
             {/* Registration is the same window for every contest, so it is said once here, not on each row. */}
             <span className="mt-4 grid grid-cols-2 gap-4 border-t border-[rgba(255,214,190,0.14)] pt-4">
               <span className="flex flex-col gap-1">

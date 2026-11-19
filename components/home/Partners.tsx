@@ -2,7 +2,7 @@ import { fest, sponsors } from "@/lib/fest";
 import { TextLink } from "@/components/ui/Button";
 import SectionHead from "./SectionHead";
 
-/* 03 · Partners — BitFest 2025's sponsors and media partner on one board (2027 partners are not
+/* 04 · Partners — BitFest 2025's sponsors and media partner on one board (2027 partners are not
    confirmed yet), with the way to partner for 2027 underneath. Glowing signals run along the grid's
    lines, each cell carrying a runner on its top and left edges with its own timing, so light keeps
    moving here and there across the board. The cells are not links, so they have no hover. Names stand in
@@ -18,7 +18,7 @@ export default function Partners() {
     <section id="partners" aria-labelledby="partners-h" className="relative scroll-mt-20 py-20 md:py-36">
       <div className="mx-auto max-w-[1440px] px-6 md:px-14">
         <div id="partners-h">
-          <SectionHead n="03" label="Partners" title="Backed by industry" sub="The sponsors and media partner of BitFest 2025, the last edition. It drew 4,000 participants from 100 universities and 7,000 visitors." />
+          <SectionHead n="04" label="Partners" title="Backed by industry" sub="The sponsors and media partner of BitFest 2025, the last edition. It drew 4,000 participants from 100 universities and 7,000 visitors." />
         </div>
         <div className="lidx relative mt-14 rounded-[20px]">
           <span className="lx lx-rim" />
@@ -40,7 +40,7 @@ export default function Partners() {
           </ul>
         </div>
         <div data-reveal className="mt-8 flex flex-wrap items-center justify-between gap-4 text-soft">
-          <p>Partner with BitFest 2027: festival-wide, event-level, technical, in-kind and media packages.</p>
+          <p>Partner with BitFest 4.0: festival-wide, event-level, technical, in-kind and media packages.</p>
           <TextLink href={`mailto:${fest.email}`}>{fest.email}</TextLink>
         </div>
       </div>

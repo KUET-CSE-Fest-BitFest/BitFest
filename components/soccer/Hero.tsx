@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 /* Soccer Bot hero, on the landing hero's ground: the same dot field, grain and top light, and the same
    warm bottom-corner lights that follow the cursor. The title sits at the top; below it two bots
-   (orange and plum) play a live match on their own, drawn on a transparent pitch so the ground shows
+   (orange and cream) play a live match on their own, drawn on a transparent pitch so the ground shows
    through. Nothing to drive — it is a scene, not a control panel. */
 
 const page = eventPages["soccer-bot"];
@@ -101,10 +101,10 @@ export default function Hero() {
         }
         badge={
           <>
-            <span className="relative z-[4] flex items-center gap-2 text-[#ff8a6a]"><span className="h-2 w-2 animate-live rounded-full bg-[#ff6a5a]" />Live</span>
+            <span className="relative z-[4] flex items-center gap-2 text-orange"><span className="h-2 w-2 animate-live rounded-full bg-orange" />Live</span>
             <span className="relative z-[4] text-orange">Orange</span>
             <span className="relative z-[4] text-[28px] font-semibold leading-none tabular-nums text-ink">{score.orange}<span className="text-line-2"> : </span>{score.cyan}</span>
-            <span className="relative z-[4] text-plum">Plum</span>
+            <span className="relative z-[4] text-plum">Cream</span>
           </>
         }
       />

@@ -19,7 +19,7 @@ function Total({ total, active }: { total: number; active: boolean }) {
   const v = useCountUp(`${total}K`, active, 1400);
   return (
     <li data-lid className="lidx relative flex min-h-[300px] flex-col justify-between gap-12 rounded-[18px] p-7 md:col-span-3 md:min-h-[360px] md:p-10">
-      <span className="podium-light lx lx-corner lx-tr lx-warm" style={{ width: "90%" }} />
+      <span className="podium-light lx lx-corner lx-tr lx-warm" style={{ width: "58%" }} />
       <span className="lx lx-rim" />
       <span className="relative z-[4] text-[13px] font-medium text-[#f2e6dc]/80">Total prize money</span>
       <div className="relative z-[4] flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -41,7 +41,7 @@ function Lid({ i, amount, active }: { i: number; amount: number; active: boolean
       data-lid
       className={`lidx relative flex flex-col justify-between gap-12 rounded-[18px] p-7 ${champ ? "min-h-[260px] md:order-2 md:h-[440px]" : i === 1 ? "min-h-[200px] md:order-1 md:h-[360px]" : "min-h-[200px] md:order-3 md:h-[320px]"}`}
     >
-      {champ && <span className="podium-light lx lx-corner lx-tr lx-warm" style={{ width: "160%" }} />}
+      {champ && <span className="podium-light lx lx-corner lx-tr lx-warm" style={{ width: "110%" }} />}
       <span className="lx lx-rim" />
       <div className="relative z-[4] flex items-center justify-between">
         <span className={`text-[13px] font-medium tabular-nums ${champ ? "text-[#f2e6dc]/80" : "text-dim"}`}>0{i + 1}</span>

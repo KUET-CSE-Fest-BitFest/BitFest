@@ -11,8 +11,11 @@ export const G: Record<string, Glyph> = {
   "2": { w: 4, paths: [[[4, 6], [0, 6], [4, 2], [4, 1], [3, 0], [1, 0], [0, 1]]], pad: [4, 6] },
   "5": { w: 4, paths: [[[0, 6], [3, 6], [4, 5], [4, 4], [3, 3], [0, 3], [0, 0], [4, 0]]] },
   "7": { w: 4, paths: [[[0, 0], [4, 0], [4, 1], [2, 3], [2, 6]]], pad: [2, 6] },
+  "4": { w: 4, paths: [[[3, 6], [3, 0], [0, 3], [0, 4], [4, 4]]], pad: [3, 6] },
+  "0": { w: 4, paths: [[[1, 0], [3, 0], [4, 1], [4, 5], [3, 6], [1, 6], [0, 5], [0, 1], [1, 0]]] },
+  ".": { w: 0, paths: [[[0, 5.2], [0, 6]]], pad: [0, 6] },
 };
-export const WORD = ["B", "I", "T", "F", "E", "S", "T", " ", "2", "7"];
+export const WORD = ["B", "I", "T", "F", "E", "S", "T", " ", "4", ".", "0"];
 export const GAP = 1.5, SPACE = 2.6;
 // Width of the whole word in grid units (each letter is followed by GAP; the space widens one gap to SPACE).
 export const UNITS = WORD.reduce((a, ch) => a + (ch === " " ? SPACE - GAP : G[ch].w + GAP), 0) - GAP;

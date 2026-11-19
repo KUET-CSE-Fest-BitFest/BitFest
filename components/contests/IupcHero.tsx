@@ -9,11 +9,11 @@ import { eventPages } from "@/lib/eventPages";
 /* IUPC hero: the main contest's problem set under the title. Twelve problems, A to L, each with its
    balloon colour and how many teams have solved it; the contest clock counts down; every second or
    so the judge returns a verdict: an accepted run lights its problem and adds a balloon, a wrong one
-   blinks plum. The last verdicts run underneath like the judge's queue. */
+   blinks cream. The last verdicts run underneath like the judge's queue. */
 
 const page = eventPages.iupc;
 const LETTERS = "ABCDEFGHIJKL".split("");
-const BALLOON = ["#ff7a3d", "#ffd27a", "#c2458a", "#ffb27a", "#e8557a", "#9a4fc0", "#ff9a5a", "#f2e6dc", "#d35a86", "#ffc79e", "#b8325a", "#ff6a35"];
+const BALLOON = ["#ff7a3d", "#ffc49e", "#f2e6dc", "#ffb27a", "#e0571f", "#ff9a60", "#c24a1c", "#fff3ea", "#ff8446", "#ffd2b4", "#b4431a", "#ff6a35"];
 // Chance a run on each problem is accepted (A is the giveaway, L the one almost nobody gets).
 const EASE = [0.66, 0.5, 0.4, 0.33, 0.27, 0.22, 0.17, 0.13, 0.1, 0.07, 0.05, 0.03];
 const START = [121, 98, 74, 57, 43, 31, 22, 14, 9, 5, 2, 0];
@@ -84,7 +84,7 @@ function Problems() {
               <span className="w-14 shrink-0 tabular-nums text-[#f2e6dc]/45">#{r.id}</span>
               <span className="min-w-0 flex-1 truncate text-[#f2e6dc]/85">{r.team}</span>
               <span className="w-6 shrink-0 text-center font-semibold" style={{ color: BALLOON[r.p] }}>{LETTERS[r.p]}</span>
-              <span className={`w-28 shrink-0 text-right font-medium ${r.ok ? "text-orange" : "text-[#d35a9a]"}`}>{r.verdict}</span>
+              <span className={`w-28 shrink-0 text-right font-medium ${r.ok ? "text-orange" : "text-[#f2e6dc]/60"}`}>{r.verdict}</span>
             </li>
           ))}
         </ol>

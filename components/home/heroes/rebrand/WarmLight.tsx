@@ -2,8 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
-/* A warm light rendered by one small WebGL shader: cream and amber at its centre, through oranges
-   to raspberry and a little plum, then black. It leans toward the pointer, flows slowly on its own,
+/* A warm light rendered by one small WebGL shader: cream at its centre, through orange to deep
+   rust and brown, then black. It leans toward the pointer, flows slowly on its own,
    and can also show "thermal" hot spots. Under it sits a static CSS gradient, so the first paint is
    already lit; the canvas fades in once it has drawn. It renders below device resolution (the image
    is soft anyway), stops when off screen, and draws one still frame under reduced motion. */
@@ -11,13 +11,13 @@ import { useEffect, useRef } from "react";
 export type Ramp = [number, string][];
 
 export const EMBER: Ramp = [
-  [0, "#030307"], [0.1, "#12070f"], [0.22, "#2a0f2f"], [0.34, "#5e1f63"], [0.46, "#a82e5a"],
-  [0.58, "#ea4f2e"], [0.7, "#ff7a3d"], [0.81, "#ffa64a"], [0.91, "#ffd27a"], [1, "#fff2da"],
+  [0, "#030304"], [0.12, "#120805"], [0.26, "#2e130a"], [0.4, "#6a2a10"], [0.54, "#b8461a"],
+  [0.68, "#ff7a3d"], [0.82, "#ffa066"], [0.93, "#ffcaa4"], [1, "#fff3ea"],
 ];
-// Thermal camera palette, kept to the brand: black, plum, raspberry, oranges, amber, cream.
+// Thermal camera palette, kept to the brand: black, brown, rust, orange, peach, cream.
 export const IRONBOW: Ramp = [
-  [0, "#040306"], [0.14, "#170818"], [0.28, "#3d1248"], [0.42, "#7e2270"], [0.54, "#c2335a"],
-  [0.66, "#ee5530"], [0.77, "#ff8a3d"], [0.88, "#ffc35e"], [1, "#fff4de"],
+  [0, "#040304"], [0.14, "#170a06"], [0.28, "#3a160b"], [0.42, "#7a2e12"], [0.54, "#c24a1c"],
+  [0.66, "#ee6428"], [0.77, "#ff8a4a"], [0.88, "#ffbf96"], [1, "#fff4ec"],
 ];
 
 type Props = {

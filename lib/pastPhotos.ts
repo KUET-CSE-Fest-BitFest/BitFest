@@ -18,3 +18,27 @@ export const pastPhotos = [
   { src: "/past/bitfest-2025-15.webp", large: "/past/bitfest-2025-15-lg.webp", small: "/past/bitfest-2025-15-sm.webp", w: 680, h: 510, smallW: 400, alt: "A winning team receives its cheque at BitFest 2025" },
   { src: "/past/bitfest-2025-16.webp", large: "/past/bitfest-2025-16-lg.webp", small: "/past/bitfest-2025-16-sm.webp", w: 680, h: 510, smallW: 400, alt: "A prize presented on stage at BitFest 2025" },
 ];
+
+// The teams at BitFest 2025: group photos at the fest wall and teams at work on the contest floor
+// (from the organizers' shared Drive folder), cropped to 3:2 and saved as WebP at 640, 1080 and 1600
+// wide. They lead the gallery in its slider.
+const TEAM_CAPTIONS = [
+  "Teams together at the fest wall on prize night",
+  "Three to a computer on the contest floor",
+  "A team at the fest wall",
+  "The contest hall, mid-round",
+  "The whole room at the fest wall",
+  "A team works a problem on paper",
+  "Teammates at the fest wall",
+  "Talking a solution through",
+  "Under the lights on prize night",
+  "A team at its computer",
+  "Another team at the fest wall",
+  "The contest floor from the back",
+  "Heads down on a problem set",
+  "One more for the album",
+];
+export const teamPhotos = TEAM_CAPTIONS.map((caption, i) => {
+  const n = String(i + 1).padStart(2, "0");
+  return { sm: `/past/teams-${n}-sm.webp`, md: `/past/teams-${n}-md.webp`, lg: `/past/teams-${n}-lg.webp`, caption };
+});

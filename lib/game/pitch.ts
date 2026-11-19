@@ -3,7 +3,7 @@
 
 export type Team = "orange" | "cyan";
 
-export const COLORS = { orange: "#ff7a3d", cyan: "#c2458a", ball: "#fff6ee" } as const;
+export const COLORS = { orange: "#ff7a3d", cyan: "#f2e6dc", ball: "#fff6ee" } as const;
 
 type Bot = { x: number; y: number; a: number; vx: number; vy: number; team: Team; trail: number[]; cd: number };
 
@@ -240,7 +240,7 @@ export class PitchSim {
       ctx.fillRect(L + (i * (R - L)) / 14, T, (R - L) / 14, B - T);
     }
     if (this.opts.goalGlow) {
-      this.sprites ??= { cyan: glowSprite("194,69,138"), orange: glowSprite("255,122,61") };
+      this.sprites ??= { cyan: glowSprite("242,230,220"), orange: glowSprite("255,122,61") };
       const glow = (img: HTMLCanvasElement, x: number, f: number) => {
         ctx.globalAlpha = 0.6 + 0.4 * f;
         ctx.drawImage(img, x - 460, CY - 560, 920, 1120);
@@ -268,7 +268,7 @@ export class PitchSim {
       ctx.stroke();
     };
     trail(this.me, "rgba(255,122,61,0.3)");
-    trail(this.cpu, "rgba(194,69,138,0.22)");
+    trail(this.cpu, "rgba(242,230,220,0.18)");
 
     if (this.controlled && this.me.cd === 0) {
       ctx.strokeStyle = "rgba(255,122,61,0.35)"; ctx.lineWidth = 1; ctx.setLineDash([4, 6]);

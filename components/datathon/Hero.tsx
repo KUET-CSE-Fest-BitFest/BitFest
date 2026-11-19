@@ -144,14 +144,13 @@ function Board() {
       onPointerLeave={() => setHover(null)}
       className="lidx lb-board pointer-events-auto relative mx-auto mb-3 mt-[clamp(24px,4.5vh,48px)] [--row:48px] md:[--row:54px] w-[min(920px,calc(100%-24px))] rounded-[20px]"
     >
-      <span className="lx lx-corner lx-tr lx-warm" style={{ width: "70%", opacity: 0.4 }} />
       <span className="lx lx-rim" />
       <div className="relative z-[4] flex items-center justify-between gap-4 px-4 pb-3 pt-4 md:px-6 md:pt-5">
         <p className="text-[15px] font-medium text-ink">
           Public leaderboard <span className="hidden text-[#f2e6dc]/55 min-[360px]:inline">· Day {day} of 10</span>
         </p>
         <p className="flex items-center gap-2 text-[14px] font-medium text-[#f2e6dc]/65">
-          <span className="h-2 w-2 animate-live rounded-full bg-[#ff6a5a]" />
+          <span className="h-2 w-2 animate-live rounded-full bg-orange" />
           <span className="tabular-nums">{entries.toLocaleString()}</span>
           <span className="hidden sm:inline">entries</span>
         </p>

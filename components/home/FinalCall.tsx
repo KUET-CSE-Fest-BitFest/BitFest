@@ -2,7 +2,7 @@ import { fest } from "@/lib/fest";
 import { Button, TextLink } from "@/components/ui/Button";
 import SectionHead from "./SectionHead";
 
-/* 05 · The closing call. It sits at the top of the footer lid (see HomeFooter), above the wordmark. */
+/* 06 · The closing call. It sits at the top of the footer lid (see HomeFooter), above the wordmark. */
 
 export default function FinalCall() {
   return (

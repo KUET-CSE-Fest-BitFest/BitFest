@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 /* 01 · About the contest, with its timeline. The description stays put on the left while the
    timeline on the right draws itself as you scroll, in the hero's signal language: a lit trace grows
-   down the track (plum behind, orange at the head) carrying a comet-like signal; each stage's pad
+   down the track (deep rust behind, orange at the head) carrying a comet-like signal; each stage's pad
    ignites as the signal reaches it (an ember core, a ring that pulses out once, a short leader to its
    text), and stages ahead stay dim until reached. Everything moves by transform and opacity. */
 
@@ -95,9 +95,8 @@ export default function EventAbout({ page }: { page: EventPage }) {
               </li>
             ))}
           </ol>
-          {/* The lights sit on a wrapper so the list itself holds only dt/dd groups (screen readers). */}
+          {/* The rim sits on a wrapper so the list itself holds only dt/dd groups (screen readers). */}
           <div data-reveal className="lidx relative rounded-[16px]">
-            <span aria-hidden className="lx lx-corner lx-tr lx-warm" style={{ width: "120%", opacity: 0.55 }} />
             <span aria-hidden className="lx lx-rim" />
             <dl className="relative z-[4] grid grid-cols-2">
               {page.facts.map((f, i) => (
@@ -118,7 +117,7 @@ export default function EventAbout({ page }: { page: EventPage }) {
           <p data-reveal className="text-[15px] font-medium text-muted">Timeline</p>
           <h3 data-reveal className="mt-3 text-[clamp(32px,3.4vw,48px)] font-semibold leading-[1] tracking-[-0.035em]">Road to the final</h3>
           <ol ref={listRef} className="event-timeline relative mt-12">
-            {/* The track runs from the first pad to the last; the lit part warms from plum to orange at the head. */}
+            {/* The track runs from the first pad to the last; the lit part warms from rust to orange at the head. */}
             <span ref={trackRef} aria-hidden className="absolute left-[8px] w-[2px] rounded-full bg-[rgba(255,214,190,0.09)]" style={{ top: PAD }} />
             <span ref={fillRef} aria-hidden className="tl-fill absolute left-[8px] w-[2px] origin-top rounded-full" style={{ top: PAD, transform: "scaleY(0)" }} />
             <span ref={headRef} aria-hidden className="tl-head absolute left-[9px] top-0 opacity-0"><i className="tl-tail" /><b className="tl-core" /></span>

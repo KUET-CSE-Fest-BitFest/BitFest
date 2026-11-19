@@ -24,9 +24,9 @@ const CODE = [1,0,1,1,0,1,0,1, 0,1,1,0,1,0,1,1, 1,1,0,1,0,0,1,0, 0,1,0,1,1,1,0,1
 export type SeatId = "float" | "socket" | "carved" | "dissolve" | "board";
 export type LidId = "metal" | "corner" | "orbit" | "duo" | "horizon" | "live";
 
-const RIM_CORNER = "radial-gradient(130% 130% at 0% 100%, #ffe7b0, rgba(255,140,80,0.85) 30%, rgba(184,50,90,0.45) 60%, rgba(255,214,190,0.2))";
+const RIM_CORNER = "radial-gradient(130% 130% at 0% 100%, #ffd2b4, rgba(255,140,80,0.85) 30%, rgba(163,58,20,0.45) 60%, rgba(255,214,190,0.2))";
 
-/** The lit lids: a black face lit in orange, a little plum, and black (gradients painted once;
+/** The lit lids: a black face lit in orange, deep rust and black (gradients painted once;
     transform/opacity move them). */
 function LidLight({ kind }: { kind: Exclude<LidId, "metal" | "live"> }) {
   if (kind === "orbit") {
@@ -34,7 +34,7 @@ function LidLight({ kind }: { kind: Exclude<LidId, "metal" | "live"> }) {
       <>
         <span className="lx lx-orbit"><span className="lx-corner lx-bl lx-warm" /></span>
         <span className="lx lx-rimlight">
-          <i className="glow-spin" style={{ ["--spin" as string]: "20s", background: "conic-gradient(from 0deg, transparent 0deg 150deg, rgba(184,50,90,0.8) 195deg, #ffd27a 225deg, rgba(255,122,61,0.85) 250deg, transparent 300deg 360deg)" }} />
+          <i className="glow-spin" style={{ ["--spin" as string]: "20s", background: "conic-gradient(from 0deg, transparent 0deg 150deg, rgba(163,58,20,0.8) 195deg, #ffc49e 225deg, rgba(255,122,61,0.85) 250deg, transparent 300deg 360deg)" }} />
         </span>
         <span className="lx lx-rim" />
       </>
@@ -45,7 +45,7 @@ function LidLight({ kind }: { kind: Exclude<LidId, "metal" | "live"> }) {
       <>
         <span className="lx lx-corner lx-bl lx-warm lx-trade-a" />
         <span className="lx lx-corner lx-tr lx-small lx-plum lx-trade-b" />
-        <span className="lx lx-rimlight" style={{ background: "linear-gradient(45deg, #ffd27a, rgba(255,122,61,0.3) 40%, rgba(154,58,154,0.3) 60%, rgba(232,85,122,0.9))" }} />
+        <span className="lx lx-rimlight" style={{ background: "linear-gradient(45deg, #ffc49e, rgba(255,122,61,0.3) 40%, rgba(163,58,20,0.3) 60%, rgba(224,87,31,0.9))" }} />
         <span className="lx lx-rim" />
       </>
     );
@@ -54,7 +54,7 @@ function LidLight({ kind }: { kind: Exclude<LidId, "metal" | "live"> }) {
     return (
       <>
         <span className="lx lx-horizon" />
-        <span className="lx lx-rimlight" style={{ background: "linear-gradient(0deg, #ffd27a, rgba(255,122,61,0.6) 30%, rgba(154,58,154,0.3) 60%, rgba(255,214,190,0.18))" }} />
+        <span className="lx lx-rimlight" style={{ background: "linear-gradient(0deg, #ffc49e, rgba(255,122,61,0.6) 30%, rgba(163,58,20,0.3) 60%, rgba(255,214,190,0.18))" }} />
         <span className="lx lx-rim" />
       </>
     );
@@ -71,7 +71,7 @@ function LidLight({ kind }: { kind: Exclude<LidId, "metal" | "live"> }) {
   );
 }
 
-export default function HeroPinout({ glow = "current", seat = "float", lid = "metal" }: { glow?: GlowId; seat?: SeatId; lid?: LidId }) {
+export default function HeroPinout({ glow = "orbit", seat = "float", lid = "metal" }: { glow?: GlowId; seat?: SeatId; lid?: LidId }) {
   const [active, setActive] = useState(0);
   const [hovered, setHovered] = useState<number | null>(null);
   const hold = useRef(false);
@@ -178,8 +178,8 @@ export default function HeroPinout({ glow = "current", seat = "float", lid = "me
               <div className="lidx absolute z-[3] flex flex-col items-center justify-center rounded-[9px] text-center" style={{ inset: "10.5% var(--inset-x)" }}>
                 {lid === "live" ? (
                   <>
-                    <span className="lx lx-corner lx-bl lx-warm" />
-                    <WarmLight track={sec} rest={[0, 1]} radius={0.86} lean={0.7} box={[-0.3, 1.0, 1.3, 1.3]} focus={focus} />
+                    <span className="lx lx-corner lx-bl lx-warm" style={{ width: "120%" }} />
+                    <WarmLight track={sec} rest={[0, 1]} radius={0.52} lean={0.3} box={[-0.2, 1.0, 1.2, 1.2]} focus={focus} />
                     <span className="lx lx-rim" />
                   </>
                 ) : (

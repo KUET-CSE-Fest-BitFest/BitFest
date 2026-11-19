@@ -5,7 +5,7 @@ import { useCanvasLoop } from "./heroes/shared";
 import { type Route, INK, ORANGE, drawPulse, route } from "./heroes/pcb";
 import { LOOKS, type LookId, layoutWord } from "./heroes/trace-glyphs";
 
-/* "BITFEST 27" routed like copper traces, in one of several lettering styles. The letters are
+/* "BITFEST 4.0" routed like copper traces, in one of several lettering styles. The letters are
    drawn once into an offscreen image; each frame only copies it and moves the signals. */
 
 type Letter = { routes: Route[]; accent: boolean };
@@ -118,7 +118,7 @@ export default function TraceWordmark({ look = "chamfer", className = "" }: { lo
   return (
     <div className={className}>
       <canvas ref={canvasRef} aria-hidden className="absolute inset-0 h-full w-full" />
-      <p className="sr-only">BitFest 2027</p>
+      <p className="sr-only">BitFest 4.0</p>
     </div>
   );
 }

@@ -26,7 +26,7 @@ function halo() {
   const r = g.createRadialGradient(32, 32, 0, 32, 32, 32);
   r.addColorStop(0, "rgba(255,190,120,0.9)");
   r.addColorStop(0.35, "rgba(255,122,61,0.35)");
-  r.addColorStop(1, "rgba(194,51,90,0)");
+  r.addColorStop(1, "rgba(163,58,20,0)");
   g.fillStyle = r;
   g.fillRect(0, 0, 64, 64);
   return c;
@@ -195,7 +195,7 @@ export default function AiHackathonHero() {
       scene={<Net />}
       badge={
         <>
-          <span ref={ref} className="relative z-[4] flex items-center gap-2 text-[#ff8a6a]"><LiveDot />Building</span>
+          <span ref={ref} className="relative z-[4] flex items-center gap-2 text-orange"><LiveDot />Building</span>
           <span className="relative z-[4] text-soft">Time left</span>
           <span className="relative z-[4] text-[24px] font-semibold leading-none tabular-nums text-ink">{hms(left)}</span>
         </>

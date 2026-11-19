@@ -9,9 +9,8 @@ import SectionHead from "./SectionHead";
 gsap.registerPlugin(ScrollTrigger);
 
 /* 02 · Programme. The festival in four chips on one bus (a trace with a signal running along it, like
-   the hero's): the online rounds, Friday, Saturday, and the closing night. The chip in focus lights
-   from its top-right corner (on phones every chip stays lit, with no hover change); the chips rise
-   in when the section arrives. Times are the proposal's
+   the hero's): the online rounds, Friday, Saturday, and the closing night. The chips carry no light;
+   the one in focus lights its pins on the bus. The chips rise in when the section arrives. Times are the proposal's
    indicative timetable; final clock times and venues come with each rulebook. */
 
 type Row = [slug: string, what: string, when: string];
@@ -27,7 +26,7 @@ const DAYS: { label: string; name: string; rows: Row[]; note?: string }[] = [
     note: "Onsite finalists are announced on 24 January.",
   },
   {
-    label: "Day 1 · Friday 29 January",
+    label: "Day 1 · Friday 5 February",
     name: "Builds, bots and games",
     rows: [
       ["ai-hackathon", "Hackathon", "10 am – 7 pm"],
@@ -39,7 +38,7 @@ const DAYS: { label: string; name: string; rows: Row[]; note?: string }[] = [
     ],
   },
   {
-    label: "Day 2 · Saturday 30 January",
+    label: "Day 2 · Saturday 6 February",
     name: "Contests and finals",
     rows: [
       ["iupc", "Main contest", "5 hours"],
@@ -53,7 +52,7 @@ const DAYS: { label: string; name: string; rows: Row[]; note?: string }[] = [
     label: "Saturday evening",
     name: "Closing and CSE Night",
     rows: [
-      ["", "Prize ceremony and closing", "30 Jan"],
+      ["", "Prize ceremony and closing", "6 Feb"],
       ["", "CSE Night, a cultural evening for participants, guests and sponsors", ""],
     ],
   },
@@ -89,7 +88,7 @@ export default function Programme() {
       <div aria-hidden className="hero-dots pointer-events-none absolute inset-0 opacity-50" />
       <div className="relative mx-auto max-w-[1440px] px-6 md:px-14">
         <div id="programme-h">
-          <SectionHead n="02" label="Programme" title="Two days on campus" sub="Online rounds in January, then the onsite finals on Friday 29 and Saturday 30 January 2027 at KUET, Khulna. Final clock times and venues come with each contest's rulebook." />
+          <SectionHead n="02" label="Programme" title="Two days on campus" sub="Online rounds in January, then the onsite finals on Friday 5 and Saturday 6 February 2027 at KUET, Khulna. Final clock times and venues come with each contest's rulebook." />
         </div>
 
         <div ref={rootRef} className="relative mt-16">
@@ -108,13 +107,12 @@ export default function Programme() {
                   onPointerLeave={() => { hold.current = false; }}
                   className="lidx relative flex flex-col gap-6 rounded-[16px] p-6 lg:min-h-[340px]"
                 >
-                  <span aria-hidden className={`lx lx-corner lx-tr lx-warm transition-opacity duration-700 opacity-100 ${on ? "lg:opacity-100" : "lg:opacity-0"}`} style={{ width: "150%" }} />
                   <span className="lx lx-rim" />
                   {/* Pins where the bus meets the chip. */}
                   <span aria-hidden className={`absolute -left-[4px] top-[96px] z-[5] hidden h-[7px] w-[7px] -translate-y-1/2 rounded-full transition-colors duration-500 lg:block ${on ? "bg-orange shadow-[0_0_10px_rgba(255,122,61,0.8)]" : "bg-white/25"}`} />
                   <span aria-hidden className={`absolute -right-[4px] top-[96px] z-[5] hidden h-[7px] w-[7px] -translate-y-1/2 rounded-full transition-colors duration-500 lg:block ${on ? "bg-orange shadow-[0_0_10px_rgba(255,122,61,0.8)]" : "bg-white/25"}`} />
                   <div className="relative z-[4] flex flex-col gap-2">
-                    <span className={`text-[13px] font-medium tabular-nums text-[#fbf1e9] transition-colors duration-500 ${on ? "" : "lg:text-orange"}`}>{v.label}</span>
+                    <span className="text-[13px] font-medium tabular-nums text-orange">{v.label}</span>
                     <h3 className="lx-ink-warm text-[24px] font-semibold leading-tight tracking-[-0.02em]">{v.name}</h3>
                   </div>
                   <ul className="relative z-[4] mt-auto flex flex-col gap-3">

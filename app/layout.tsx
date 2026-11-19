@@ -5,9 +5,9 @@ import SmoothScroll from "@/components/ui/SmoothScroll";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
 
-const title = "BitFest 2027 — 3rd KUET CSE National Fest";
+const title = "BitFest 4.0 — 4th KUET CSE National Fest";
 const description =
-  "Ten national competitions in programming, AI, data science, research, robotics, cybersecurity, business and esports. 29–30 January 2027 at KUET, Khulna. 700K BDT in prizes.";
+  "Ten national competitions in programming, AI, data science, research, robotics, cybersecurity, business and esports. 5–6 February 2027 at KUET, Khulna. 700K BDT in prizes.";
 
 // Social previews and canonicals need absolute URLs. NEXT_PUBLIC_SITE_URL overrides the production domain.
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://kuetbitfest2027.com";
@@ -16,9 +16,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title,
   description,
-  applicationName: "BitFest 2027",
+  applicationName: "BitFest 4.0",
   keywords: [
-    "BitFest 2027", "BitFest", "KUET", "KUET CSE", "KUET CSE Fest", "national tech fest Bangladesh", "IUPC",
+    "BitFest 4.0", "BitFest 2027", "BitFest", "KUET", "KUET CSE", "KUET CSE Fest", "national tech fest Bangladesh", "IUPC",
     "programming contest", "AI hackathon", "datathon", "CTF", "robotics", "Line Following Robot", "Soccer Bot",
     "3 Minute Thesis", "project showcase", "IT business case", "esports", "Khulna",
   ],
@@ -32,11 +32,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "BitFest 2027",
+    siteName: "BitFest 4.0",
     title,
     description,
     url: "/",
-    images: [{ url: "/og/home.jpg", width: 1200, height: 630, alt: "BitFest 2027, the 3rd KUET CSE National Fest: ten national contests on 29–30 January 2027 at KUET, Khulna." }],
+    images: [{ url: "/og/home.jpg", width: 1200, height: 630, alt: "BitFest 4.0, the 4th KUET CSE National Fest: ten national contests on 5–6 February 2027 at KUET, Khulna." }],
   },
   twitter: { card: "summary_large_image", title, description, images: ["/og/home.jpg"] },
 };

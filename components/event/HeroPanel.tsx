@@ -52,7 +52,6 @@ export default function HeroPanel({
       className="hero-panel lidx pointer-events-auto relative mx-auto mb-3 mt-[clamp(24px,4.5vh,48px)] overflow-hidden rounded-[20px]"
       style={{ width: `min(${width}px, calc(100% - 24px))`, maxHeight: maxH }}
     >
-      <span className="lx lx-corner lx-tr lx-warm" style={{ width: "70%", opacity: 0.4 }} />
       <span className="lx lx-rim" />
       <div className="relative z-[4] flex items-center justify-between gap-4 border-b border-[rgba(255,214,190,0.08)] px-4 pb-3 pt-4 md:px-6 md:pt-5">
         <p className="min-w-0 truncate text-[15px] font-medium text-ink">
@@ -67,4 +66,4 @@ export default function HeroPanel({
 }
 
 /** The red live dot the panels share. */
-export const LiveDot = () => <span className="h-2 w-2 animate-live rounded-full bg-[#ff6a5a]" />;
+export const LiveDot = () => <span className="h-2 w-2 animate-live rounded-full bg-orange" />;

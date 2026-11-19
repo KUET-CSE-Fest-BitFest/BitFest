@@ -18,7 +18,7 @@ export function FestFacts({ className = "" }: { className?: string }) {
   const items = [
     ["Prize pool", `${fest.prizePool} BDT`],
     ["Events", "8"],
-    ["Dates", fest.dates.replace("January", "Jan")],
+    ["Dates", fest.dates.replace("February", "Feb")],
   ];
   return (
     <dl className={`flex gap-8 ${className}`}>

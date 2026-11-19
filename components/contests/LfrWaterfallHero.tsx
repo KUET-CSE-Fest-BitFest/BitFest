@@ -105,7 +105,7 @@ function Waterfall() {
             </span>
             <span className="relative h-[6px] rounded-full bg-[rgba(255,214,190,0.08)]">
               <span className="absolute left-1/2 top-[-3px] h-[12px] w-px bg-[rgba(255,214,190,0.3)]" />
-              <span className="absolute top-1/2 h-[12px] w-[12px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_40%_40%,#fff1d6,#ff7a3d_65%)] shadow-[0_0_12px_rgba(255,122,61,0.8)] transition-[left] duration-200" style={{ left: `${50 + read.err * 46}%` }} />
+              <span className="absolute top-1/2 h-[12px] w-[12px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_40%_40%,#fff3ea,#ff7a3d_65%)] shadow-[0_0_12px_rgba(255,122,61,0.8)] transition-[left] duration-200" style={{ left: `${50 + read.err * 46}%` }} />
             </span>
             <span className="flex justify-between text-[12px] text-[#f2e6dc]/40"><span>Left</span><span>Right</span></span>
           </div>

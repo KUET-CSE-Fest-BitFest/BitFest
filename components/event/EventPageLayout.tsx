@@ -26,7 +26,7 @@ export default function EventPageLayout({ page, name, hero }: { page: EventPage;
         {hero}
         <EventAbout page={page} />
         <EventPrizes page={page} />
-        <EventFaq items={page.faqs} />
+        <EventFaq name={name} faqs={page.faqs} />
         <section className="relative pb-24 pt-4 md:pb-32">
           <div className="mx-auto max-w-[1440px] px-6 md:px-14">
             <EventCta page={page} />
