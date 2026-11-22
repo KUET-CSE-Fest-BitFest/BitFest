@@ -1,9 +1,9 @@
 import { events, fest, money, prizes, schedule } from "@/lib/fest";
 import ContestLink from "@/components/redesign/ui/ContestLink";
 import SectionHead from "../SectionHead";
-import { KIND_LABEL, detail, range } from "./data";
+import { range } from "./data";
 
-/* 01 · Key dates, as one card per contest: what it is, how its final runs, the team rules, then the
+/* 01 · Key dates, as one card per contest: what it is and the team rules, then the
    final's date and the prize pool along the bottom. A card stays dark until pointed at; then its
    top-right light fades in. Cards become links to the contest pages once those are public
    (ContestLink). */
@@ -30,11 +30,10 @@ export default function ContestCards() {
                     {e.kind}
                     {round && <span className="text-cream/55"> · Online round {range(round)}</span>}
                   </p>
-                  {/* Name, how the final runs and the team rules sit together; the date and prize line
+                  {/* Name and team rules sit together; the date and prize line
                       closes every card at the same height. */}
                   <div className="relative z-[4] mt-auto flex flex-col gap-1 pt-10">
                     <span className="lx-ink-warm text-[clamp(26px,2.1vw,32px)] font-semibold leading-[1.02] tracking-[-0.04em]">{e.name}</span>
-                    <span className="text-[14px] text-cream/75">{final ? detail(final) || KIND_LABEL.final : e.venue}</span>
                     <span className="mt-2 text-[13px] tabular-nums text-cream/60">Team {e.team} · {e.fee} · {e.onsite} onsite · {e.club}</span>
                   </div>
                   <div className="relative z-[4] mt-5 grid grid-cols-2 gap-4 border-t border-rim/14 pt-4">
