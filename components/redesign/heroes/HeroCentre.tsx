@@ -43,12 +43,13 @@ function DotWave() {
     title, motto, the rolling prize pool, actions) and the ten contests running along its foot as a
     moving strip. */
 export default function HeroCentre() {
-  const row = [...events, ...events];
+  // Four copies: the strip slides by half its length, and each half must outrun the widest screens.
+  const row = [...events, ...events, ...events, ...events];
   return (
-    <section id="hero" aria-label={`${fest.name} ${fest.year}`} className="relative flex min-h-[100svh] flex-col px-3 pb-3 pt-[80px] md:px-6 md:pb-6 lg:h-[100svh]">
+    <section id="hero" aria-label={`${fest.name} ${fest.year}`} className="relative flex min-h-[100svh] flex-col px-5 pb-5 pt-[80px] lg:h-[100svh]">
       <style>{`@keyframes hc-strip { to { transform: translateX(-50%); } } @media (prefers-reduced-motion: reduce) { .hc-strip { animation: none !important; } }`}</style>
       <div aria-hidden className="hero-dots pointer-events-none absolute inset-0 opacity-50" />
-      <div className="lidx relative mx-auto flex w-full max-w-[1400px] flex-1 flex-col overflow-hidden rounded-[28px]">
+      <div className="lidx relative flex w-full flex-1 flex-col overflow-hidden rounded-[28px]">
         <DotWave />
         <BottomLight contained />
         <span aria-hidden className="lx lx-rim" />
@@ -68,7 +69,7 @@ export default function HeroCentre() {
             <HeroActions className="mt-2 justify-center" />
           </div>
           <div className="relative mt-8 overflow-hidden border-t border-rim/12 py-4 [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
-            <ul className="hc-strip flex w-max gap-10" style={{ animation: "hc-strip 40s linear infinite" }}>
+            <ul className="hc-strip flex w-max gap-10" style={{ animation: "hc-strip 80s linear infinite" }}>
               {row.map((e, i) => (
                 <li key={i} aria-hidden={i >= events.length || undefined}>
                   <ContestLink e={e} tabIndex={i >= events.length ? -1 : undefined} className="group flex items-center gap-3 whitespace-nowrap text-[15px] font-medium text-cream/70 transition-colors hover:text-ink">
