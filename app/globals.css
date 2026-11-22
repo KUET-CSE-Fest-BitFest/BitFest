@@ -14,6 +14,17 @@
      and lights fade from cream through orange into deep rust and black. */
   --color-cyan: #f2e6dc;
   --color-plum: #f2e6dc;
+  /* Named tones the redesign's components use (same values as the live site, so nothing changes
+     there); the redesign theme below redefines them. */
+  --color-cream: #f2e6dc;
+  --color-cream-hi: #fbf1e9;
+  --color-rim: #ffd6be;
+  --color-face: #0c0a0b;
+  --color-on-accent: #1a0d06;
+  --color-peach: #ffb27a;
+  --color-quote-rest: #cfc7c2;
+  --color-accent-hi: #ffc49e;
+  --color-accent-deep: #a33a14;
 
   --font-display: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -839,3 +850,146 @@ button:hover > .faq-toggle[data-on="false"] { color: var(--color-ink); box-shado
 .sched-row:active { background: rgba(255, 122, 61, 0.05); }
 /* Hover only where there is a real pointer: on phones a tapped row would otherwise stay lit. */
 @media (hover: hover) { .sched-row:hover { background: rgba(255, 122, 61, 0.05); } }
+
+/* ── Redesign theme (app/redesign) ──────────────────────────────────────
+   Everything below applies only while the redesign page is on screen (the page wraps itself in
+   .rd-theme), so the live landing page keeps its look. A palette is a set of variables; D (Slate) is the
+   default, picked 2026-11-20; :root[data-rd-pal="A"] (B, C) switches to the alternates. The rules after the palettes repaint the
+   shared lights, rims, buttons and signals from those variables. */
+/* D · Slate: slate blue and emerald */
+:root:has(.rd-theme) {
+  --color-bg: #18283f; --color-panel: #1d304a; --color-ink: #f0f5f8; --color-soft: #b8c6d4;
+  --color-muted: #8a9bb0; --color-dim: #6e8197; --color-line: #253a56; --color-line-2: #344b6a;
+  --color-orange: #22c55e; --color-cyan: #dbe7ee; --color-plum: #dbe7ee;
+  --color-cream: #dbe7ee; --color-cream-hi: #f0f7fa; --color-rim: #b7ebcb; --color-face: #122036;
+  --color-on-accent: #032912; --color-peach: #6ee7a0; --color-quote-rest: #bccad6;
+  --color-accent-hi: #9ff0bd; --color-accent-deep: #11743a;
+  --rd-lid: #122036; --rd-board: #142238; --rd-sub1: #213551; --rd-sub2: #13213a;
+  --rd-ink2: #e5f2ec; --rd-ink3: #b8d8c8; --rd-ink4: #9cc6b2;
+  --rd-acc-rgb: 34,197,94; --rd-ink-rgb: 232,240,245; --rd-pulse: #d1fae5;
+  --rd-ramp: 0 #0d1a2c, 0.14 #13253d, 0.3 #193f5c, 0.44 #0f6560, 0.58 #15925a, 0.72 #22c55e, 0.86 #a2f0c0, 1 #f0fff5;
+  --lt0: #f0fff5;
+  --lt1: #b6f4cd;
+  --lt2: #6fe09a;
+  --lt3: #22c55e;
+  --lt4: #15925a;
+  --lt5: #0f6560;
+  --lt6: #18405e;
+  --lt7: #172f4a;
+}
+/* A · Harbour: navy and mint */
+:root[data-rd-pal="A"]:has(.rd-theme) {
+  --color-bg: #0f1d33; --color-panel: #13233c; --color-ink: #eef4f8; --color-soft: #b3c3d1;
+  --color-muted: #8597aa; --color-dim: #687b90; --color-line: #1c2f4a; --color-line-2: #2a4060;
+  --color-orange: #3ddc97; --color-cyan: #d7e6ee; --color-plum: #d7e6ee;
+  --color-cream: #d7e6ee; --color-cream-hi: #eef6fa; --color-rim: #bfe9dc; --color-face: #0a1528;
+  --color-on-accent: #04261a; --color-peach: #7ff0bf; --color-quote-rest: #b8c8d4;
+  --color-accent-hi: #a6f3cf; --color-accent-deep: #0f7a63;
+  --rd-lid: #0a1528; --rd-board: #0c1930; --rd-sub1: #172a45; --rd-sub2: #0b1629;
+  --rd-ink2: #e6f1f6; --rd-ink3: #b9d3dc; --rd-ink4: #9cc2c9;
+  --rd-acc-rgb: 61,220,151; --rd-ink-rgb: 230,240,246; --rd-pulse: #c9fbe4;
+  --rd-ramp: 0 #081322, 0.14 #0c1f33, 0.3 #123a52, 0.44 #13756f, 0.58 #1fae86, 0.72 #3ddc97, 0.86 #9ff0c9, 1 #effff7;
+  --lt0: #effff7;
+  --lt1: #b8f7da;
+  --lt2: #79eab6;
+  --lt3: #3ddc97;
+  --lt4: #1fae86;
+  --lt5: #13756f;
+  --lt6: #133f5a;
+  --lt7: #10273f;
+}
+/* B · Lagoon: blue-teal and teal-green */
+:root[data-rd-pal="B"]:has(.rd-theme) {
+  --color-bg: #0e2233; --color-panel: #12293d; --color-ink: #eef6f8; --color-soft: #b2c7cf;
+  --color-muted: #8399a4; --color-dim: #667c88; --color-line: #1b3446; --color-line-2: #284659;
+  --color-orange: #2dd4bf; --color-cyan: #d4e8ea; --color-plum: #d4e8ea;
+  --color-cream: #d4e8ea; --color-cream-hi: #edf8f8; --color-rim: #b4ece4; --color-face: #0a1927;
+  --color-on-accent: #032521; --color-peach: #7ce9db; --color-quote-rest: #b6cacf;
+  --color-accent-hi: #99f0e3; --color-accent-deep: #0d6f73;
+  --rd-lid: #0a1927; --rd-board: #0b1d2c; --rd-sub1: #15303f; --rd-sub2: #0a1824;
+  --rd-ink2: #e4f3f3; --rd-ink3: #b5d6d6; --rd-ink4: #97c4c6;
+  --rd-acc-rgb: 45,212,191; --rd-ink-rgb: 230,242,244; --rd-pulse: #c8faf3;
+  --rd-ramp: 0 #07141f, 0.14 #0b2030, 0.3 #103a50, 0.44 #0f6b7a, 0.58 #14a3a0, 0.72 #2dd4bf, 0.86 #9af0e4, 1 #effffd;
+  --lt0: #effffd;
+  --lt1: #b3f5ec;
+  --lt2: #6ee7d8;
+  --lt3: #2dd4bf;
+  --lt4: #14a3a0;
+  --lt5: #0f6b7a;
+  --lt6: #12405a;
+  --lt7: #0f283c;
+}
+/* C · Night field: indigo navy and lime */
+:root[data-rd-pal="C"]:has(.rd-theme) {
+  --color-bg: #121c38; --color-panel: #172342; --color-ink: #f1f4f8; --color-soft: #b9c1d3;
+  --color-muted: #8a93ab; --color-dim: #6c758e; --color-line: #212c4b; --color-line-2: #303d62;
+  --color-orange: #a3e635; --color-cyan: #dfe6ea; --color-plum: #dfe6ea;
+  --color-cream: #dfe6ea; --color-cream-hi: #f2f6f2; --color-rim: #d4f0b0; --color-face: #0d152c;
+  --color-on-accent: #1a2606; --color-peach: #c6f27a; --color-quote-rest: #bcc4d2;
+  --color-accent-hi: #d4f59a; --color-accent-deep: #4d7c0f;
+  --rd-lid: #0d152c; --rd-board: #0f1832; --rd-sub1: #1b2747; --rd-sub2: #0d142a;
+  --rd-ink2: #eef2e6; --rd-ink3: #cdd8bd; --rd-ink4: #b5c4a2;
+  --rd-acc-rgb: 163,230,53; --rd-ink-rgb: 236,240,246; --rd-pulse: #ecfccb;
+  --rd-ramp: 0 #0a1124, 0.14 #0f1a33, 0.3 #1b3550, 0.44 #2f6b3a, 0.58 #65a30d, 0.72 #a3e635, 0.86 #dcf6a6, 1 #fbffef;
+  --lt0: #fbffef;
+  --lt1: #e2f9b5;
+  --lt2: #c3ef6f;
+  --lt3: #a3e635;
+  --lt4: #65a30d;
+  --lt5: #2f6b3a;
+  --lt6: #1c3a55;
+  --lt7: #152544;
+}
+:root:has(.rd-theme) ::selection { background: var(--color-orange); color: var(--color-on-accent); }
+:root:has(.rd-theme) .hero-stage-bg { background: radial-gradient(ellipse 70% 55% at 50% -8%, rgba(255, 255, 255, 0.07), transparent 70%), radial-gradient(ellipse 50% 40% at 50% 52%, color-mix(in oklab, var(--color-orange) 6%, transparent), transparent 70%); }
+:root:has(.rd-theme) .chip-substrate { background: linear-gradient(135deg, var(--rd-sub1), var(--rd-sub2)); }
+:root:has(.rd-theme) .cap { background: linear-gradient(90deg, #c3c8d2 0 22%, #33465c 22% 78%, #c3c8d2 78%); }
+:root:has(.rd-theme) .seat-board { background-color: var(--rd-board); background-image: radial-gradient(color-mix(in oklab, var(--color-accent-hi) 20%, transparent) 1.1px, transparent 1.7px); }
+:root:has(.rd-theme) .sig-l > i::after { background: linear-gradient(90deg, var(--lt0), var(--lt1) 30%, color-mix(in oklab, var(--color-orange) 85%, transparent) 60%, transparent); box-shadow: -2px 0 8px color-mix(in oklab, var(--color-orange) 90%, transparent); }
+:root:has(.rd-theme) .sig-r > i::after { background: linear-gradient(270deg, var(--lt0), var(--lt1) 30%, color-mix(in oklab, var(--color-orange) 85%, transparent) 60%, transparent); box-shadow: 2px 0 8px color-mix(in oklab, var(--color-orange) 90%, transparent); }
+:root:has(.rd-theme) .lidx { background: var(--rd-lid); }
+:root:has(.rd-theme) .lx-warm, :root:has(.rd-theme) .lx-warm-2, :root:has(.rd-theme) .lx-plum { background: radial-gradient(closest-side, var(--lt0) 0%, var(--lt1) 8%, var(--lt2) 15%, var(--lt3) 24%, var(--lt4) 35%, var(--lt5) 46%, var(--lt6) 55%, var(--lt7) 62%, transparent 72.7%); }
+:root:has(.rd-theme) .lx-horizon { background: radial-gradient(closest-side, var(--lt0) 0%, var(--lt1) 9%, var(--lt2) 20%, var(--lt3) 32%, var(--lt4) 44%, var(--lt5) 56%, var(--lt6) 66%, transparent 76%); }
+:root:has(.rd-theme) .lx-rim { border-color: color-mix(in oklab, var(--color-rim) 34%, transparent); box-shadow: inset 0 0 14px color-mix(in oklab, var(--color-orange) 8%, transparent); }
+:root:has(.rd-theme) .lx-ink-warm { background: linear-gradient(165deg, #ffffff 15%, var(--rd-ink2) 45%, var(--rd-ink3) 80%, var(--rd-ink4) 100%); -webkit-background-clip: text; background-clip: text; }
+:root:has(.rd-theme) .btn { background: var(--color-face); color: var(--color-cream-hi); box-shadow: 0 12px 30px -18px color-mix(in oklab, var(--color-orange) 55%, transparent); }
+:root:has(.rd-theme) .btn::before { background: radial-gradient(closest-side, var(--lt0) 0%, var(--lt1) 10%, var(--lt2) 19%, var(--lt3) 30%, var(--lt4) 43%, var(--lt5) 57%, var(--lt6) 70%, color-mix(in oklab, var(--lt7) 55%, transparent) 80%, transparent 90%); }
+:root:has(.rd-theme) .btn::after { box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-rim) 30%, transparent), inset 0 1px 0 color-mix(in oklab, var(--color-cream-hi) 10%, transparent); }
+:root:has(.rd-theme) .btn-cell { border-left-color: color-mix(in oklab, var(--color-rim) 14%, transparent); }
+:root:has(.rd-theme) .btn-ghost::after { box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-rim) 20%, transparent); }
+:root:has(.rd-theme) .bl-band { background: linear-gradient(to top, color-mix(in oklab, var(--color-orange) 16%, transparent), color-mix(in oklab, var(--color-accent-deep) 7%, transparent) 16%, transparent 34%); }
+:root:has(.rd-theme) .bl-left { background: radial-gradient(30% 72% at 0% 100%, color-mix(in oklab, var(--lt1) 60%, transparent) 0%, color-mix(in oklab, var(--lt2) 47%, transparent) 14%, color-mix(in oklab, var(--color-orange) 34%, transparent) 32%, color-mix(in oklab, var(--color-accent-deep) 19%, transparent) 56%, color-mix(in oklab, var(--lt6) 7%, transparent) 80%, transparent 100%); }
+:root:has(.rd-theme) .bl-right { background: radial-gradient(28% 82% at 100% 100%, color-mix(in oklab, var(--lt1) 60%, transparent) 0%, color-mix(in oklab, var(--lt2) 47%, transparent) 14%, color-mix(in oklab, var(--color-orange) 34%, transparent) 32%, color-mix(in oklab, var(--color-accent-deep) 19%, transparent) 56%, color-mix(in oklab, var(--lt6) 7%, transparent) 80%, transparent 100%); }
+:root:has(.rd-theme) .faq-toggle { background: var(--color-face); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-rim) 20%, transparent); }
+:root:has(.rd-theme) .faq-toggle::before { background: radial-gradient(120% 120% at 0% 100%, var(--lt1) 0%, var(--color-orange) 32%, var(--color-accent-deep) 66%, var(--lt7) 100%); }
+:root:has(.rd-theme) .faq-toggle[data-on="true"] { color: var(--color-on-accent); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-rim) 35%, transparent), 0 8px 22px -12px color-mix(in oklab, var(--color-orange) 80%, transparent); }
+:root:has(.rd-theme) button:hover > .faq-toggle[data-on="false"], :root:has(.rd-theme) .faq-more:hover, :root:has(.rd-theme) .ts-step:hover { box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-rim) 40%, transparent); }
+:root:has(.rd-theme) .trace-run > i { background: linear-gradient(90deg, transparent 0 84%, color-mix(in oklab, var(--color-orange) 85%, transparent) 93%, var(--lt1) 97%, var(--lt0)); }
+:root:has(.rd-theme) .grid-sig-h > i { background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--color-orange) 90%, transparent) 78%, var(--lt0)); box-shadow: 0 0 10px color-mix(in oklab, var(--color-orange) 85%, transparent); }
+:root:has(.rd-theme) .grid-sig-v > i { background: linear-gradient(180deg, transparent, color-mix(in oklab, var(--color-orange) 90%, transparent) 78%, var(--lt0)); box-shadow: 0 0 10px color-mix(in oklab, var(--color-orange) 85%, transparent); }
+:root:has(.rd-theme) .sched-row:active { background: color-mix(in oklab, var(--color-orange) 6%, transparent); }
+@media (hover: hover) { :root:has(.rd-theme) .sched-row:hover { background: color-mix(in oklab, var(--color-orange) 6%, transparent); } }
+:root:has(.rd-theme) .pool-shimmer { background-image: linear-gradient(100deg, var(--color-cream-hi) 0%, var(--color-cream-hi) 40%, var(--color-accent-hi) 45%, var(--color-orange) 50%, var(--color-accent-hi) 55%, var(--color-cream-hi) 60%, var(--color-cream-hi) 100%); -webkit-background-clip: text; background-clip: text; }
+@media (prefers-reduced-motion: reduce) { :root:has(.rd-theme) .pool-shimmer { background: none; color: var(--color-cream-hi); } }
+:root:has(.rd-theme) .ts-slide, :root:has(.rd-theme) .ps-tile { background: var(--rd-lid); }
+:root:has(.rd-theme) .ts-shade { background: linear-gradient(to top, color-mix(in oklab, var(--color-bg) 45%, transparent), transparent); }
+/* Redesign hero: the chip gives up some height so the motto fits under it in one screen. */
+@media (min-width: 1024px) {
+  :root:has(.rd-theme) .chip { width: min(38vw, calc(min(500px, (100svh - 380px) * 0.86) * 1.1)); }
+  :root:has(.rd-theme) .chip-span { width: max(330px, min(44vw, 640px)); }
+}
+/* The motto: an emerald-to-white sweep across the type. */
+.rd-motto { background: linear-gradient(100deg, var(--color-accent-hi) 0%, var(--color-orange) 45%, var(--color-cream-hi) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+/* Redesign nav: the Events panel rises and fades in; its rows follow one after another. */
+.ev-menu { transform: translate(-50%, 8px) scale(0.98); opacity: 0; pointer-events: none; visibility: hidden; transform-origin: 50% 0; transition: transform 0.35s cubic-bezier(0.2, 0.75, 0.2, 1), opacity 0.25s ease, visibility 0s linear 0.35s; }
+.ev-menu[data-open="true"] { transform: translate(-50%, 0) scale(1); opacity: 1; pointer-events: auto; visibility: visible; transition-delay: 0s; }
+.ev-row { opacity: 0; transform: translateY(6px); transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.2, 0.75, 0.2, 1); }
+.ev-menu[data-open="true"] .ev-row { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .ev-menu, .ev-row { transition: none; } }
+
+/* Redesign FAQ: an open question keeps a dark toggle (no green fill), just a brighter rim. */
+:root:has(.rd-theme) .faq-toggle[data-on="true"]::before { opacity: 0; }
+:root:has(.rd-theme) .faq-toggle[data-on="true"] { color: var(--color-ink); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-rim) 45%, transparent); }
+/* Redesign lids: the shared black outline and contact shadow (made for a near-black page) read as a
+   dark stroke on slate blue; use a faint light hairline and a soft drop shadow instead. */
+:root:has(.rd-theme) .lidx { box-shadow: 0 0 0 1px color-mix(in oklab, var(--color-rim) 9%, transparent), 0 20px 44px -28px rgba(4, 10, 22, 0.55); }
