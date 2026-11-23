@@ -1078,11 +1078,54 @@ button:hover > .faq-toggle[data-on="false"] { color: var(--color-ink); box-shado
 :root[data-frame="glass"] .ps-hero .ps-tile { padding: 0; background: rgba(219, 231, 238, 0.07); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: inset 0 0 0 1px rgba(219, 231, 238, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 18px 34px -22px rgba(2, 8, 18, 0.9); }
 :root[data-frame="glass"] .ps-hero .ps-tile > button { inset: 7px; border-radius: 8px; box-shadow: 0 0 0 1px rgba(2, 8, 18, 0.6); }
 
-/* Nav: the fest's full name beside the logo, a small lit box with the name running through it. */
-.name-ticker { position: relative; width: 196px; height: 34px; align-items: center; overflow: hidden; border-radius: 9px; border: 1px solid color-mix(in oklab, var(--color-orange) 28%, transparent); background: color-mix(in oklab, var(--rd-lid) 80%, transparent); box-shadow: inset 0 1px 0 rgba(240,247,250,0.06), 0 0 18px -6px color-mix(in oklab, var(--color-orange) 45%, transparent); padding: 0 2px; }
-.name-ticker-win { display: block; width: 100%; overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
-.name-ticker-row { display: flex; width: max-content; animation: name-ticker 14s linear infinite; }
-.name-ticker-row > span { display: inline-flex; align-items: center; gap: 14px; padding-right: 14px; white-space: nowrap; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-cream-hi); }
+/* Nav: the fest's full name beside the logo, running through a small lit well. */
+.name-ticker { position: relative; width: 330px; height: 44px; }
+.name-ticker-win { position: relative; display: flex; align-items: center; width: 100%; height: 100%; overflow: hidden; }
+.tk-mask { position: relative; z-index: 1; flex: 1; min-width: 0; overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.tk-glow, .tk-led { display: none; }
+.name-ticker-row { display: flex; width: max-content; animation: name-ticker 18s linear infinite; }
+.name-ticker-row > span { display: inline-flex; align-items: center; gap: 16px; padding-right: 16px; white-space: nowrap; font-size: 14px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--color-cream-hi); }
 .name-ticker-row i { width: 5px; height: 5px; border-radius: 999px; background: var(--color-orange); box-shadow: 0 0 8px var(--color-orange); }
 @keyframes name-ticker { to { transform: translateX(-50%); } }
-@media (prefers-reduced-motion: reduce) { .name-ticker-row { animation: none; } }
+@keyframes tk-pulse { 50% { opacity: 0.35; } }
+@media (prefers-reduced-motion: reduce) { .name-ticker-row, .tk-led { animation: none !important; } }
+
+/* A · Lit well (default): a thin board ring around a deep well, green light rising from its foot. */
+.name-ticker { padding: 3px; border-radius: 13px; background: var(--rd-board); box-shadow: inset 0 0 0 1px var(--color-line-2), inset 0 1px 0 rgba(240,247,250,0.06); }
+.name-ticker-win { border-radius: 10px; background: var(--rd-lid); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-orange) 16%, transparent), inset 0 2px 6px rgba(2,6,13,0.55); }
+.tk-glow { display: none; position: absolute; left: 50%; bottom: -26px; width: 70%; height: 40px; translate: -50% 0; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in oklab, var(--lt1) 55%, transparent), color-mix(in oklab, var(--lt3) 35%, transparent) 45%, transparent); filter: blur(4px); pointer-events: none; }
+
+/* B · Status bar: one flat box, a pulsing green signal light, a hairline, then the name. */
+:root[data-tk="b"] .name-ticker { padding: 0; border-radius: 10px; background: var(--rd-lid); box-shadow: inset 0 0 0 1px var(--color-line-2), inset 0 1px 0 rgba(240,247,250,0.05); }
+:root[data-tk="b"] .name-ticker-win { border-radius: 10px; background: none; box-shadow: none; }
+:root[data-tk="b"] .tk-glow { display: none; }
+:root[data-tk="b"] .tk-led { display: block; flex: none; width: 34px; height: 100%; border-right: 1px solid var(--color-line-2); background: radial-gradient(circle at center, var(--color-orange) 0 3.5px, color-mix(in oklab, var(--color-orange) 35%, transparent) 4.5px, transparent 11px); animation: tk-pulse 2.4s ease-in-out infinite; }
+
+/* C · Gradient edge: a pill whose 1px edge runs teal to green like the logo, a soft sheen on top. */
+:root[data-tk="c"] .name-ticker { padding: 1px; border-radius: 999px; background: linear-gradient(90deg, #2f8079, #5fd072 55%, color-mix(in oklab, #5fd072 30%, transparent)); }
+:root[data-tk="c"] .name-ticker-win { border-radius: 999px; background: linear-gradient(180deg, color-mix(in oklab, var(--rd-sub1) 85%, transparent), var(--rd-lid)); box-shadow: inset 0 1px 0 rgba(240,247,250,0.08); padding: 0 6px; }
+:root[data-tk="c"] .tk-glow { display: none; }
+
+/* TEMPORARY · hall-of-fame frames for the hero strip (?frame=plaque|spot|case|double) */
+/* Plaque: a bevelled slate frame, a thin green fillet round the photo, an engraved nameplate under it. */
+:root[data-frame="plaque"] .ps-hero .ps-tile { aspect-ratio: 1.1; padding: 0; border-radius: 6px; background: linear-gradient(160deg, var(--rd-sub1), var(--rd-lid) 60%, #0b1626); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-rim) 18%, transparent), inset 0 1px 0 rgba(240,247,250,0.1), 0 18px 34px -22px rgba(2,8,18,0.95); }
+:root[data-frame="plaque"] .ps-hero .ps-tile > button { inset: 10px 10px 42px 10px; border-radius: 2px; box-shadow: 0 0 0 1px #02060d, 0 0 0 2px color-mix(in oklab, var(--color-orange) 40%, transparent); }
+:root[data-frame="plaque"] .ps-hero .ps-cap { position: absolute; left: 50%; bottom: 10px; translate: -50% 0; display: flex; align-items: center; gap: 6px; height: 22px; padding: 0 10px; border-radius: 3px; white-space: nowrap; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; color: var(--color-cream-hi); background: linear-gradient(180deg, #2a4262, #172a44); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-rim) 28%, transparent), inset 0 1px 0 rgba(255,255,255,0.14), 0 2px 4px rgba(2,6,13,0.6); }
+
+/* Spotlit wall: no box, each photo on a slate mat with a small lamp above casting light down the wall. */
+:root[data-frame="spot"] .ps-hero .ps-row { padding-top: 6px; }
+:root[data-frame="spot"] .ps-hero .ps-tile { aspect-ratio: 1.2; padding: 0; overflow: visible; background: radial-gradient(70% 90% at 50% 0%, color-mix(in oklab, var(--lt1) 22%, transparent), color-mix(in oklab, var(--lt3) 8%, transparent) 45%, transparent 75%); box-shadow: none; border-radius: 0; }
+:root[data-frame="spot"] .ps-hero .ps-tile::after { content: ""; position: absolute; top: 0; left: 50%; width: 46px; height: 5px; translate: -50% 0; border-radius: 0 0 6px 6px; background: var(--rd-sub1); box-shadow: inset 0 -2px 0 var(--color-cream-hi), 0 4px 14px 2px color-mix(in oklab, var(--lt1) 55%, transparent); }
+:root[data-frame="spot"] .ps-hero .ps-tile > button { inset: 26px 16px 8px 16px; border-radius: 2px; box-shadow: 0 0 0 6px var(--rd-sub1), 0 0 0 7px color-mix(in oklab, var(--color-rim) 22%, transparent), 0 16px 26px -12px rgba(2,8,18,0.9); }
+
+/* Trophy case: a deep recessed case, a green light strip along its top edge, a glass sheen, the label inside. */
+:root[data-frame="case"] .ps-hero .ps-tile { padding: 0; border-radius: 12px; background: var(--rd-lid); box-shadow: inset 0 0 0 1px var(--color-line-2), inset 0 0 0 7px var(--rd-lid), inset 0 0 0 8px color-mix(in oklab, var(--color-rim) 12%, transparent), 0 18px 34px -22px rgba(2,8,18,0.95); }
+:root[data-frame="case"] .ps-hero .ps-tile > button { inset: 8px; border-radius: 6px; box-shadow: inset 0 14px 20px -10px rgba(2,6,13,0.8); }
+:root[data-frame="case"] .ps-hero .ps-tile::after { content: ""; position: absolute; z-index: 3; top: 8px; left: 16%; right: 16%; height: 2px; border-radius: 2px; background: var(--color-accent-hi); box-shadow: 0 0 10px 2px color-mix(in oklab, var(--color-orange) 70%, transparent), 0 8px 26px 6px color-mix(in oklab, var(--color-orange) 22%, transparent); pointer-events: none; }
+:root[data-frame="case"] .ps-hero .ps-tile::before { content: ""; position: absolute; z-index: 3; inset: 8px; border-radius: 6px; background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,0.09) 47%, transparent 56%); pointer-events: none; }
+:root[data-frame="case"] .ps-hero .ps-cap { position: absolute; z-index: 4; left: 16px; bottom: 16px; display: flex; gap: 6px; align-items: center; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; color: var(--color-cream-hi); background: color-mix(in oklab, var(--rd-lid) 82%, transparent); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-rim) 18%, transparent); pointer-events: none; }
+
+/* Gallery double frame: two fine green lines like a museum frame, the label set under the photo. */
+:root[data-frame="double"] .ps-hero .ps-tile { aspect-ratio: 1.12; padding: 0; border-radius: 4px; background: var(--rd-lid); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-orange) 45%, transparent), inset 0 0 0 5px var(--rd-lid), inset 0 0 0 6px color-mix(in oklab, var(--color-orange) 20%, transparent), 0 18px 34px -22px rgba(2,8,18,0.95); }
+:root[data-frame="double"] .ps-hero .ps-tile > button { inset: 12px 12px 34px 12px; border-radius: 0; box-shadow: 0 0 0 1px #02060d; }
+:root[data-frame="double"] .ps-hero .ps-cap { position: absolute; left: 0; right: 0; bottom: 8px; display: flex; justify-content: center; gap: 6px; font-size: 11.5px; font-weight: 500; letter-spacing: 0.03em; color: var(--color-soft); }
