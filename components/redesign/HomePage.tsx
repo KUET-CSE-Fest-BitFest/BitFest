@@ -6,14 +6,12 @@ import Partners from "./Partners";
 import Faq from "./Faq";
 import FinalCall from "./FinalCall";
 import HomeFooter from "./HomeFooter";
-import OptionSwitch from "./Sidebar";
 
 /** The homepage below the hero is the same in every version; only the hero changes. */
 export default function HomePage({ hero }: { hero: ReactNode }) {
   return (
     <>
       <HomeNav />
-      <OptionSwitch />
       {/* The page sits above the footer, which it reveals as it scrolls away (see HomeFooter). */}
       <main className="rd-main relative z-10 bg-bg">
         {hero}
