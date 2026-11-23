@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import HomeNav from "./HomeNav";
+import EventSidebar from "@/components/event/EventSidebar";
 import ContestCards from "./schedule/ContestCards";
 import PastGallery from "./gallery/Gallery";
 import Partners from "./Partners";
@@ -8,10 +9,14 @@ import FinalCall from "./FinalCall";
 import HomeFooter from "./HomeFooter";
 
 /** The homepage below the hero is the same in every version; only the hero changes. */
-export default function HomePage({ hero }: { hero: ReactNode }) {
+/** `nav`: "top" is the original bar; "side" is the side panel the contest pages use (the landing page). */
+export default function HomePage({ hero, nav = "top" }: { hero: ReactNode; nav?: "top" | "side" }) {
+  const side = nav === "side";
   return (
     <>
-      <HomeNav />
+      {side ? <EventSidebar register={{ href: "#schedule", label: "Register" }} /> : <HomeNav />}
+      {/* Wide screens with the side panel: the page sits to its right. */}
+      <div className={side ? "lg:pl-[304px]" : "contents"}>
       {/* The page sits above the footer, which it reveals as it scrolls away (see HomeFooter). */}
       <main className="rd-main relative z-10 bg-bg">
         {hero}
@@ -26,6 +31,7 @@ export default function HomePage({ hero }: { hero: ReactNode }) {
         </section>
       </main>
       <HomeFooter />
+      </div>
     </>
   );
 }

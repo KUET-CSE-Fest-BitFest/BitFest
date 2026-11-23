@@ -5,19 +5,19 @@ import { events, fest, pad2 } from "@/lib/fest";
 import BitfestLogo from "@/components/redesign/ui/BitfestLogo";
 import { Button } from "@/components/redesign/ui/Button";
 
-/* The contest pages' navigation: one lit panel down the left, like the hero chip's board. The ten
+/* The site's navigation on the landing page and every contest page: one lit panel down the left, like the hero chip's board. The ten
    contests hang off a circuit trace as pins; the one you are on is lit green. The fest's home-page links and Register sit at the foot.
    Phones get a top bar whose menu slides the same panel in from the left. */
 
 const HOME = [
-  { href: "/", label: "Home" },
+  { href: "/#hero", label: "Home" },
   { href: "/#schedule", label: "Dates" },
   { href: "/#gallery", label: "Gallery" },
   { href: "/#partners", label: "Partners" },
   { href: "/#faq", label: "FAQ" },
 ];
 
-function Panel({ slug, register, onPick }: { slug: string; register: { href: string; label: string }; onPick?: () => void }) {
+function Panel({ slug, register, onPick }: { slug?: string; register: { href: string; label: string }; onPick?: () => void }) {
   const list = useRef<HTMLElement>(null);
   // On short screens the list scrolls: bring the contest you are on into view inside it.
   useEffect(() => {
@@ -79,7 +79,7 @@ function Panel({ slug, register, onPick }: { slug: string; register: { href: str
   );
 }
 
-export default function EventSidebar({ slug, register }: { slug: string; register: { href: string; label: string } }) {
+export default function EventSidebar({ slug, register }: { slug?: string; register: { href: string; label: string } }) {
   const [open, setOpen] = useState(false);
   useEffect(() => {
     if (!open) return;
