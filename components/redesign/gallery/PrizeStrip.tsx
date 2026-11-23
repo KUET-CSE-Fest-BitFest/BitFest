@@ -23,6 +23,12 @@ export default function PrizeStrip({ variant = "gallery" }: { variant?: "gallery
   const [onScreen, setOnScreen] = useState(false);
   const [open, setOpen] = useState<number | null>(null);
 
+  // TEMPORARY ?frame= switch while choosing the hero strip's photo frames.
+  useEffect(() => {
+    const f = new URLSearchParams(location.search).get("frame");
+    if (f) document.documentElement.dataset.frame = f;
+  }, []);
+
   useEffect(() => {
     const el = root.current;
     if (!el) return;
@@ -59,6 +65,7 @@ export default function PrizeStrip({ variant = "gallery" }: { variant?: "gallery
                         <img src={p.src} srcSet={`${p.small} 400w, ${p.src} 680w`} sizes={hero ? "180px" : "(max-width: 767px) 220px, 340px"} alt="" draggable={false} decoding="async" className="h-full w-full object-cover" />
                       )}
                     </button>
+                    {hero && <span aria-hidden className="ps-cap"><span className="tabular-nums text-orange">{pad2(idx + 1)}</span>Prize night · 2025</span>}
                     <span className="lx lx-rim z-[2]" />
                   </li>
                 );
