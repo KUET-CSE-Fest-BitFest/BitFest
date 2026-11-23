@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { events, fest, pad2 } from "@/lib/fest";
 import { Button } from "@/components/ui/Button";
-import BottomLight from "@/components/home/heroes/BottomLight";
+import BottomLight from "@/components/redesign/heroes/BottomLight";
 import { hasRulebook } from "@/lib/eventPages";
 import RegisterButton from "./RegisterButton";
 

@@ -57,33 +57,33 @@ function Board() {
       title="Live scoreboard"
       meta="Jeopardy board"
       label="A Capture The Flag jeopardy board: five categories of challenges, with captures lighting up as teams solve them."
-      right={<><LiveDot /><span className="hidden sm:inline">Leading</span><span className="text-[#fbf1e9]">{TEAMS[lead]}</span><span className="tabular-nums text-orange">{score[lead].toLocaleString()}</span></>}
+      right={<><LiveDot /><span className="hidden sm:inline">Leading</span><span className="text-cream-hi">{TEAMS[lead]}</span><span className="tabular-nums text-orange">{score[lead].toLocaleString()}</span></>}
     >
       <div ref={ref}>
-        <div className="grid grid-cols-5 gap-px bg-[rgba(255,214,190,0.07)]">
+        <div className="grid grid-cols-5 gap-px bg-[rgba(219,231,238,0.07)]">
           {CATS.map((cat, c) => (
             <div key={cat} className="flex flex-col gap-px">
-              <span className="truncate bg-[#050406] px-2 py-2.5 text-center text-[12px] font-medium text-[#f2e6dc]/60 sm:text-[13px] md:px-3"><span className="sm:hidden">{SHORT[c]}</span><span className="hidden sm:inline">{cat}</span></span>
+              <span className="truncate bg-[var(--rd-lid)] px-2 py-2.5 text-center text-[12px] font-medium text-cream/60 sm:text-[13px] md:px-3"><span className="sm:hidden">{SHORT[c]}</span><span className="hidden sm:inline">{cat}</span></span>
               {VALUES.map((val, v) => {
                 const k = solves[c][v];
                 const hit = last && last.c === c && last.v === v ? last : null;
                 return (
-                  <span key={val} data-taken={k > 0} className="ctf-cell relative flex h-[52px] flex-col items-center justify-center bg-[#050406] md:h-[56px]">
+                  <span key={val} data-taken={k > 0} className="ctf-cell relative flex h-[52px] flex-col items-center justify-center bg-[var(--rd-lid)] md:h-[56px]">
                     {hit && <span key={hit.n} aria-hidden className={`ctf-flash ${hit.first ? "is-first" : ""}`} />}
                     <span className="relative text-[17px] font-semibold tabular-nums md:text-[19px]">{val}</span>
-                    <span className="relative text-[12px] tabular-nums text-[#f2e6dc]/45 md:text-[12px]">{k ? `${k} solve${k > 1 ? "s" : ""}` : "open"}</span>
+                    <span className="relative text-[12px] tabular-nums text-cream/45 md:text-[12px]">{k ? `${k} solve${k > 1 ? "s" : ""}` : "open"}</span>
                   </span>
                 );
               })}
             </div>
           ))}
         </div>
-        <p key={last?.n ?? 0} className="road-in flex min-h-[48px] items-center gap-2 px-4 py-3 text-[14px] text-[#f2e6dc]/75 md:px-6">
+        <p key={last?.n ?? 0} className="road-in flex min-h-[48px] items-center gap-2 px-4 py-3 text-[14px] text-cream/75 md:px-6">
           {last ? (
             <>
-              <span className="font-medium text-[#fbf1e9]">{TEAMS[last.team]}</span> captured
+              <span className="font-medium text-cream-hi">{TEAMS[last.team]}</span> captured
               <span className="font-medium text-orange">{CATS[last.c]} {VALUES[last.v]}</span>
-              {last.first && <span className="rounded-full bg-[rgba(255,122,61,0.16)] px-2 py-0.5 text-[12px] font-semibold text-orange">First blood</span>}
+              {last.first && <span className="rounded-full bg-orange/15 px-2 py-0.5 text-[12px] font-semibold text-orange">First blood</span>}
             </>
           ) : (
             <span>Flags open across five categories.</span>

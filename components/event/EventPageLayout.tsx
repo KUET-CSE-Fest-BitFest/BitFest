@@ -1,17 +1,18 @@
 import type { ReactNode } from "react";
-import HomeNav from "@/components/home/HomeNav";
-import HomeFooter from "@/components/home/HomeFooter";
+import HomeNav from "@/components/redesign/HomeNav";
+import HomeFooter from "@/components/redesign/HomeFooter";
 import EventAbout from "@/components/event/EventAbout";
 import EventPrizes from "@/components/event/EventPrizes";
 import EventFaq from "@/components/event/EventFaq";
 import EventCta from "@/components/event/EventCta";
 import { registerCta, type EventPage } from "@/lib/eventPages";
 
-/* Every contest page: the landing nav, the contest's own hero, About with the timeline, prize
-   money, questions and the closing call, then the footer revealed underneath. */
+/* Every contest page, in the landing page's slate blue and green (.rd-theme): the landing nav, the
+   contest's own hero, About with the timeline, prize money, questions and the closing call, then the
+   footer revealed underneath. */
 export default function EventPageLayout({ page, name, hero }: { page: EventPage; name: string; hero: ReactNode }) {
   return (
-    <>
+    <div className="rd-theme contents">
       <HomeNav
         sub={name}
         cta={{ href: registerCta(page.registerHref).href, label: "Register" }}
@@ -22,8 +23,9 @@ export default function EventPageLayout({ page, name, hero }: { page: EventPage;
           { href: "#faq", label: "FAQ" },
         ]}
       />
-      <main className="relative z-10 bg-bg">
-        {hero}
+      <main className="rd-main relative z-10 bg-bg">
+        {/* The nav's contest links lead back here while the contest pages are not public. */}
+        <div id="hero">{hero}</div>
         <EventAbout page={page} />
         <EventPrizes page={page} />
         <EventFaq name={name} faqs={page.faqs} />
@@ -34,6 +36,6 @@ export default function EventPageLayout({ page, name, hero }: { page: EventPage;
         </section>
       </main>
       <HomeFooter />
-    </>
+    </div>
   );
 }

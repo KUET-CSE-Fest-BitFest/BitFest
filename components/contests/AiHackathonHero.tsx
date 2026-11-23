@@ -24,9 +24,9 @@ function halo() {
   c.width = c.height = 64;
   const g = c.getContext("2d")!;
   const r = g.createRadialGradient(32, 32, 0, 32, 32, 32);
-  r.addColorStop(0, "rgba(255,190,120,0.9)");
-  r.addColorStop(0.35, "rgba(255,122,61,0.35)");
-  r.addColorStop(1, "rgba(163,58,20,0)");
+  r.addColorStop(0, "rgba(134,239,172,0.9)");
+  r.addColorStop(0.35, "rgba(34,197,94,0.35)");
+  r.addColorStop(1, "rgba(22,101,52,0)");
   g.fillStyle = r;
   g.fillRect(0, 0, 64, 64);
   return c;
@@ -109,7 +109,7 @@ function Net() {
     const draw = () => {
       ctx.clearRect(0, 0, W, H);
       ctx.lineWidth = 1;
-      ctx.strokeStyle = "rgba(255,214,190,0.08)";
+      ctx.strokeStyle = "rgba(219,231,238,0.08)";
       ctx.beginPath();
       for (const e of edges) { const a = nodes[e.a], b = nodes[e.b]; ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); }
       ctx.stroke();
@@ -118,17 +118,17 @@ function Net() {
         const ux = (b.x - a.x) / e.len, uy = (b.y - a.y) / e.len;
         const hx = a.x + (b.x - a.x) * p.t, hy = a.y + (b.y - a.y) * p.t;
         const tail = Math.min(34, p.t * e.len);
-        ctx.strokeStyle = "rgba(255,150,90,0.6)";
+        ctx.strokeStyle = "rgba(74,222,128,0.6)";
         ctx.lineWidth = 1.6;
         ctx.beginPath(); ctx.moveTo(hx - ux * tail, hy - uy * tail); ctx.lineTo(hx, hy); ctx.stroke();
         ctx.globalAlpha = 0.5; ctx.drawImage(glow, hx - 9, hy - 9, 18, 18); ctx.globalAlpha = 1;
-        ctx.fillStyle = "#fff0e4";
+        ctx.fillStyle = "#effdf4";
         ctx.beginPath(); ctx.arc(hx, hy, 1.7, 0, Math.PI * 2); ctx.fill();
       }
       for (const n of nodes) {
         if (n.glow > 0.02) { ctx.globalAlpha = n.glow; ctx.drawImage(glow, n.x - 22, n.y - 22, 44, 44); ctx.globalAlpha = 1; }
         const out = n.l === layers - 1;
-        ctx.fillStyle = n.glow > 0.3 ? "#ffd2a8" : out ? "rgba(255,170,110,0.55)" : "rgba(242,230,220,0.32)";
+        ctx.fillStyle = n.glow > 0.3 ? "#bbf7d0" : out ? "rgba(110,231,160,0.55)" : "rgba(219,231,238,0.32)";
         ctx.beginPath(); ctx.arc(n.x, n.y, out ? 3.4 : 2.6, 0, Math.PI * 2); ctx.fill();
       }
     };

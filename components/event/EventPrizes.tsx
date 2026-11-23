@@ -23,13 +23,13 @@ function Total({ total, active }: { total: number; active: boolean }) {
     <li data-lid className="lidx relative flex min-h-[300px] flex-col justify-between gap-12 rounded-[18px] p-7 md:col-span-3 md:min-h-[360px] md:p-10">
       <span className="podium-light lx lx-corner lx-tr lx-warm" style={{ width: "58%" }} />
       <span className="lx lx-rim" />
-      <span className="relative z-[4] text-[13px] font-medium text-[#f2e6dc]/80">Total prize money</span>
+      <span className="relative z-[4] text-[13px] font-medium text-cream/80">Total prize money</span>
       <div className="relative z-[4] flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <span className="lx-ink-warm font-semibold leading-none tracking-[-0.05em] tabular-nums text-[clamp(72px,11vw,168px)]">
           {v}
           <span className="ml-3 text-xl font-medium tracking-normal text-muted">BDT</span>
         </span>
-        <span className="max-w-[300px] text-[15px] leading-relaxed text-[#f2e6dc]/70 md:text-right">{PRIZES_ANNOUNCED ? "In cash. How it splits between the places comes with the rulebook." : "In cash. The amount is announced with the rulebook."}</span>
+        <span className="max-w-[300px] text-[15px] leading-relaxed text-cream/70 md:text-right">{PRIZES_ANNOUNCED ? "In cash. How it splits between the places comes with the rulebook." : "In cash. The amount is announced with the rulebook."}</span>
       </div>
     </li>
   );
@@ -46,11 +46,11 @@ function Lid({ i, amount, active }: { i: number; amount: number; active: boolean
       {champ && <span className="podium-light lx lx-corner lx-tr lx-warm" style={{ width: "110%" }} />}
       <span className="lx lx-rim" />
       <div className="relative z-[4] flex items-center justify-between">
-        <span className={`text-[13px] font-medium tabular-nums ${champ ? "text-[#f2e6dc]/80" : "text-dim"}`}>0{i + 1}</span>
-        {champ && <span className="text-[13px] font-medium text-[#fbf1e9]">Top prize</span>}
+        <span className={`text-[13px] font-medium tabular-nums ${champ ? "text-cream/80" : "text-dim"}`}>0{i + 1}</span>
+        {champ && <span className="text-[13px] font-medium text-cream-hi">Top prize</span>}
       </div>
       <div className="relative z-[4] flex flex-col gap-2">
-        <span className={`text-[18px] font-semibold ${champ ? "text-[#fbf1e9]" : "text-soft"}`}>{PLACES[i]}</span>
+        <span className={`text-[18px] font-semibold ${champ ? "text-cream-hi" : "text-soft"}`}>{PLACES[i]}</span>
         <span className={`font-semibold leading-none tracking-[-0.05em] tabular-nums ${champ ? "lx-ink-warm text-[clamp(64px,7vw,104px)]" : "text-[clamp(44px,4.4vw,64px)]"}`}>
           {v}
           <span className="ml-2 text-lg font-medium tracking-normal text-muted">BDT</span>

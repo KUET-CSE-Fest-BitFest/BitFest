@@ -100,9 +100,9 @@ export default function EventAbout({ page }: { page: EventPage }) {
             <span aria-hidden className="lx lx-rim" />
             <dl className="relative z-[4] grid grid-cols-2">
               {page.facts.map((f, i) => (
-                <div key={f.k} className={`flex flex-col gap-1 p-5 ${i % 2 ? "border-l border-[rgba(255,214,190,0.1)]" : ""} ${i > 1 ? "border-t border-[rgba(255,214,190,0.1)]" : ""}`}>
-                  <dt className="text-[13px] font-medium text-[#f2e6dc]/65">{f.k}</dt>
-                  <dd className="text-[18px] font-semibold tracking-[-0.01em] text-[#fbf1e9]">{f.v}</dd>
+                <div key={f.k} className={`flex flex-col gap-1 p-5 ${i % 2 ? "border-l border-[rgba(219,231,238,0.1)]" : ""} ${i > 1 ? "border-t border-[rgba(219,231,238,0.1)]" : ""}`}>
+                  <dt className="text-[13px] font-medium text-cream/65">{f.k}</dt>
+                  <dd className="text-[18px] font-semibold tracking-[-0.01em] text-cream-hi">{f.v}</dd>
                 </div>
               ))}
             </dl>
@@ -118,7 +118,7 @@ export default function EventAbout({ page }: { page: EventPage }) {
           <h3 data-reveal className="mt-3 text-[clamp(32px,3.4vw,48px)] font-semibold leading-[1] tracking-[-0.035em]">Road to the final</h3>
           <ol ref={listRef} className="event-timeline relative mt-12">
             {/* The track runs from the first pad to the last; the lit part warms from rust to orange at the head. */}
-            <span ref={trackRef} aria-hidden className="absolute left-[8px] w-[2px] rounded-full bg-[rgba(255,214,190,0.09)]" style={{ top: PAD }} />
+            <span ref={trackRef} aria-hidden className="absolute left-[8px] w-[2px] rounded-full bg-[rgba(219,231,238,0.09)]" style={{ top: PAD }} />
             <span ref={fillRef} aria-hidden className="tl-fill absolute left-[8px] w-[2px] origin-top rounded-full" style={{ top: PAD, transform: "scaleY(0)" }} />
             <span ref={headRef} aria-hidden className="tl-head absolute left-[9px] top-0 opacity-0"><i className="tl-tail" /><b className="tl-core" /></span>
             {page.timeline.map((t, i) => (

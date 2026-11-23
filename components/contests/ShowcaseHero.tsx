@@ -51,8 +51,8 @@ function Floor() {
         </ul>
         <p key={at} className="road-in mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-[14px]">
           <span className="font-medium text-orange">Judges at stall {String(at + 1).padStart(2, "0")}</span>
-          <span className="text-[#fbf1e9]">{name}</span>
-          <span className="text-[#f2e6dc]/50">{kind}</span>
+          <span className="text-cream-hi">{name}</span>
+          <span className="text-cream/50">{kind}</span>
         </p>
       </div>
     </HeroPanel>

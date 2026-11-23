@@ -13,7 +13,7 @@ import { eventPages } from "@/lib/eventPages";
 
 const page = eventPages.iupc;
 const LETTERS = "ABCDEFGHIJKL".split("");
-const BALLOON = ["#ff7a3d", "#ffc49e", "#f2e6dc", "#ffb27a", "#e0571f", "#ff9a60", "#c24a1c", "#fff3ea", "#ff8446", "#ffd2b4", "#b4431a", "#ff6a35"];
+const BALLOON = ["#22c55e", "#86efac", "#dbe7ee", "#4ade80", "#15803d", "#34d399", "#166534", "#f0f7fa", "#10b981", "#bbf7d0", "#14532d", "#2dd4bf"];
 // Chance a run on each problem is accepted (A is the giveaway, L the one almost nobody gets).
 const EASE = [0.66, 0.5, 0.4, 0.33, 0.27, 0.22, 0.17, 0.13, 0.1, 0.07, 0.05, 0.03];
 const START = [121, 98, 74, 57, 43, 31, 22, 14, 9, 5, 2, 0];
@@ -58,20 +58,20 @@ function Problems() {
       right={<><LiveDot /><span className="tabular-nums">{clock(left)}</span><span className="hidden sm:inline">left</span></>}
     >
       <div ref={ref}>
-        <ul className="grid grid-cols-4 gap-px bg-[rgba(255,214,190,0.07)] sm:grid-cols-6">
+        <ul className="grid grid-cols-4 gap-px bg-[rgba(219,231,238,0.07)] sm:grid-cols-6">
           {LETTERS.map((l, i) => {
             const hit = flash?.p === i ? flash : null;
             return (
-              <li key={l} className="relative flex flex-col gap-2 bg-[#050406] px-4 py-3 md:px-5 md:py-4">
+              <li key={l} className="relative flex flex-col gap-2 bg-[var(--rd-lid)] px-4 py-3 md:px-5 md:py-4">
                 {hit && <span key={hit.n} aria-hidden className={`iupc-flash ${hit.ok ? "is-ok" : "is-no"}`} />}
                 <span className="relative flex items-center justify-between">
-                  <span className="text-[22px] font-semibold leading-none tracking-[-0.02em] text-[#fbf1e9] md:text-[26px]">{l}</span>
+                  <span className="text-[22px] font-semibold leading-none tracking-[-0.02em] text-cream-hi md:text-[26px]">{l}</span>
                   <span aria-hidden className="h-3 w-2.5 rounded-[50%_50%_50%_50%/60%_60%_40%_40%]" style={{ background: BALLOON[i], boxShadow: `0 0 10px ${BALLOON[i]}66` }} />
                 </span>
-                <span className="relative text-[13px] tabular-nums text-[#f2e6dc]/60">
-                  <span className={hit?.ok ? "text-orange" : "text-[#f2e6dc]/85"}>{solved[i]}</span> solved
+                <span className="relative text-[13px] tabular-nums text-cream/60">
+                  <span className={hit?.ok ? "text-orange" : "text-cream/85"}>{solved[i]}</span> solved
                 </span>
-                <span aria-hidden className="relative h-[2px] overflow-hidden rounded-full bg-[rgba(255,214,190,0.08)]">
+                <span aria-hidden className="relative h-[2px] overflow-hidden rounded-full bg-[rgba(219,231,238,0.08)]">
                   <span className="absolute inset-y-0 left-0 origin-left rounded-full transition-transform duration-500" style={{ width: "100%", transform: `scaleX(${solved[i] / 150})`, background: BALLOON[i], opacity: 0.8 }} />
                 </span>
               </li>
@@ -80,11 +80,11 @@ function Problems() {
         </ul>
         <ol className="flex flex-col px-4 py-2 md:px-6">
           {runs.map((r, k) => (
-            <li key={r.id} className={`flex items-center gap-3 border-b border-[rgba(255,214,190,0.06)] py-2.5 text-[14px] last:border-0 ${k === 0 ? "road-in" : ""}`} style={{ opacity: 1 - k * 0.28 }}>
-              <span className="w-14 shrink-0 tabular-nums text-[#f2e6dc]/45">#{r.id}</span>
-              <span className="min-w-0 flex-1 truncate text-[#f2e6dc]/85">{r.team}</span>
+            <li key={r.id} className={`flex items-center gap-3 border-b border-[rgba(219,231,238,0.06)] py-2.5 text-[14px] last:border-0 ${k === 0 ? "road-in" : ""}`} style={{ opacity: 1 - k * 0.28 }}>
+              <span className="w-14 shrink-0 tabular-nums text-cream/45">#{r.id}</span>
+              <span className="min-w-0 flex-1 truncate text-cream/85">{r.team}</span>
               <span className="w-6 shrink-0 text-center font-semibold" style={{ color: BALLOON[r.p] }}>{LETTERS[r.p]}</span>
-              <span className={`w-28 shrink-0 text-right font-medium ${r.ok ? "text-orange" : "text-[#f2e6dc]/60"}`}>{r.verdict}</span>
+              <span className={`w-28 shrink-0 text-right font-medium ${r.ok ? "text-orange" : "text-cream/60"}`}>{r.verdict}</span>
             </li>
           ))}
         </ol>

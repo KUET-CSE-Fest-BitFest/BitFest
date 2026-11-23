@@ -46,28 +46,28 @@ function Scorecard() {
       title="Jury scorecard"
       meta="Sample case"
       label="A jury scorecard for the IT Business Case final: a team defends its case while four criteria are scored and totalled."
-      right={<><LiveDot /><span>Q&amp;A</span><span className="tabular-nums text-[#fbf1e9]">{mm}</span></>}
+      right={<><LiveDot /><span>Q&amp;A</span><span className="tabular-nums text-cream-hi">{mm}</span></>}
     >
       <div ref={ref} key={k} className="grid gap-6 px-4 py-5 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-10 md:px-6 md:py-6">
         <div className="road-in flex flex-col gap-3">
-          <span className="text-[13px] font-medium text-[#f2e6dc]/55">Presenting · team {String((k % 20) + 1).padStart(2, "0")} of 20</span>
+          <span className="text-[13px] font-medium text-cream/55">Presenting · team {String((k % 20) + 1).padStart(2, "0")} of 20</span>
           <span className="lx-ink-warm text-[clamp(30px,3.4vw,44px)] font-semibold leading-[1] tracking-[-0.035em]">{team}</span>
-          <p className="max-w-[360px] text-[14px] leading-relaxed text-[#f2e6dc]/65">{SAMPLE}</p>
+          <p className="max-w-[360px] text-[14px] leading-relaxed text-cream/65">{SAMPLE}</p>
         </div>
         <div className="flex flex-col gap-3.5">
           {CRITERIA.map((c, i) => (
             <div key={c} className="grid grid-cols-[minmax(0,1fr)_44px] items-center gap-x-4 gap-y-1.5">
-              <span className="text-[14px] text-[#f2e6dc]/80">{c}</span>
-              <span className="case-num text-right text-[14px] font-semibold tabular-nums text-[#fbf1e9]" style={{ animationDelay: `${0.35 + i * 0.3}s` }}>{scores[i].toFixed(1)}</span>
-              <span className="col-span-2 h-[3px] overflow-hidden rounded-full bg-[rgba(255,214,190,0.09)]">
+              <span className="text-[14px] text-cream/80">{c}</span>
+              <span className="case-num text-right text-[14px] font-semibold tabular-nums text-cream-hi" style={{ animationDelay: `${0.35 + i * 0.3}s` }}>{scores[i].toFixed(1)}</span>
+              <span className="col-span-2 h-[3px] overflow-hidden rounded-full bg-[rgba(219,231,238,0.09)]">
                 <span className="case-bar block h-full origin-left rounded-full" style={{ ["--s" as string]: scores[i] / 10, animationDelay: `${i * 0.3}s` }} />
               </span>
             </div>
           ))}
-          <div className="mt-1 flex items-baseline justify-between border-t border-[rgba(255,214,190,0.1)] pt-3">
-            <span className="text-[14px] font-medium text-[#f2e6dc]/70">Total</span>
+          <div className="mt-1 flex items-baseline justify-between border-t border-[rgba(219,231,238,0.1)] pt-3">
+            <span className="text-[14px] font-medium text-cream/70">Total</span>
             <span className="case-num text-[26px] font-semibold tabular-nums text-orange" style={{ animationDelay: "1.6s" }}>
-              {total.toFixed(1)}<span className="text-[15px] font-medium text-[#f2e6dc]/45"> / 40</span>
+              {total.toFixed(1)}<span className="text-[15px] font-medium text-cream/45"> / 40</span>
             </span>
           </div>
         </div>

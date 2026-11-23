@@ -53,12 +53,12 @@ export default function HeroPanel({
       style={{ width: `min(${width}px, calc(100% - 24px))`, maxHeight: maxH }}
     >
       <span className="lx lx-rim" />
-      <div className="relative z-[4] flex items-center justify-between gap-4 border-b border-[rgba(255,214,190,0.08)] px-4 pb-3 pt-4 md:px-6 md:pt-5">
+      <div className="relative z-[4] flex items-center justify-between gap-4 border-b border-[rgba(219,231,238,0.08)] px-4 pb-3 pt-4 md:px-6 md:pt-5">
         <p className="min-w-0 truncate text-[15px] font-medium text-ink">
           {title}
-          {meta && <span className="hidden text-[#f2e6dc]/55 min-[380px]:inline"> · {meta}</span>}
+          {meta && <span className="hidden text-cream/55 min-[380px]:inline"> · {meta}</span>}
         </p>
-        {right && <div className="flex shrink-0 items-center gap-2 text-[14px] font-medium text-[#f2e6dc]/65">{right}</div>}
+        {right && <div className="flex shrink-0 items-center gap-2 text-[14px] font-medium text-cream/65">{right}</div>}
       </div>
       <div className="relative z-[4]">{children}</div>
     </div>

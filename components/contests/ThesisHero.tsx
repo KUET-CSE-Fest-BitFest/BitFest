@@ -27,7 +27,7 @@ function Figure({ k }: { k: number }) {
   return (
     <div aria-hidden className="flex h-16 items-end gap-1.5">
       {bars.map((h, i) => (
-        <span key={i} className="w-3 rounded-t-[3px]" style={{ height: `${h * 100}%`, background: i === bars.length - 1 ? "linear-gradient(180deg,#ffc49e,#ff7a3d)" : "rgba(242,230,220,0.22)" }} />
+        <span key={i} className="w-3 rounded-t-[3px]" style={{ height: `${h * 100}%`, background: i === bars.length - 1 ? "linear-gradient(180deg,#86efac,#22c55e)" : "rgba(219,231,238,0.22)" }} />
       ))}
     </div>
   );
@@ -53,25 +53,25 @@ function Talk() {
       right={<><LiveDot /><span className="tabular-nums">Pair {String(k + 1).padStart(2, "0")} of 30</span></>}
     >
       <div ref={ref} className="grid items-center gap-5 px-4 py-5 sm:grid-cols-[minmax(0,1fr)_auto] md:gap-10 md:px-6 md:py-6">
-        <div key={k} className="road-in relative flex aspect-[16/9] max-h-[220px] flex-col justify-between overflow-hidden rounded-[12px] bg-[#0b0809] p-4 shadow-[inset_0_0_0_1px_rgba(255,214,190,0.14)] md:p-5">
-          <span className="text-[12px] font-medium text-[#f2e6dc]/50">Slide 1 of 1</span>
-          <span className="max-w-[440px] text-[clamp(17px,2vw,24px)] font-semibold leading-[1.15] tracking-[-0.02em] text-[#fbf1e9]">{TALKS[k % TALKS.length]}</span>
+        <div key={k} className="road-in relative flex aspect-[16/9] max-h-[220px] flex-col justify-between overflow-hidden rounded-[12px] bg-[var(--rd-lid)] p-4 shadow-[inset_0_0_0_1px_rgba(219,231,238,0.14)] md:p-5">
+          <span className="text-[12px] font-medium text-cream/50">Slide 1 of 1</span>
+          <span className="max-w-[440px] text-[clamp(17px,2vw,24px)] font-semibold leading-[1.15] tracking-[-0.02em] text-cream-hi">{TALKS[k % TALKS.length]}</span>
           <Figure k={k} />
         </div>
         <div className="flex items-center gap-4 sm:flex-col sm:gap-2">
           <div className="relative h-[112px] w-[112px] md:h-[132px] md:w-[132px]">
             <svg viewBox="0 0 112 112" className="h-full w-full -rotate-90">
-              <circle cx="56" cy="56" r={R} fill="none" stroke="rgba(255,214,190,0.1)" strokeWidth="5" />
+              <circle cx="56" cy="56" r={R} fill="none" stroke="rgba(219,231,238,0.1)" strokeWidth="5" />
               <circle cx="56" cy="56" r={R} fill="none" stroke="url(#tm-ring)" strokeWidth="5" strokeLinecap="round" strokeDasharray={C} strokeDashoffset={C * (1 - left / FULL)} style={{ transition: left === FULL ? "none" : "stroke-dashoffset 1s linear" }} />
               <defs>
                 <linearGradient id="tm-ring" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#ffc49e" /><stop offset="55%" stopColor="#ff7a3d" /><stop offset="100%" stopColor="#a33a14" />
+                  <stop offset="0%" stopColor="#86efac" /><stop offset="55%" stopColor="#22c55e" /><stop offset="100%" stopColor="#166534" />
                 </linearGradient>
               </defs>
             </svg>
-            <span className="absolute inset-0 grid place-items-center text-[28px] font-semibold tabular-nums tracking-[-0.03em] text-[#fbf1e9] md:text-[32px]">{mm}</span>
+            <span className="absolute inset-0 grid place-items-center text-[28px] font-semibold tabular-nums tracking-[-0.03em] text-cream-hi md:text-[32px]">{mm}</span>
           </div>
-          <span className="text-[13px] text-[#f2e6dc]/55">{left === 0 ? "Time" : "of 3:00"}</span>
+          <span className="text-[13px] text-cream/55">{left === 0 ? "Time" : "of 3:00"}</span>
         </div>
       </div>
     </HeroPanel>

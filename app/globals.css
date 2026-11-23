@@ -723,7 +723,7 @@ button:hover > .faq-toggle[data-on="false"] { color: var(--color-ink); box-shado
 .gm-match { box-shadow: inset 0 0 0 1px rgba(255, 214, 190, 0.12); transition: box-shadow 0.4s ease; }
 .gm-match[data-live="true"] { box-shadow: inset 0 0 0 1px rgba(255, 122, 61, 0.85), 0 0 18px rgba(255, 122, 61, 0.25); }
 .gm-final .gm-match { transition: box-shadow 0.4s ease, background 0.6s ease; }
-.gm-final[data-on="true"] .gm-match { background: radial-gradient(130% 160% at 0% 100%, rgba(255, 196, 158, 0.4) 0%, rgba(255, 122, 61, 0.26) 35%, rgba(163, 58, 20, 0.12) 65%, transparent 100%), #0b0809; box-shadow: inset 0 0 0 1px rgba(255, 178, 122, 0.9), 0 10px 28px -10px rgba(255, 122, 61, 0.8); }
+.gm-final[data-on="true"] .gm-match { background: radial-gradient(130% 160% at 0% 100%, rgba(255, 196, 158, 0.4) 0%, rgba(255, 122, 61, 0.26) 35%, rgba(163, 58, 20, 0.12) 65%, transparent 100%), #0b0809; box-shadow: inset 0 0 0 1px rgba(134, 239, 172, 0.9), 0 10px 28px -10px rgba(255, 122, 61, 0.8); }
 /* IT Business Case: each criterion fills in turn; its number and the total land after. */
 .case-bar { background: linear-gradient(90deg, #a33a14, #ff7a3d 70%, #ffb27a); transform: scaleX(var(--s)); animation: case-fill 1s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 @keyframes case-fill { from { transform: scaleX(0); } to { transform: scaleX(var(--s)); } }
@@ -1012,3 +1012,47 @@ button:hover > .faq-toggle[data-on="false"] { color: var(--color-ink); box-shado
   :root:has(.rd-theme) .chip { width: min(36vw, calc(min(480px, (100svh - 580px) * 0.86) * 1.1)); }
 }
 .ps-hero .ps-row { animation-duration: 120s; }
+
+/* Contest pages in the redesign theme: the widgets' warm colours (timeline, leaderboard, scoreboards,
+   score bars) mapped to the green palette. Generated from the rules above; /classic keeps orange. */
+:root:has(.rd-theme) .tl-fill { background: linear-gradient(to bottom, rgba(22, 101, 52, 0.5), rgba(21, 128, 61, 0.85) 60%, #22c55e); box-shadow: 0 0 10px rgba(34, 197, 94, 0.35); }
+:root:has(.rd-theme) .tl-head::before { background: radial-gradient(circle, rgba(74, 222, 128, 0.38), rgba(34, 197, 94, 0.12) 45%, rgba(34, 197, 94, 0) 70%); }
+:root:has(.rd-theme) .tl-tail { background: linear-gradient(to bottom, rgba(34, 197, 94, 0), rgba(74, 222, 128, 0.75) 70%, #effdf4); }
+:root:has(.rd-theme) .tl-core { background: #effdf4; box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.35), 0 0 18px 6px rgba(34, 197, 94, 0.6); }
+:root:has(.rd-theme) .tl-pad { background: var(--color-bg); box-shadow: inset 0 0 0 1.5px rgba(187, 247, 208, 0.24); }
+:root:has(.rd-theme) .tl-dot { background: radial-gradient(circle at 35% 35%, #bbf7d0, #22c55e 58%, #166534); }
+:root:has(.rd-theme) .tl-ring { box-shadow: 0 0 0 1.5px rgba(34, 197, 94, 0.9); }
+:root:has(.rd-theme) .tl-lead { background: linear-gradient(90deg, rgba(34, 197, 94, 0.85), rgba(34, 197, 94, 0.15)); }
+:root:has(.rd-theme) .event-timeline li[data-on="true"] .tl-pad { box-shadow: inset 0 0 0 1.5px rgba(34, 197, 94, 0.85), 0 0 14px rgba(34, 197, 94, 0.4); }
+:root:has(.rd-theme) .event-timeline li[data-current="true"] .tl-pad { box-shadow: inset 0 0 0 1.5px #4ade80, 0 0 24px rgba(34, 197, 94, 0.7); }
+:root:has(.rd-theme) .lb-row { border-bottom: 1px solid rgba(187, 247, 208, 0.07); }
+:root:has(.rd-theme) .lb-row[data-up="true"] { background-color: #0d0a0b; box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.9), 0 -1px 0 rgba(187, 247, 208, 0.08), 0 1px 0 rgba(187, 247, 208, 0.08); }
+:root:has(.rd-theme) .lb-lead { background: linear-gradient(90deg, rgba(34, 197, 94, 0.11), rgba(34, 197, 94, 0) 55%); box-shadow: inset 2px 0 0 #22c55e; }
+:root:has(.rd-theme) .lb-row[data-lit="true"] .lb-lead { background: linear-gradient(90deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.03) 75%); }
+:root:has(.rd-theme) .lb-run > i { background: linear-gradient(90deg, rgba(34, 197, 94, 0) 0 70%, rgba(74, 222, 128, 0.9) 92%, #effdf4); }
+@media (min-width: 768px) and (max-height: 760px) { :root:has(.rd-theme) .lb-rows { border-top: 1px solid rgba(187, 247, 208, 0.08); } }
+:root:has(.rd-theme) .iupc-flash.is-ok { background: radial-gradient(120% 140% at 0% 100%, rgba(74, 222, 128, 0.32), rgba(22, 101, 52, 0.1) 60%, transparent); box-shadow: inset 0 0 0 1px rgba(34, 197, 94, 0.7); }
+:root:has(.rd-theme) .ctf-cell[data-taken="true"] { color: #f0f7fa; background-image: linear-gradient(180deg, rgba(34, 197, 94, 0.05), transparent); }
+:root:has(.rd-theme) .ctf-flash { background: radial-gradient(110% 120% at 50% 100%, rgba(74, 222, 128, 0.3), transparent 70%); box-shadow: inset 0 0 0 1px rgba(34, 197, 94, 0.65); }
+:root:has(.rd-theme) .ctf-flash.is-first { background: radial-gradient(110% 120% at 50% 100%, rgba(187, 247, 208, 0.45), rgba(34, 197, 94, 0.2) 50%, transparent 80%); box-shadow: inset 0 0 0 1.5px #bbf7d0, 0 0 18px rgba(34, 197, 94, 0.5); }
+:root:has(.rd-theme) .gm-match { box-shadow: inset 0 0 0 1px rgba(187, 247, 208, 0.12); }
+:root:has(.rd-theme) .gm-match[data-live="true"] { box-shadow: inset 0 0 0 1px rgba(34, 197, 94, 0.85), 0 0 18px rgba(34, 197, 94, 0.25); }
+:root:has(.rd-theme) .gm-final[data-on="true"] .gm-match { background: radial-gradient(130% 160% at 0% 100%, rgba(187, 247, 208, 0.4) 0%, rgba(34, 197, 94, 0.26) 35%, rgba(22, 101, 52, 0.12) 65%, transparent 100%), var(--color-bg); box-shadow: inset 0 0 0 1px rgba(134, 239, 172, 0.9), 0 10px 28px -10px rgba(34, 197, 94, 0.8); }
+:root:has(.rd-theme) .case-bar { background: linear-gradient(90deg, #166534, #22c55e 70%, #bbf7d0); }
+:root:has(.rd-theme) .sc-stall { background: var(--color-bg); color: rgba(242, 230, 220, 0.4); box-shadow: inset 0 0 0 1px rgba(187, 247, 208, 0.1); }
+:root:has(.rd-theme) .sc-mark { background: rgba(187, 247, 208, 0.08); }
+:root:has(.rd-theme) .sc-stall[data-state="scored"] .sc-mark { background: linear-gradient(90deg, #166534, #22c55e); }
+:root:has(.rd-theme) .sc-stall[data-state="here"] { color: #effdf4; background: radial-gradient(120% 140% at 0% 100%, rgba(74, 222, 128, 0.45), rgba(22, 101, 52, 0.25) 55%, var(--color-bg)); box-shadow: inset 0 0 0 1px rgba(74, 222, 128, 0.9), 0 0 18px rgba(34, 197, 94, 0.35); }
+:root:has(.rd-theme) .sc-stall[data-state="here"] .sc-mark { background: #86efac; }
+:root:has(.rd-theme) .lb-flash { animation-name: rd-lb-flash; }
+@keyframes rd-lb-flash { 0%, 30% { color: #4ade80; text-shadow: 0 0 14px rgba(34, 197, 94, 0.6); } 100% { color: #f0f7fa; text-shadow: none; } }
+/* The contest widgets' near-black surfaces in the theme's blue. */
+:root:has(.rd-theme) .tl-pad { background: var(--rd-lid); box-shadow: inset 0 0 0 1.5px rgba(219, 231, 238, 0.24); }
+:root:has(.rd-theme) .lb-row[data-up="true"] { background-color: var(--rd-lid); }
+:root:has(.rd-theme) .sc-stall { background: var(--rd-lid); color: rgba(219, 231, 238, 0.45); box-shadow: inset 0 0 0 1px rgba(219, 231, 238, 0.1); }
+:root:has(.rd-theme) .sc-stall[data-state="here"] { background: radial-gradient(120% 140% at 0% 100%, rgba(74, 222, 128, 0.45), rgba(22, 101, 52, 0.25) 55%, var(--rd-lid)); }
+:root:has(.rd-theme) .hero-copy-shade {
+  background: radial-gradient(closest-side at 50% 54%,
+    rgba(24, 40, 63, 0.94) 0%, rgba(24, 40, 63, 0.92) 25%, rgba(24, 40, 63, 0.84) 42%, rgba(24, 40, 63, 0.7) 55%,
+    rgba(24, 40, 63, 0.52) 66%, rgba(24, 40, 63, 0.33) 76%, rgba(24, 40, 63, 0.17) 85%, rgba(24, 40, 63, 0.06) 93%, rgba(24, 40, 63, 0) 100%);
+}

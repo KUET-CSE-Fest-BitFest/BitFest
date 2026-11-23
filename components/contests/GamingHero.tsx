@@ -51,13 +51,13 @@ function Match({ s, m }: { s: State; m: number }) {
   const res = s.results[m];
   const live = s.live === m;
   return (
-    <div data-live={live} data-done={!!res} className="gm-match relative w-full rounded-[10px] bg-[#0b0809]">
+    <div data-live={live} data-done={!!res} className="gm-match relative w-full rounded-[10px] bg-[var(--rd-lid)]">
       {[a, b].map((t, k) => {
         const won = res && res.win === k;
         return (
-          <div key={k} className={`flex items-center justify-between gap-2 px-3 py-1.5 text-[13px] md:text-[14px] ${k ? "border-t border-[rgba(255,214,190,0.07)]" : ""}`}>
-            <span className={`truncate ${t === null ? "text-[#f2e6dc]/30" : won ? "font-semibold text-[#fbf1e9]" : res ? "text-[#f2e6dc]/40" : "text-[#f2e6dc]/80"}`}>{t === null ? "To be decided" : TEAMS[t]}</span>
-            <span className={`shrink-0 tabular-nums ${won ? "text-orange" : "text-[#f2e6dc]/40"}`}>{res ? res.score[k] : live ? "–" : ""}</span>
+          <div key={k} className={`flex items-center justify-between gap-2 px-3 py-1.5 text-[13px] md:text-[14px] ${k ? "border-t border-[rgba(219,231,238,0.07)]" : ""}`}>
+            <span className={`truncate ${t === null ? "text-cream/30" : won ? "font-semibold text-cream-hi" : res ? "text-cream/40" : "text-cream/80"}`}>{t === null ? "To be decided" : TEAMS[t]}</span>
+            <span className={`shrink-0 tabular-nums ${won ? "text-orange" : "text-cream/40"}`}>{res ? res.score[k] : live ? "–" : ""}</span>
           </div>
         );
       })}
@@ -72,7 +72,7 @@ function Joins({ lit, count, flip = false, className = "" }: { lit: boolean[]; c
       {lit.map((on, k) => {
         const y = count === 2 ? (k ? 75 : 25) : 50;
         const d = flip ? `M100 ${y} H50 V50 H0` : `M0 ${y} H50 V50 H100`;
-        return <path key={k} d={d} fill="none" stroke={on ? "#ff7a3d" : "rgba(255,214,190,0.16)"} strokeWidth={on ? 1.6 : 1} vectorEffect="non-scaling-stroke" style={{ transition: "stroke 0.4s ease" }} />;
+        return <path key={k} d={d} fill="none" stroke={on ? "#22c55e" : "rgba(219,231,238,0.16)"} strokeWidth={on ? 1.6 : 1} vectorEffect="non-scaling-stroke" style={{ transition: "stroke 0.4s ease" }} />;
       })}
     </svg>
   );
@@ -113,9 +113,9 @@ function Bracket() {
       <div ref={ref}>
       {/* Phones: the semi-finals side by side with full names, the final centred under them. */}
       <div className="flex flex-col gap-3 px-4 py-4 md:hidden">
-        <span className="text-[12px] font-medium text-[#f2e6dc]/55">Semi-finals</span>
+        <span className="text-[12px] font-medium text-cream/55">Semi-finals</span>
         <div className="grid grid-cols-2 gap-3"><Match s={s} m={4} /><Match s={s} m={5} /></div>
-        <span className="text-center text-[12px] font-medium text-[#f2e6dc]/55">Final</span>
+        <span className="text-center text-[12px] font-medium text-cream/55">Final</span>
         <div className="mx-auto w-[min(100%,240px)]"><div data-on={champ !== null} className="gm-final rounded-[10px]"><Match s={s} m={6} /></div></div>
       </div>
       <div className="hidden h-[168px] px-6 py-4 md:grid md:grid-cols-[minmax(0,1fr)_22px_minmax(0,1fr)_22px_minmax(0,1.1fr)_22px_minmax(0,1fr)_22px_minmax(0,1fr)] ">

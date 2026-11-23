@@ -3,7 +3,8 @@
 
 export type Team = "orange" | "cyan";
 
-export const COLORS = { orange: "#ff7a3d", cyan: "#f2e6dc", ball: "#fff6ee" } as const;
+// The landing theme: a green bot and a light blue-white bot on the slate pitch.
+export const COLORS = { orange: "#22c55e", cyan: "#dbe7ee", ball: "#f0f7fa" } as const;
 
 type Bot = { x: number; y: number; a: number; vx: number; vy: number; team: Team; trail: number[]; cd: number };
 
@@ -15,7 +16,7 @@ export type PitchOptions = {
   dim?: number;
   /** "contain" (default) shows the whole pitch; "width" spans it edge to edge on landscape screens. */
   fit?: "contain" | "width";
-  /** Soft light behind each goal (cyan left, orange right); it flares when that goal is scored in. */
+  /** Soft light behind each goal (white left, green right); it flares when that goal is scored in. */
   goalGlow?: boolean;
   /** Draw on a transparent canvas (no page or turf fill), so the page background shows through. */
   clear?: boolean;
@@ -231,16 +232,16 @@ export class PitchSim {
     const { s, ox, oy } = this.view(cw, ch);
     ctx.save();
     if (this.opts.clear) ctx.clearRect(0, 0, cw, ch);
-    else { ctx.fillStyle = "#070607"; ctx.fillRect(0, 0, cw, ch); }
+    else { ctx.fillStyle = "#18283f"; ctx.fillRect(0, 0, cw, ch); }
     ctx.translate(ox, oy); ctx.scale(s, s);
 
-    if (!this.opts.clear) { ctx.fillStyle = "#0a0809"; ctx.fillRect(0, 0, W, H); }
+    if (!this.opts.clear) { ctx.fillStyle = "#122036"; ctx.fillRect(0, 0, W, H); }
     for (let i = 0; i < 14; i++) {
       ctx.fillStyle = i % 2 ? "rgba(255,255,255,0.012)" : "rgba(255,255,255,0.03)";
       ctx.fillRect(L + (i * (R - L)) / 14, T, (R - L) / 14, B - T);
     }
     if (this.opts.goalGlow) {
-      this.sprites ??= { cyan: glowSprite("242,230,220"), orange: glowSprite("255,122,61") };
+      this.sprites ??= { cyan: glowSprite("219,231,238"), orange: glowSprite("34,197,94") };
       const glow = (img: HTMLCanvasElement, x: number, f: number) => {
         ctx.globalAlpha = 0.6 + 0.4 * f;
         ctx.drawImage(img, x - 460, CY - 560, 920, 1120);
@@ -253,7 +254,7 @@ export class PitchSim {
       glow(this.sprites.orange, R + 14, this.flash.orange);
       ctx.restore();
     }
-    ctx.strokeStyle = "rgba(242,239,236,0.38)"; ctx.lineWidth = 2;
+    ctx.strokeStyle = "rgba(219,231,238,0.38)"; ctx.lineWidth = 2;
     ctx.strokeRect(L, T, R - L, B - T);
     ctx.beginPath(); ctx.moveTo(W / 2, T); ctx.lineTo(W / 2, B); ctx.stroke();
     ctx.beginPath(); ctx.arc(W / 2, CY, 96, 0, Math.PI * 2); ctx.stroke();
@@ -267,17 +268,17 @@ export class PitchSim {
       for (let i = 0; i < b.trail.length; i += 2) i ? ctx.lineTo(b.trail[i], b.trail[i + 1]) : ctx.moveTo(b.trail[i], b.trail[i + 1]);
       ctx.stroke();
     };
-    trail(this.me, "rgba(255,122,61,0.3)");
-    trail(this.cpu, "rgba(242,230,220,0.18)");
+    trail(this.me, "rgba(34,197,94,0.3)");
+    trail(this.cpu, "rgba(219,231,238,0.18)");
 
     if (this.controlled && this.me.cd === 0) {
-      ctx.strokeStyle = "rgba(255,122,61,0.35)"; ctx.lineWidth = 1; ctx.setLineDash([4, 6]);
+      ctx.strokeStyle = "rgba(34,197,94,0.35)"; ctx.lineWidth = 1; ctx.setLineDash([4, 6]);
       ctx.beginPath(); ctx.moveTo(this.me.x, this.me.y);
       ctx.lineTo(this.me.x + Math.cos(this.me.a) * 160, this.me.y + Math.sin(this.me.a) * 160); ctx.stroke();
       ctx.setLineDash([]);
     }
     for (const w of this.waves) {
-      ctx.strokeStyle = `rgba(255,122,61,${1 - w.r / 90})`; ctx.lineWidth = 3;
+      ctx.strokeStyle = `rgba(34,197,94,${1 - w.r / 90})`; ctx.lineWidth = 3;
       ctx.beginPath(); ctx.arc(w.x, w.y, w.r, 0, Math.PI * 2); ctx.stroke();
     }
 
@@ -285,19 +286,19 @@ export class PitchSim {
     drawBot(ctx, this.me, COLORS.orange);
 
     const ball = this.ball;
-    ctx.fillStyle = "rgba(0,0,0,0.5)";
+    ctx.fillStyle = "rgba(8,16,30,0.5)";
     ctx.beginPath(); ctx.ellipse(ball.x + 3, ball.y + 6, 12, 5, 0, 0, Math.PI * 2); ctx.fill();
     ctx.shadowColor = "#fff"; ctx.shadowBlur = 20; ctx.fillStyle = COLORS.ball;
     ctx.beginPath(); ctx.arc(ball.x, ball.y, 11, 0, Math.PI * 2); ctx.fill(); ctx.shadowBlur = 0;
 
     ctx.restore();
-    if (this.dim > 0) { ctx.fillStyle = `rgba(7,6,7,${this.dim})`; ctx.fillRect(0, 0, cw, ch); }
+    if (this.dim > 0) { ctx.fillStyle = `rgba(24,40,63,${this.dim})`; ctx.fillRect(0, 0, cw, ch); }
   }
 }
 
 export function drawBot(ctx: CanvasRenderingContext2D, b: { x: number; y: number; a: number }, col: string, scale = 1) {
   ctx.save(); ctx.translate(b.x, b.y); ctx.rotate(b.a); ctx.scale(scale, scale);
-  ctx.shadowColor = col; ctx.shadowBlur = 22; ctx.fillStyle = "#151214"; ctx.strokeStyle = col; ctx.lineWidth = 2.5;
+  ctx.shadowColor = col; ctx.shadowBlur = 22; ctx.fillStyle = "#122036"; ctx.strokeStyle = col; ctx.lineWidth = 2.5;
   ctx.fillRect(-22, -18, 44, 36); ctx.strokeRect(-22, -18, 44, 36); ctx.shadowBlur = 0;
   ctx.fillStyle = col;
   ctx.beginPath(); ctx.moveTo(26, 0); ctx.lineTo(12, -11); ctx.lineTo(12, 11); ctx.closePath(); ctx.fill();

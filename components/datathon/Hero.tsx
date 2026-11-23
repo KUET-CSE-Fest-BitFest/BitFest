@@ -52,8 +52,8 @@ function Spark({ hist, top, lit }: { hist: number[]; top: number; lit: boolean }
   const last = hist[hist.length - 1];
   return (
     <svg aria-hidden viewBox="0 0 100 24" preserveAspectRatio="none" className="h-6 w-full overflow-visible">
-      <polyline points={pts} fill="none" stroke={lit ? "#ff8a4c" : "rgba(255,214,190,0.32)"} strokeWidth={lit ? 1.6 : 1.2} vectorEffect="non-scaling-stroke" strokeLinejoin="round" style={{ transition: "stroke 0.3s ease" }} />
-      <circle cx={100} cy={22 - ((last - LO) / (top - LO)) * 20} r={lit ? 2.4 : 1.6} fill={lit ? "#fff0e4" : "rgba(255,214,190,0.5)"} vectorEffect="non-scaling-stroke" />
+      <polyline points={pts} fill="none" stroke={lit ? "#4ade80" : "rgba(219,231,238,0.32)"} strokeWidth={lit ? 1.6 : 1.2} vectorEffect="non-scaling-stroke" strokeLinejoin="round" style={{ transition: "stroke 0.3s ease" }} />
+      <circle cx={100} cy={22 - ((last - LO) / (top - LO)) * 20} r={lit ? 2.4 : 1.6} fill={lit ? "#effdf4" : "rgba(219,231,238,0.5)"} vectorEffect="non-scaling-stroke" />
     </svg>
   );
 }
@@ -147,15 +147,15 @@ function Board() {
       <span className="lx lx-rim" />
       <div className="relative z-[4] flex items-center justify-between gap-4 px-4 pb-3 pt-4 md:px-6 md:pt-5">
         <p className="text-[15px] font-medium text-ink">
-          Public leaderboard <span className="hidden text-[#f2e6dc]/55 min-[360px]:inline">· Day {day} of 10</span>
+          Public leaderboard <span className="hidden text-cream/55 min-[360px]:inline">· Day {day} of 10</span>
         </p>
-        <p className="flex items-center gap-2 text-[14px] font-medium text-[#f2e6dc]/65">
+        <p className="flex items-center gap-2 text-[14px] font-medium text-cream/65">
           <span className="h-2 w-2 animate-live rounded-full bg-orange" />
           <span className="tabular-nums">{entries.toLocaleString()}</span>
           <span className="hidden sm:inline">entries</span>
         </p>
       </div>
-      <div className="lb-cols relative z-[4] grid grid-cols-[28px_minmax(0,1fr)_76px] gap-3 border-y border-[rgba(255,214,190,0.08)] px-4 py-2 text-[13px] font-medium text-[#f2e6dc]/50 md:grid-cols-[40px_minmax(0,1fr)_72px_120px_84px] md:px-6">
+      <div className="lb-cols relative z-[4] grid grid-cols-[28px_minmax(0,1fr)_76px] gap-3 border-y border-[rgba(219,231,238,0.08)] px-4 py-2 text-[13px] font-medium text-cream/50 md:grid-cols-[40px_minmax(0,1fr)_72px_120px_84px] md:px-6">
         <span>#</span>
         <span>Team</span>
         <span className="hidden md:block">Entries</span>
@@ -180,16 +180,16 @@ function Board() {
               style={{ transform: `translateY(calc(var(--row) * ${rank}))` }}
             >
               <span aria-hidden className="lb-lead" />
-              <span className={`text-[14px] font-medium tabular-nums ${rank === 0 ? "text-orange" : "text-[#f2e6dc]/55"}`}>{String(rank + 1).padStart(2, "0")}</span>
+              <span className={`text-[14px] font-medium tabular-nums ${rank === 0 ? "text-orange" : "text-cream/55"}`}>{String(rank + 1).padStart(2, "0")}</span>
               <span className="flex min-w-0 items-center gap-2">
-                <span className="truncate text-[16px] font-medium text-[#fbf1e9] md:text-[17px]">{t.name}</span>
+                <span className="truncate text-[16px] font-medium text-cream-hi md:text-[17px]">{t.name}</span>
                 {t.moved > 0 && (
                   <span key={t.hit} className="lb-moved shrink-0 text-[12px] font-semibold tabular-nums text-orange">▲{t.moved}</span>
                 )}
               </span>
-              <span className="hidden text-[15px] tabular-nums text-[#f2e6dc]/55 md:block">{t.n}</span>
+              <span className="hidden text-[15px] tabular-nums text-cream/55 md:block">{t.n}</span>
               <span className="hidden md:block"><Spark hist={t.hist} top={top} lit={lit} /></span>
-              <span key={`s${t.hit}`} className={`text-right text-[16px] font-semibold tabular-nums md:text-[17px] ${t.hit ? "lb-flash" : ""} text-[#fbf1e9]`}>{t.s.toFixed(4)}</span>
+              <span key={`s${t.hit}`} className={`text-right text-[16px] font-semibold tabular-nums md:text-[17px] ${t.hit ? "lb-flash" : ""} text-cream-hi`}>{t.s.toFixed(4)}</span>
               {t.hit > 0 && <span key={`r${t.hit}`} aria-hidden className="lb-run"><i /></span>}
             </div>
           );

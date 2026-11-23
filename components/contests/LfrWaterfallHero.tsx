@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import EventHero from "@/components/event/EventHero";
 import HeroPanel, { LiveDot } from "@/components/event/HeroPanel";
 import { fitCanvas } from "@/lib/hooks";
-import { EMBER } from "@/components/home/heroes/rebrand/WarmLight";
+// The landing light's green ramp (globals.css, --rd-ramp): deep blue through teal and green to white.
+const GREEN: [number, string][] = [[0, "#0d1a2c"], [0.14, "#13253d"], [0.3, "#193f5c"], [0.44, "#0f6560"], [0.58, "#15925a"], [0.72, "#22c55e"], [0.86, "#a2f0c0"], [1, "#f0fff5"]];
 import { eventPages } from "@/lib/eventPages";
 
 /* Line Following Robot hero · Sensor waterfall. What the robot sees, as it sees it: eight rows, one
@@ -20,7 +21,7 @@ function ramp() {
   c.width = 128; c.height = 1;
   const g = c.getContext("2d")!;
   const grad = g.createLinearGradient(0, 0, 128, 0);
-  EMBER.forEach(([s, col]) => grad.addColorStop(s, col));
+  GREEN.forEach(([s, col]) => grad.addColorStop(s, col));
   g.fillStyle = grad; g.fillRect(0, 0, 128, 1);
   const d = g.getImageData(0, 0, 128, 1).data;
   return (v: number) => { const i = Math.max(0, Math.min(127, Math.round(v * 127))) * 4; return `rgb(${d[i]},${d[i + 1]},${d[i + 2]})`; };
@@ -91,23 +92,23 @@ function Waterfall() {
     >
       <div className="grid gap-5 px-4 py-4 md:grid-cols-[minmax(0,1fr)_230px] md:gap-7 md:px-6">
         <div className="flex gap-3">
-          <div aria-hidden className="flex flex-col justify-between py-0.5 text-[12px] tabular-nums text-[#f2e6dc]/40">
+          <div aria-hidden className="flex flex-col justify-between py-0.5 text-[12px] tabular-nums text-cream/40">
             {Array.from({ length: ROWS }, (_, i) => <span key={i}>S{i + 1}</span>)}
           </div>
           <canvas ref={ref} className="h-[168px] min-w-0 flex-1 md:h-[184px]" />
         </div>
         <div className="flex flex-col justify-center gap-4">
-          <span className="text-[13px] font-medium text-[#f2e6dc]/60">{read.state}</span>
+          <span className="text-[13px] font-medium text-cream/60">{read.state}</span>
           <div className="flex flex-col gap-2">
             <span className="flex items-baseline justify-between">
-              <span className="text-[13px] text-[#f2e6dc]/60">Steering error</span>
+              <span className="text-[13px] text-cream/60">Steering error</span>
               <span className="lx-ink-warm text-[30px] font-semibold leading-none tabular-nums">{pct > 0 ? "+" : ""}{pct}%</span>
             </span>
-            <span className="relative h-[6px] rounded-full bg-[rgba(255,214,190,0.08)]">
-              <span className="absolute left-1/2 top-[-3px] h-[12px] w-px bg-[rgba(255,214,190,0.3)]" />
-              <span className="absolute top-1/2 h-[12px] w-[12px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_40%_40%,#fff3ea,#ff7a3d_65%)] shadow-[0_0_12px_rgba(255,122,61,0.8)] transition-[left] duration-200" style={{ left: `${50 + read.err * 46}%` }} />
+            <span className="relative h-[6px] rounded-full bg-[rgba(219,231,238,0.08)]">
+              <span className="absolute left-1/2 top-[-3px] h-[12px] w-px bg-[rgba(219,231,238,0.3)]" />
+              <span className="absolute top-1/2 h-[12px] w-[12px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_40%_40%,#effdf4,#22c55e_65%)] shadow-[0_0_12px_rgba(255,122,61,0.8)] transition-[left] duration-200" style={{ left: `${50 + read.err * 46}%` }} />
             </span>
-            <span className="flex justify-between text-[12px] text-[#f2e6dc]/40"><span>Left</span><span>Right</span></span>
+            <span className="flex justify-between text-[12px] text-cream/40"><span>Left</span><span>Right</span></span>
           </div>
         </div>
       </div>
