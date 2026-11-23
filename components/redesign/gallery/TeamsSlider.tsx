@@ -94,6 +94,12 @@ export default function TeamsSlider() {
     if (e.key === "ArrowLeft") { e.preventDefault(); go(pos - 1); }
   };
 
+  // TEMPORARY ?gf=case|plaque|museum|award switch while a hall-of-fame frame is chosen.
+  useEffect(() => {
+    const f = new URLSearchParams(window.location.search).get("gf");
+    if (f) document.documentElement.dataset.gf = f;
+  }, []);
+
   return (
     <div
       ref={root}

@@ -35,7 +35,7 @@ export default function FaqBrowser({ items, topics, all = true, initial }: { ite
 
   return (
     <div data-reveal className="flex min-w-0 flex-col gap-5">
-      <label className="relative flex h-12 items-center gap-3 rounded-[12px] bg-[#0c0a0b] px-4 shadow-[inset_0_0_0_1px_rgba(255,214,190,0.18)] transition-shadow hover:shadow-[inset_0_0_0_1px_rgba(255,214,190,0.32)] focus-within:shadow-[inset_0_0_0_1.5px_#ff7a3d]">
+      <label className="faq-search relative flex h-12 items-center gap-3 rounded-[12px] bg-[#0c0a0b] px-4 shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--color-rim)_18%,transparent)] transition-shadow hover:shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--color-rim)_32%,transparent)] focus-within:shadow-[inset_0_0_0_1.5px_#ff7a3d]">
         <svg aria-hidden width="17" height="17" viewBox="0 0 20 20" className="shrink-0 text-muted"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="currentColor" strokeWidth="1.7" /><path d="M13 13l5 5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" /></svg>
         <input
           type="search"
@@ -58,10 +58,10 @@ export default function FaqBrowser({ items, topics, all = true, initial }: { ite
               type="button"
               aria-pressed={on}
               onClick={() => { setTopic(t); setQ(""); setOpen(0); setMore(false); }}
-              className={`flex h-9 shrink-0 items-center gap-2 rounded-full px-4 text-[14px] font-medium transition-[color,background-color,box-shadow] duration-200 ${on ? "bg-orange text-[#1a0d06]" : "text-soft shadow-[inset_0_0_0_1px_rgba(255,214,190,0.18)] hover:text-ink hover:shadow-[inset_0_0_0_1px_rgba(255,214,190,0.4)]"}`}
+              className={`flex h-9 shrink-0 items-center gap-2 rounded-full px-4 text-[14px] font-medium transition-[color,background-color,box-shadow] duration-200 ${on ? "bg-orange text-on-accent" : "text-soft shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--color-rim)_18%,transparent)] hover:text-ink hover:shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--color-rim)_40%,transparent)]"}`}
             >
               {t}
-              <span className={`tabular-nums ${on ? "text-[#1a0d06]/60" : "text-dim"}`}>{count(t)}</span>
+              <span className={`tabular-nums ${on ? "text-on-accent/60" : "text-dim"}`}>{count(t)}</span>
             </button>
           );
         })}
@@ -72,7 +72,7 @@ export default function FaqBrowser({ items, topics, all = true, initial }: { ite
       </p>
 
       {list.length === 0 ? (
-        <p className="border-t border-[rgba(255,214,190,0.1)] pt-6 text-[17px] leading-relaxed text-soft">
+        <p className="border-t border-[color-mix(in_oklab,var(--color-rim)_10%,transparent)] pt-6 text-[17px] leading-relaxed text-soft">
           Nothing matches yet. Write to{" "}
           <a href={`mailto:${fest.email}`} className="text-ink underline decoration-orange/60 underline-offset-4 transition-colors hover:text-orange">{fest.email}</a>{" "}
           and the team will answer.
@@ -83,7 +83,7 @@ export default function FaqBrowser({ items, topics, all = true, initial }: { ite
             const on = open === i;
             const id = `${uid}-${i}`;
             return (
-              <li key={`${f.topic}|${f.q}`} className="border-t border-[rgba(255,214,190,0.1)] first:border-t-0">
+              <li key={`${f.topic}|${f.q}`} className="border-t border-[color-mix(in_oklab,var(--color-rim)_10%,transparent)] first:border-t-0">
                 <button type="button" aria-expanded={on} aria-controls={id} onClick={() => setOpen(on ? -1 : i)} className="group flex w-full items-center justify-between gap-6 py-4 text-left">
                   <span className="flex flex-col gap-1">
                     {tagged && <span className="text-[13px] font-medium text-orange">{f.topic}</span>}
