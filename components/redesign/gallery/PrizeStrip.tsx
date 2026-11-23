@@ -62,7 +62,7 @@ export default function PrizeStrip({ variant = "gallery" }: { variant?: "gallery
                     >
                       {near && (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={p.src} srcSet={`${p.small} 400w, ${p.src} 680w`} sizes={hero ? "180px" : "(max-width: 767px) 220px, 340px"} alt="" draggable={false} decoding="async" className="h-full w-full object-cover" />
+                        <img src={p.src} srcSet={`${p.small} 400w, ${p.src} 680w`} sizes={hero ? "(max-width: 1023px) 220px, 320px" : "(max-width: 767px) 220px, 340px"} alt="" draggable={false} decoding="async" className="h-full w-full object-cover" />
                       )}
                     </button>
                     {hero && <span aria-hidden className="ps-cap"><span className="tabular-nums text-orange">{pad2(idx + 1)}</span>Prize night · 2025</span>}

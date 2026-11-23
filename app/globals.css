@@ -1003,13 +1003,14 @@ button:hover > .faq-toggle[data-on="false"] { color: var(--color-ink); box-shado
 /* Hero prize-night strip: one row of photos along the foot of the hero (the chip gives up the height).
    Each photo sits in a dark frame: a deep edge darker than the page, a faint rim, and a darker line
    around the photo. */
-:root:has(.rd-theme) .ps-hero .ps-tile { height: 132px; border-radius: 14px; padding: 6px; background: color-mix(in oklab, var(--color-bg) 55%, #02060d); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-rim) 12%, transparent), 0 14px 30px -18px rgba(0, 0, 0, 0.8); }
+:root:has(.rd-theme) .ps-hero .ps-tile { height: clamp(120px, calc(100svh - 520px), 168px); border-radius: 14px; padding: 6px; background: color-mix(in oklab, var(--color-bg) 55%, #02060d); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-rim) 12%, transparent), 0 14px 30px -18px rgba(0, 0, 0, 0.8); }
 .ps-hero .ps-tile > button { inset: 6px; overflow: hidden; border-radius: 9px; box-shadow: 0 0 0 1px rgba(2, 6, 13, 0.85); }
 .ps-hero .ps-tile > button:focus-visible { border-radius: 9px; }
 .ps-hero .ps-tile .lx-rim { display: none; }
 @media (min-width: 1024px) {
-  :root:has(.rd-theme) .ps-hero .ps-tile { height: 176px; }
-  :root:has(.rd-theme) .chip { width: min(36vw, calc(min(480px, (100svh - 580px) * 0.86) * 1.1)); }
+  /* As tall as the screen allows under the chip (which keeps a 330px floor), up to 236px. */
+  :root:has(.rd-theme) .ps-hero .ps-tile { height: clamp(150px, calc(100svh - 550px), 236px); }
+  :root:has(.rd-theme) .chip { width: min(36vw, calc(min(480px, (100svh - 570px) * 0.86) * 1.1)); }
 }
 .ps-hero .ps-row { animation-duration: 120s; }
 

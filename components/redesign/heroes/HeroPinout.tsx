@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { events, fest, money, pad2 } from "@/lib/fest";
 import ContestLink from "@/components/redesign/ui/ContestLink";
-import { HeroActions } from "./shared";
 import ChipGlow, { type GlowId } from "./ChipGlow";
 import WarmLight from "./rebrand/WarmLight";
 import PoolOdometer from "./PoolOdometer";
@@ -253,10 +252,7 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
           </div>
         </div>
 
-        {/* Centred under the chip. */}
-        <div className="chip-span mx-auto flex justify-center">
-          <HeroActions className="hero-in justify-center" style={{ animationDelay: "0.55s" }} />
-        </div>
+        {/* The Explore and Facebook buttons are off for now (HeroActions in ./shared). */}
       </div>
       {/* Prize night from BitFest 2025, drifting along the foot of the hero, edge to edge. */}
       <div className="hero-in relative z-[5] -mx-6 mt-6 md:-mx-14 lg:mt-5" style={{ animationDelay: "0.7s" }}>
