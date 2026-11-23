@@ -94,12 +94,6 @@ export default function TeamsSlider() {
     if (e.key === "ArrowLeft") { e.preventDefault(); go(pos - 1); }
   };
 
-  // TEMPORARY ?gf=honour|chip|badge switch while a hall-of-fame frame is chosen.
-  useEffect(() => {
-    const f = new URLSearchParams(window.location.search).get("gf");
-    if (f) document.documentElement.dataset.gf = f;
-  }, []);
-
   return (
     <div
       ref={root}
@@ -148,14 +142,9 @@ export default function TeamsSlider() {
                 )}
                 <span aria-hidden className="ts-shade" />
                 <span className="lx lx-rim z-[2]" />
-                {/* TEMPORARY: parts for the hall-of-fame frame options (?gf=); hidden unless one is on. */}
+                {/* The honour board's title band and the light at its foot (styles: .hof in globals.css). */}
                 <span aria-hidden className="hof">
                   <span className="hof-bar"><span className="hof-dot" />Hall of fame<span className="hof-yr">BitFest 2025 · {pad2(k + 1)}</span></span>
-                  <span className="hof-pad hof-tl" /><span className="hof-pad hof-tr" /><span className="hof-pad hof-bl" /><span className="hof-pad hof-br" />
-                  <span className="hof-badge">
-                    <svg width="14" height="14" viewBox="0 0 16 16"><path d="M4 2h8v3a4 4 0 0 1-8 0V2Zm-2 1h2v2a2 2 0 0 1-2-2Zm10 0h2a2 2 0 0 1-2 2V3ZM7 9.6h2V12h2v2H5v-2h2V9.6Z" fill="currentColor" /></svg>
-                    Hall of fame<span className="hof-yr">2025</span>
-                  </span>
                   <span className="hof-glow" />
                 </span>
               </li>
