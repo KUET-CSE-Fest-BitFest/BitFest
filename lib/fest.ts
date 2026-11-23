@@ -60,7 +60,7 @@ const OLD: Record<string, string> = { iupc: "iupc", "ai-hackathon": "hackathon",
 export const oldSite = (slug: string) => (OLD[slug] ? `https://bitfest2025.netlify.app/${OLD[slug]}` : "/#schedule");
 /** Contest pages are not public yet: contest names keep their hover but do not link anywhere. Set to
     true when the pages are ready and every contest name links to its page again. */
-export const CONTEST_PAGES_LIVE = false;
+export const CONTEST_PAGES_LIVE = true;
 /** Each contest's prize money is not announced yet: those amounts show as "??". The fest's total
     pool (fest.prizePool) is public and always shows. Set to true to show every contest's figure. */
 export const PRIZES_ANNOUNCED = false;

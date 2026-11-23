@@ -24,7 +24,7 @@ export default function EventPageLayout({ page, name, hero }: { page: EventPage;
         ]}
       />
       <main className="rd-main relative z-10 bg-bg">
-        {/* The nav's contest links lead back here while the contest pages are not public. */}
+        {/* The hero; contest links on the home page open these pages. */}
         <div id="hero">{hero}</div>
         <EventAbout page={page} />
         <EventPrizes page={page} />

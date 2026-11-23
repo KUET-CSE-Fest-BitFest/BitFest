@@ -55,7 +55,7 @@ function EventsMenu() {
           </ul>
           <div className="relative z-[4] mt-2 flex items-center justify-between border-t border-rim/12 px-4 pb-1 pt-3 text-[13px]">
             <span className="text-muted">Ten contests · finals on campus, {fest.dates}</span>
-            <a href="#schedule" onClick={() => setOpen(false)} className="font-medium text-orange transition-opacity hover:opacity-80">Key dates →</a>
+            <a href="/#schedule" onClick={() => setOpen(false)} className="font-medium text-orange transition-opacity hover:opacity-80">Key dates →</a>
           </div>
         </div>
       </div>
