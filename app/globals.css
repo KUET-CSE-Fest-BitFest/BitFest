@@ -1078,8 +1078,20 @@ button:hover > .faq-toggle[data-on="false"] { color: var(--color-ink); box-shado
 .ps-cap { display: none; }
 :root:has(.rd-theme) .ps-hero .ps-tile { padding: 0; border-radius: 12px; background: var(--rd-lid); box-shadow: inset 0 0 0 1px var(--color-line-2), inset 0 0 0 7px var(--rd-lid), inset 0 0 0 8px color-mix(in oklab, var(--color-rim) 12%, transparent), 0 18px 34px -22px rgba(2,8,18,0.95); }
 :root:has(.rd-theme) .ps-hero .ps-tile > button { inset: 8px; border-radius: 6px; box-shadow: inset 0 14px 20px -10px rgba(2,6,13,0.8); }
-:root:has(.rd-theme) .ps-hero .ps-tile::after { content: ""; position: absolute; z-index: 3; top: 8px; left: 16%; right: 16%; height: 2px; border-radius: 2px; background: var(--color-accent-hi); box-shadow: 0 0 10px 2px color-mix(in oklab, var(--color-orange) 70%, transparent), 0 8px 26px 6px color-mix(in oklab, var(--color-orange) 22%, transparent); pointer-events: none; }
-:root:has(.rd-theme) .ps-hero .ps-tile::before { content: ""; position: absolute; z-index: 3; inset: 8px; border-radius: 6px; background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,0.09) 47%, transparent 56%); pointer-events: none; }
+:root:has(.rd-theme) .ps-hero .ps-tile > button { z-index: 1; }
+/* A short arc of green light travels slowly round each case, in the 8px between the case and the photo.
+   It is one conic gradient turned by a transform (no repaint), each case starting at a different point,
+   paused with the strip when off screen. */
+:root:has(.rd-theme) .ps-hero .ps-tile::before { content: ""; position: absolute; z-index: 0; left: 50%; top: 50%; width: 170%; aspect-ratio: 1; translate: -50% -50%; background: conic-gradient(from 0deg, transparent 0deg 292deg, color-mix(in oklab, var(--lt3) 25%, transparent) 318deg, var(--lt2) 344deg, var(--lt0) 352deg, transparent 360deg); filter: blur(3px); animation: ps-orbit 11s linear infinite; will-change: transform; pointer-events: none; }
+:root:has(.rd-theme) .ps-hero .ps-tile:nth-child(4n+2)::before { animation-delay: -2.7s; }
+:root:has(.rd-theme) .ps-hero .ps-tile:nth-child(4n+3)::before { animation-delay: -5.5s; }
+:root:has(.rd-theme) .ps-hero .ps-tile:nth-child(4n)::before { animation-delay: -8.2s; }
+:root:has(.rd-theme) .ps-hero [data-run="false"] .ps-tile::before, :root:has(.rd-theme) .ps-hero.ps-strip[data-run="false"] .ps-tile::before { animation-play-state: paused; }
+@keyframes ps-orbit { to { rotate: 360deg; } }
+@media (max-width: 767px) { :root:has(.rd-theme) .ps-hero .ps-tile::before { filter: none; } }
+@media (prefers-reduced-motion: reduce) { :root:has(.rd-theme) .ps-hero .ps-tile::before { animation: none; rotate: 20deg; } }
+/* The glass sheen over the photo. */
+:root:has(.rd-theme) .ps-hero .ps-tile::after { content: ""; position: absolute; z-index: 3; inset: 8px; border-radius: 6px; background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,0.09) 47%, transparent 56%); pointer-events: none; }
 :root:has(.rd-theme) .ps-hero .ps-cap { position: absolute; z-index: 4; left: 16px; bottom: 16px; display: flex; gap: 6px; align-items: center; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; color: var(--color-cream-hi); background: color-mix(in oklab, var(--rd-lid) 82%, transparent); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-rim) 18%, transparent); pointer-events: none; }
 
 /* Contest pages: the side panel (EventSidebar). A board ring round a deep well, like the name box; the
@@ -1118,36 +1130,48 @@ button:hover > .faq-toggle[data-on="false"] { color: var(--color-ink); box-shado
 .es-head .name-ticker { width: 100%; height: 40px; }
 .es-head .name-ticker-row > span { font-size: 13px; }
 
-/* TEMPORARY · hall-of-fame frames for the gallery slider (?gf=case|plaque|museum|award) */
+/* TEMPORARY · hall-of-fame frames for the gallery slider (?gf=honour|chip|badge). Built from the site's
+   own parts: the board ring and deep well (name box, side panel), the chip's corner pads, green light. */
+.hof { display: none; }
 :root[data-gf] .ts-slide .lx-rim, :root[data-gf] .ts-slide .ts-shade { display: none; }
 :root[data-gf] .ts-slide img { inset: var(--fr-t, 14px) var(--fr, 14px) var(--fr-b, 14px) var(--fr, 14px); width: auto; height: auto; }
+:root[data-gf] .hof { display: block; position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+:root[data-gf] .hof > * { display: none; }
+.hof-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--color-orange); box-shadow: 0 0 10px 1px var(--color-orange); }
+.hof-yr { color: var(--color-muted); font-weight: 500; }
 
-/* 1 · Trophy case: a deep inset case, a green light strip along its top edge, a glass sheen. */
-:root[data-gf="case"] .ts-slide { --fr: 14px; border-radius: 22px; background: var(--rd-lid); box-shadow: inset 0 0 0 1px var(--color-line-2), inset 0 0 0 10px var(--rd-lid), inset 0 0 0 11px color-mix(in oklab, var(--color-rim) 12%, transparent), 0 30px 60px -30px rgba(2,8,18,0.95); }
-:root[data-gf="case"] .ts-slide img { border-radius: 12px; }
-:root[data-gf="case"] .ts-slide::after { content: ""; position: absolute; z-index: 3; top: 14px; left: 18%; right: 18%; height: 2px; border-radius: 2px; background: var(--color-accent-hi); box-shadow: 0 0 14px 3px color-mix(in oklab, var(--color-orange) 70%, transparent), 0 14px 50px 12px color-mix(in oklab, var(--color-orange) 18%, transparent); }
-:root[data-gf="case"] .ts-slide::before { content: ""; position: absolute; z-index: 3; inset: 14px; border-radius: 12px; background: linear-gradient(115deg, transparent 36%, rgba(255,255,255,0.07) 46%, transparent 56%); pointer-events: none; }
+/* A · Honour board: a board ring round a deep well; a title band across the top of the well reads
+   "Hall of fame" with a lit green dot, the year and number at its right, a green hairline under it. */
+:root[data-gf="honour"] .ts-slide { --fr: 18px; --fr-t: 62px; --fr-b: 18px; border-radius: 24px; background: var(--rd-lid); box-shadow: inset 0 0 0 1px var(--color-line-2), inset 0 0 0 5px var(--rd-board), inset 0 0 0 6px color-mix(in oklab, var(--color-orange) 16%, transparent), inset 0 1px 0 rgba(240,247,250,0.06), 0 30px 60px -30px rgba(2,8,18,0.95); }
+:root[data-gf="honour"] .ts-slide img { border-radius: 10px; box-shadow: 0 0 0 1px #02060d; }
+:root[data-gf="honour"] .hof-bar { display: flex; position: absolute; left: 26px; right: 26px; top: 18px; height: 34px; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; letter-spacing: 0.01em; color: var(--color-cream-hi); border-bottom: 1px solid transparent; border-image: linear-gradient(90deg, color-mix(in oklab, var(--color-orange) 70%, transparent), color-mix(in oklab, var(--color-orange) 10%, transparent) 60%, transparent) 1; }
+:root[data-gf="honour"] .hof-bar .hof-yr { margin-left: auto; font-variant-numeric: tabular-nums; }
+:root[data-gf="honour"] .hof-glow { display: block; position: absolute; left: 50%; bottom: 18px; width: 60%; height: 120px; translate: -50% 0; background: radial-gradient(50% 100% at 50% 100%, color-mix(in oklab, var(--lt1) 26%, transparent), transparent 70%); mix-blend-mode: screen; }
 
-/* 2 · Plaque: a bevelled slate frame, a fine green fillet round the photo, an engraved nameplate. */
-:root[data-gf="plaque"] .ts-slide { --fr: 22px; --fr-t: 22px; --fr-b: 62px; border-radius: 10px; background: linear-gradient(160deg, var(--rd-sub1), var(--rd-lid) 55%, #0b1626); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-rim) 18%, transparent), inset 0 1px 0 rgba(240,247,250,0.1), 0 30px 60px -30px rgba(2,8,18,0.95); }
-:root[data-gf="plaque"] .ts-slide img { border-radius: 2px; box-shadow: 0 0 0 1px #02060d, 0 0 0 3px color-mix(in oklab, var(--color-orange) 40%, transparent); }
-:root[data-gf="plaque"] .ts-slide::after { content: "Hall of fame · BitFest 2025"; position: absolute; z-index: 3; left: 50%; bottom: 16px; translate: -50% 0; padding: 7px 18px; border-radius: 4px; white-space: nowrap; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; color: var(--color-cream-hi); background: linear-gradient(180deg, #2a4262, #172a44); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-rim) 28%, transparent), inset 0 1px 0 rgba(255,255,255,0.14), 0 3px 6px rgba(2,6,13,0.6); }
+/* B · Chip frame: the photo set in the chip's board, the four dot-grid corner pads from the hero chip,
+   faint pin marks down the sides, "Hall of fame" engraved small in the top edge. */
+:root[data-gf="chip"] .ts-slide { --fr: 40px; --fr-t: 40px; --fr-b: 40px; border-radius: 22px; background: linear-gradient(160deg, var(--rd-sub1), var(--rd-board) 60%); box-shadow: inset 0 0 0 1px var(--color-line-2), inset 0 1px 0 rgba(240,247,250,0.07), 0 30px 60px -30px rgba(2,8,18,0.95); }
+:root[data-gf="chip"] .ts-slide img { border-radius: 8px; box-shadow: 0 0 0 1px #02060d, 0 0 0 4px var(--rd-lid), 0 0 0 5px color-mix(in oklab, var(--color-rim) 16%, transparent); }
+:root[data-gf="chip"] .hof-pad { display: block; position: absolute; width: 18px; height: 18px; background: radial-gradient(circle, color-mix(in oklab, var(--color-cream) 70%, transparent) 1.1px, transparent 1.6px) 0 0 / 6px 6px; opacity: 0.75; }
+:root[data-gf="chip"] .hof-tl { left: 12px; top: 12px; } :root[data-gf="chip"] .hof-tr { right: 12px; top: 12px; }
+:root[data-gf="chip"] .hof-bl { left: 12px; bottom: 12px; } :root[data-gf="chip"] .hof-br { right: 12px; bottom: 12px; }
+:root[data-gf="chip"] .hof-bar { display: flex; position: absolute; left: 50%; top: 11px; translate: -50% 0; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--color-soft); }
+:root[data-gf="chip"] .hof::before, :root[data-gf="chip"] .hof::after { content: ""; position: absolute; top: 30%; bottom: 30%; width: 6px; background: repeating-linear-gradient(180deg, color-mix(in oklab, var(--color-rim) 26%, transparent) 0 2px, transparent 2px 14px); }
+:root[data-gf="chip"] .hof::before { left: 17px; } :root[data-gf="chip"] .hof::after { right: 17px; }
+:root[data-gf="chip"] .hof-glow { display: block; position: absolute; left: 50%; bottom: 0; width: 40%; height: 3px; translate: -50% 0; border-radius: 3px; background: var(--color-accent-hi); box-shadow: 0 0 14px 3px color-mix(in oklab, var(--color-orange) 70%, transparent); }
 
-/* 3 · Museum: a wide slate mat inside a fine frame, a picture light along the top washing down the photo. */
-:root[data-gf="museum"] .ts-slide { --fr: 34px; --fr-t: 40px; --fr-b: 34px; border-radius: 4px; background: var(--rd-sub1); box-shadow: inset 0 0 0 6px var(--rd-lid), inset 0 0 0 7px color-mix(in oklab, var(--color-rim) 20%, transparent), 0 30px 60px -30px rgba(2,8,18,0.95); }
-:root[data-gf="museum"] .ts-slide img { border-radius: 0; box-shadow: 0 0 0 1px #02060d, 0 10px 24px -10px rgba(2,6,13,0.8); }
-:root[data-gf="museum"] .ts-slide::before { content: ""; position: absolute; z-index: 3; top: 6px; left: 50%; width: 30%; height: 10px; translate: -50% 0; border-radius: 0 0 8px 8px; background: linear-gradient(180deg, var(--rd-lid), #24395a); box-shadow: inset 0 -2px 0 var(--color-cream-hi), 0 6px 18px 2px color-mix(in oklab, var(--lt1) 45%, transparent); }
-:root[data-gf="museum"] .ts-slide::after { content: ""; position: absolute; z-index: 2; inset: 16px 34px 34px; background: radial-gradient(60% 55% at 50% 0%, rgba(240,255,245,0.22), transparent 70%); mix-blend-mode: screen; pointer-events: none; }
-
-/* 4 · Award: a dark frame with green corner brackets and a "Hall of fame" ribbon at the top. */
-:root[data-gf="award"] .ts-slide { --fr: 16px; --fr-t: 16px; --fr-b: 16px; border-radius: 16px; background: var(--rd-lid); box-shadow: inset 0 0 0 1px var(--color-line-2), 0 30px 60px -30px rgba(2,8,18,0.95); }
-:root[data-gf="award"] .ts-slide img { border-radius: 6px; }
-:root[data-gf="award"] .ts-slide::before { content: ""; position: absolute; z-index: 3; inset: 7px; pointer-events: none; --c: color-mix(in oklab, var(--color-orange) 85%, transparent); background:
-  linear-gradient(var(--c),var(--c)) 0 0 / 36px 2px, linear-gradient(var(--c),var(--c)) 0 0 / 2px 36px,
-  linear-gradient(var(--c),var(--c)) 100% 0 / 36px 2px, linear-gradient(var(--c),var(--c)) 100% 0 / 2px 36px,
-  linear-gradient(var(--c),var(--c)) 0 100% / 36px 2px, linear-gradient(var(--c),var(--c)) 0 100% / 2px 36px,
-  linear-gradient(var(--c),var(--c)) 100% 100% / 36px 2px, linear-gradient(var(--c),var(--c)) 100% 100% / 2px 36px; background-repeat: no-repeat; filter: drop-shadow(0 0 6px color-mix(in oklab, var(--color-orange) 60%, transparent)); }
-:root[data-gf="award"] .ts-slide::after { content: "Hall of fame"; position: absolute; z-index: 4; top: 0; left: 50%; translate: -50% 0; padding: 8px 20px 9px; border-radius: 0 0 12px 12px; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; color: var(--color-on-accent); background: linear-gradient(180deg, var(--color-accent-hi), var(--color-orange)); box-shadow: 0 6px 18px -4px color-mix(in oklab, var(--color-orange) 60%, transparent); }
+/* C · Badge: a thin deep frame with fine green corner brackets; a glass badge with a trophy mark sits at
+   the top of the photo, and green light rises softly from the photo's foot like the site's bottom light. */
+:root[data-gf="badge"] .ts-slide { --fr: 12px; --fr-t: 12px; --fr-b: 12px; border-radius: 20px; background: var(--rd-lid); box-shadow: inset 0 0 0 1px var(--color-line-2), 0 30px 60px -30px rgba(2,8,18,0.95); }
+:root[data-gf="badge"] .ts-slide img { border-radius: 10px; }
+:root[data-gf="badge"] .hof-pad { display: block; position: absolute; width: 30px; height: 30px; border: 0 solid color-mix(in oklab, var(--color-orange) 85%, transparent); filter: drop-shadow(0 0 5px color-mix(in oklab, var(--color-orange) 60%, transparent)); }
+:root[data-gf="badge"] .hof-tl { left: 5px; top: 5px; border-width: 2px 0 0 2px; border-top-left-radius: 14px; }
+:root[data-gf="badge"] .hof-tr { right: 5px; top: 5px; border-width: 2px 2px 0 0; border-top-right-radius: 14px; }
+:root[data-gf="badge"] .hof-bl { left: 5px; bottom: 5px; border-width: 0 0 2px 2px; border-bottom-left-radius: 14px; }
+:root[data-gf="badge"] .hof-br { right: 5px; bottom: 5px; border-width: 0 2px 2px 0; border-bottom-right-radius: 14px; }
+:root[data-gf="badge"] .hof-badge { display: flex; position: absolute; left: 50%; top: 26px; translate: -50% 0; align-items: center; gap: 8px; padding: 8px 14px 8px 12px; border-radius: 999px; font-size: 13.5px; font-weight: 600; color: var(--color-cream-hi); background: color-mix(in oklab, var(--rd-lid) 78%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-orange) 35%, transparent), inset 0 1px 0 rgba(240,247,250,0.1), 0 10px 26px -10px rgba(2,6,13,0.8); }
+:root[data-gf="badge"] .hof-badge svg { color: var(--color-orange); filter: drop-shadow(0 0 6px color-mix(in oklab, var(--color-orange) 70%, transparent)); }
+:root[data-gf="badge"] .hof-glow { display: block; position: absolute; left: 12px; right: 12px; bottom: 12px; height: 38%; border-radius: 0 0 10px 10px; background: radial-gradient(60% 100% at 50% 100%, color-mix(in oklab, var(--lt2) 30%, transparent), color-mix(in oklab, var(--lt4) 10%, transparent) 50%, transparent 80%); mix-blend-mode: screen; }
 
 /* The question search box (shared with the classic page): slate blue in the redesign, not black. */
 :root:has(.rd-theme) .faq-search { background: var(--rd-lid); box-shadow: inset 0 0 0 1px var(--color-line-2); }
