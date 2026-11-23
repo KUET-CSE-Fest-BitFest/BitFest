@@ -43,7 +43,7 @@ function Panel({ slug, register, onPick }: { slug?: string; register: { href: st
           </span>
         </a>
 
-        <nav ref={list} aria-label="Contests" className="es-scroll min-h-0 flex-1 overflow-y-auto px-3 pb-4">
+        <nav ref={list} aria-label="Contests" data-lenis-prevent className="es-scroll min-h-0 flex-1 overflow-y-auto px-3 pb-4">
           <p className="flex items-center justify-between px-2 pb-2 pt-1 text-[12px] font-medium text-muted">
             <span>Contests</span>
             <span className="tabular-nums">{pad2(events.length)}</span>
@@ -81,12 +81,41 @@ function Panel({ slug, register, onPick }: { slug?: string; register: { href: st
 
 export default function EventSidebar({ slug, register }: { slug?: string; register: { href: string; label: string } }) {
   const [open, setOpen] = useState(false);
+  const menuBtn = useRef<HTMLButtonElement>(null);
+  const closeBtn = useRef<HTMLButtonElement>(null);
+  // While the menu is open the page under it stays still (smooth scroll paused, page scroll locked),
+  // focus moves into the menu, Escape closes it, and focus returns to the menu button after.
   useEffect(() => {
     if (!open) return;
+    const lenis = (window as unknown as { __lenis?: { stop(): void; start(): void } }).__lenis;
+    const root = document.documentElement;
+    const prev = root.style.overflow;
+    lenis?.stop();
+    root.style.overflow = "hidden";
+    closeBtn.current?.focus({ preventScroll: true });
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      root.style.overflow = prev;
+      lenis?.start();
+      menuBtn.current?.focus({ preventScroll: true });
+    };
   }, [open]);
+  // A link in the menu: unlock the page first, in the same tap, so an in-page link can glide to its
+  // section (smooth scroll ignores scrollTo while paused), then close.
+  const pick = () => {
+    document.documentElement.style.overflow = "";
+    (window as unknown as { __lenis?: { start(): void } }).__lenis?.start();
+    setOpen(false);
+  };
+  // Leaving for a wider screen with the menu open: close it, so the page is never left locked.
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const onChange = () => { if (mq.matches) setOpen(false); };
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
 
   return (
     <>
@@ -101,19 +130,19 @@ export default function EventSidebar({ slug, register }: { slug?: string; regist
           <a href="/" aria-label={`${fest.name} ${fest.year} home`}><BitfestLogo className="h-[46px] w-auto" /></a>
           <div className="flex items-center gap-3">
             <Button href={register.href} size="sm" className="nav-btn">Register</Button>
-            <button type="button" aria-expanded={open} aria-controls="event-menu" aria-label="Contests and pages" onClick={() => setOpen(true)} className="grid h-11 w-11 place-items-center rounded-[10px] border border-line-2 text-ink">
+            <button ref={menuBtn} type="button" aria-expanded={open} aria-controls="event-menu" aria-label="Contests and pages" onClick={() => setOpen(true)} className="grid h-11 w-11 place-items-center rounded-[10px] border border-line-2 text-ink">
               <svg aria-hidden width="18" height="18" viewBox="0 0 18 18"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" strokeWidth="1.6" /></svg>
             </button>
           </div>
         </div>
       </header>
-      <div id="event-menu" className="es-drawer fixed inset-0 z-[60] lg:hidden" data-open={open} aria-hidden={!open}>
+      <div id="event-menu" role="dialog" aria-modal="true" aria-label="Contests and pages" data-lenis-prevent className="es-drawer fixed inset-0 z-[60] lg:hidden" data-open={open} aria-hidden={!open} inert={!open}>
         <button type="button" tabIndex={-1} aria-label="Close menu" className="absolute inset-0 bg-[#02060d]/60" onClick={() => setOpen(false)} />
         <div className="es-drawer-panel absolute bottom-3 left-3 top-3 w-[min(320px,calc(100vw-24px))]">
-          <button type="button" onClick={() => setOpen(false)} aria-label="Close" className="absolute right-3 top-3 z-10 grid h-10 w-10 place-items-center rounded-[10px] text-muted hover:text-ink">
+          <button ref={closeBtn} type="button" onClick={() => setOpen(false)} aria-label="Close" className="absolute right-3 top-3 z-10 grid h-10 w-10 place-items-center rounded-[10px] text-muted hover:text-ink">
             <svg aria-hidden width="16" height="16" viewBox="0 0 16 16"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" strokeWidth="1.6" /></svg>
           </button>
-          <Panel slug={slug} register={register} onPick={() => setOpen(false)} />
+          <Panel slug={slug} register={register} onPick={pick} />
         </div>
       </div>
     </>
