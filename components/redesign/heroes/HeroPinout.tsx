@@ -7,6 +7,7 @@ import { HeroActions } from "./shared";
 import ChipGlow, { type GlowId } from "./ChipGlow";
 import WarmLight from "./rebrand/WarmLight";
 import PoolOdometer from "./PoolOdometer";
+import PrizeStrip from "../gallery/PrizeStrip";
 import BottomLight from "./BottomLight";
 
 /* Hero: Pinout. The fest is one chip: a substrate with a machined metal lid and ten contest pins
@@ -256,6 +257,10 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
         <div className="chip-span mx-auto flex justify-center">
           <HeroActions className="hero-in justify-center" style={{ animationDelay: "0.55s" }} />
         </div>
+      </div>
+      {/* Prize night from BitFest 2025, drifting along the foot of the hero, edge to edge. */}
+      <div className="hero-in relative z-[5] -mx-6 mt-6 md:-mx-14 lg:mt-5" style={{ animationDelay: "0.7s" }}>
+        <PrizeStrip variant="hero" />
       </div>
     </section>
   );

@@ -3,9 +3,8 @@ import HomePage from "@/components/redesign/HomePage";
 import HeroPinout from "@/components/redesign/heroes/HeroPinout";
 import { festDescription } from "@/lib/fest";
 
-/* The landing page redesign. It starts as an exact copy of the home page (/), built from its own
-   components in components/redesign, so changes here never touch the live landing page. Content
-   (dates, contests, questions, photos) stays shared through lib/. Kept out of search results. */
+/* The redesign, which is now also the landing page (/). Kept at this address so links shared
+   while it was being built still work. Out of search results; / is the canonical page. */
 export const metadata: Metadata = {
   title: "BitFest 4.0 · 4th KUET CSE National Fest",
   description: festDescription,

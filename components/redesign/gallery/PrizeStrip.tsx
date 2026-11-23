@@ -14,9 +14,12 @@ const ROWS = [P.slice(0, Math.ceil(P.length / 2)), P.slice(Math.ceil(P.length / 
 
 type Lenis = { stop: () => void; start: () => void };
 
-export default function PrizeStrip() {
+export default function PrizeStrip({ variant = "gallery" }: { variant?: "gallery" | "hero" }) {
+  const hero = variant === "hero";
+  // In the hero it is one row of every photo, on screen from the first moment.
+  const rows = hero ? [P] : ROWS;
   const root = useRef<HTMLDivElement>(null);
-  const [near, setNear] = useState(false);
+  const [near, setNear] = useState(hero);
   const [onScreen, setOnScreen] = useState(false);
   const [open, setOpen] = useState<number | null>(null);
 
@@ -33,8 +36,8 @@ export default function PrizeStrip() {
 
   return (
     <>
-      <div ref={root} className="ps-strip flex flex-col gap-3 md:gap-4" data-run={onScreen && open === null}>
-        {ROWS.map((row, r) => (
+      <div ref={root} className={`ps-strip flex flex-col gap-3 md:gap-4 ${hero ? "ps-hero" : ""}`} data-run={onScreen && open === null}>
+        {rows.map((row, r) => (
           <div key={r} className="overflow-hidden">
             <ul className={`ps-row ${r ? "ps-right" : "ps-left"}`}>
               {/* The row twice over, so the drift loops without a seam. */}
@@ -53,7 +56,7 @@ export default function PrizeStrip() {
                     >
                       {near && (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={p.src} srcSet={`${p.small} 400w, ${p.src} 680w`} sizes="(max-width: 767px) 220px, 340px" alt="" draggable={false} decoding="async" className="h-full w-full object-cover" />
+                        <img src={p.src} srcSet={`${p.small} 400w, ${p.src} 680w`} sizes={hero ? "180px" : "(max-width: 767px) 220px, 340px"} alt="" draggable={false} decoding="async" className="h-full w-full object-cover" />
                       )}
                     </button>
                     <span className="lx lx-rim z-[2]" />

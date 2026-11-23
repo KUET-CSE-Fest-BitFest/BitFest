@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import HomePage from "@/components/home/HomePage";
-import HeroPinout from "@/components/home/heroes/HeroPinout";
+import HomePage from "@/components/redesign/HomePage";
+import HeroPinout from "@/components/redesign/heroes/HeroPinout";
 import { CONTEST_PAGES_LIVE, events, festDescription } from "@/lib/fest";
 
 const SITE = "https://kuetbitfest2027.com";
@@ -46,12 +46,14 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-// Version R2 · Pinout, lit. The other version (R4 · Up close) is at /r4.
+// The landing page: the redesign (slate blue and green, chip hero), from components/redesign.
+// Backups, kept out of search results: /classic (the first, orange landing page), /redesign/centre
+// (the wide-panel hero) and /r4. .rd-theme switches on the redesign's colours; it adds no box.
 export default function Home() {
   return (
-    <>
+    <div className="rd-theme contents">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(festJsonLd) }} />
       <HomePage hero={<HeroPinout glow="orbit" seat="board" lid="live" />} />
-    </>
+    </div>
   );
 }

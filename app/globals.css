@@ -993,3 +993,40 @@ button:hover > .faq-toggle[data-on="false"] { color: var(--color-ink); box-shado
 /* Redesign lids: the shared black outline and contact shadow (made for a near-black page) read as a
    dark stroke on slate blue; use a faint light hairline and a soft drop shadow instead. */
 :root:has(.rd-theme) .lidx { box-shadow: 0 0 0 1px color-mix(in oklab, var(--color-rim) 9%, transparent), 0 20px 44px -28px rgba(4, 10, 22, 0.55); }
+
+/* Redesign: the page's last 220px fade out, so it leaves the footer (revealed underneath it, 768px and
+   up) with no hard edge. */
+@media (min-width: 768px) {
+  .rd-main { -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 220px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 220px), transparent); }
+}
+
+/* Hero prize-night strip: one row of small tiles along the foot of the hero. The chip gives up the
+   height. */
+.ps-hero .ps-tile { height: 112px; border-radius: 12px; }
+@media (min-width: 1024px) {
+  .ps-hero .ps-tile { height: 128px; }
+  :root:has(.rd-theme) .chip { width: min(38vw, calc(min(500px, (100svh - 540px) * 0.86) * 1.1)); }
+}
+.ps-hero .ps-row { animation-duration: 120s; }
+
+/* TEMPORARY · options (?nav=panel|spine, ?box=flip|ring, ?frame=bezel|mount) */
+@media (min-width: 1024px) {
+  :root[data-nav] header.fixed { display: none; }
+  :root[data-nav] .rd-main, :root[data-nav] footer.footer-reveal { margin-left: 284px; }
+  :root[data-nav] #hero { padding-top: 32px; }
+}
+.nb-flip .nb-cube { animation: nb-turn 9s cubic-bezier(0.7, 0, 0.2, 1) infinite; }
+@keyframes nb-turn { 0%, 28% { transform: rotateX(0deg); } 33%, 61% { transform: rotateX(120deg); } 66%, 94% { transform: rotateX(240deg); } 100% { transform: rotateX(360deg); } }
+@property --nb-a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.nb-ring { background: conic-gradient(from var(--nb-a), transparent 0deg, var(--color-orange) 50deg, transparent 110deg, transparent 360deg), color-mix(in oklab, var(--color-rim) 16%, transparent); animation: nb-spin 4s linear infinite; }
+@keyframes nb-spin { to { --nb-a: 360deg; } }
+.sp-signal { box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-orange) 22%, transparent), 0 0 14px var(--color-orange); }
+@media (prefers-reduced-motion: reduce) { .nb-flip .nb-cube, .nb-ring { animation: none; } }
+/* Frames. bezel: the photo sits inside a lid-coloured edge with the rim light. mount: a hairline
+   inset over the photo, like a mounted print. */
+:root[data-frame="bezel"] .ps-tile { padding: 5px; background: var(--rd-lid); }
+:root[data-frame="bezel"] .ps-tile > button { inset: 5px; overflow: hidden; border-radius: 8px; }
+:root[data-frame="bezel"] .ts-slide img { inset: 10px; width: calc(100% - 20px); height: calc(100% - 20px); border-radius: 12px; }
+:root[data-frame="bezel"] .ts-shade { inset: auto 10px 10px 10px; border-radius: 0 0 12px 12px; }
+:root[data-frame="mount"] .ps-tile::after, :root[data-frame="mount"] .ts-slide::after { content: ""; position: absolute; inset: 7px; z-index: 3; pointer-events: none; border: 1px solid color-mix(in oklab, var(--color-cream-hi) 38%, transparent); border-radius: 8px; }
+:root[data-frame="mount"] .ts-slide::after { inset: 16px; border-radius: 12px; }
