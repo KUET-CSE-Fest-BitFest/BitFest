@@ -1077,15 +1077,15 @@ button:hover > .faq-toggle[data-on="false"] { color: var(--color-ink); box-shado
    top edge, a faint glass sheen, and its label inside. */
 .ps-cap { display: none; }
 :root:has(.rd-theme) .ps-hero .ps-tile { padding: 0; border-radius: 12px; background: var(--rd-lid); box-shadow: inset 0 0 0 1px var(--color-line-2), inset 0 0 0 7px var(--rd-lid), inset 0 0 0 8px color-mix(in oklab, var(--color-rim) 12%, transparent), 0 18px 34px -22px rgba(2,8,18,0.95); }
-:root:has(.rd-theme) .ps-hero .ps-tile > button { inset: 8px; border-radius: 6px; box-shadow: inset 0 14px 20px -10px rgba(2,6,13,0.8); }
+:root:has(.rd-theme) .ps-hero .ps-tile > button { inset: 8px; border-radius: 6px; box-shadow: inset 0 14px 20px -10px rgba(2,6,13,0.8), 0 0 0 6px var(--rd-lid); }
 :root:has(.rd-theme) .ps-hero .ps-tile > button { z-index: 1; }
 /* A short arc of green light travels slowly round each case, in the 8px between the case and the photo.
    It is one conic gradient turned by a transform (no repaint), each case starting at a different point,
    paused with the strip when off screen. */
-:root:has(.rd-theme) .ps-hero .ps-tile::before { content: ""; position: absolute; z-index: 0; left: 50%; top: 50%; width: 170%; aspect-ratio: 1; translate: -50% -50%; background: conic-gradient(from 0deg, transparent 0deg 292deg, color-mix(in oklab, var(--lt3) 25%, transparent) 318deg, var(--lt2) 344deg, var(--lt0) 352deg, transparent 360deg); filter: blur(3px); animation: ps-orbit 11s linear infinite; will-change: transform; pointer-events: none; }
-:root:has(.rd-theme) .ps-hero .ps-tile:nth-child(4n+2)::before { animation-delay: -2.7s; }
-:root:has(.rd-theme) .ps-hero .ps-tile:nth-child(4n+3)::before { animation-delay: -5.5s; }
-:root:has(.rd-theme) .ps-hero .ps-tile:nth-child(4n)::before { animation-delay: -8.2s; }
+:root:has(.rd-theme) .ps-hero .ps-tile::before { content: ""; position: absolute; z-index: 0; left: 50%; top: 50%; width: 170%; aspect-ratio: 1; translate: -50% -50%; background: conic-gradient(from 0deg, transparent 0deg 318deg, color-mix(in oklab, var(--lt3) 20%, transparent) 336deg, color-mix(in oklab, var(--lt2) 80%, transparent) 352deg, transparent 358deg); opacity: 0.75; filter: blur(1px); animation: ps-orbit 16s linear infinite; will-change: transform; pointer-events: none; }
+:root:has(.rd-theme) .ps-hero .ps-tile:nth-child(4n+2)::before { animation-delay: -4s; }
+:root:has(.rd-theme) .ps-hero .ps-tile:nth-child(4n+3)::before { animation-delay: -8s; }
+:root:has(.rd-theme) .ps-hero .ps-tile:nth-child(4n)::before { animation-delay: -12s; }
 :root:has(.rd-theme) .ps-hero [data-run="false"] .ps-tile::before, :root:has(.rd-theme) .ps-hero.ps-strip[data-run="false"] .ps-tile::before { animation-play-state: paused; }
 @keyframes ps-orbit { to { rotate: 360deg; } }
 @media (max-width: 767px) { :root:has(.rd-theme) .ps-hero .ps-tile::before { filter: none; } }
