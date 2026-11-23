@@ -1077,3 +1077,12 @@ button:hover > .faq-toggle[data-on="false"] { color: var(--color-ink); box-shado
 /* glass: a frosted edge with a light hairline. */
 :root[data-frame="glass"] .ps-hero .ps-tile { padding: 0; background: rgba(219, 231, 238, 0.07); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: inset 0 0 0 1px rgba(219, 231, 238, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 18px 34px -22px rgba(2, 8, 18, 0.9); }
 :root[data-frame="glass"] .ps-hero .ps-tile > button { inset: 7px; border-radius: 8px; box-shadow: 0 0 0 1px rgba(2, 8, 18, 0.6); }
+
+/* Nav: the fest's full name beside the logo, a small lit box with the name running through it. */
+.name-ticker { position: relative; width: 196px; height: 34px; align-items: center; overflow: hidden; border-radius: 9px; border: 1px solid color-mix(in oklab, var(--color-orange) 28%, transparent); background: color-mix(in oklab, var(--rd-lid) 80%, transparent); box-shadow: inset 0 1px 0 rgba(240,247,250,0.06), 0 0 18px -6px color-mix(in oklab, var(--color-orange) 45%, transparent); padding: 0 2px; }
+.name-ticker-win { display: block; width: 100%; overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.name-ticker-row { display: flex; width: max-content; animation: name-ticker 14s linear infinite; }
+.name-ticker-row > span { display: inline-flex; align-items: center; gap: 14px; padding-right: 14px; white-space: nowrap; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-cream-hi); }
+.name-ticker-row i { width: 5px; height: 5px; border-radius: 999px; background: var(--color-orange); box-shadow: 0 0 8px var(--color-orange); }
+@keyframes name-ticker { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .name-ticker-row { animation: none; } }

@@ -77,9 +77,16 @@ export default function HomeNav({ links = HOME_LINKS, sub, cta = { href: "#sched
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${open ? "border-b border-line bg-bg" : solid ? "border-b border-line bg-bg/95" : "border-b border-transparent"}`}>
       <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-6 md:px-14">
-        <a href="/" aria-label={`${fest.name} ${fest.year} home`} className="flex items-center gap-3">
+        <a href="/" aria-label={`${fest.name} ${fest.year}, KUET CSE Innovation Fest, home`} className="flex items-center gap-3">
           <BitfestLogo />
-          {sub && <span className="hidden text-[15px] font-medium text-muted xl:inline">{sub}</span>}
+          {/* The fest's full name in a small box beside the logo, running as a ticker. */}
+          <span aria-hidden className="name-ticker hidden sm:flex">
+            <span className="name-ticker-win">
+              <span className="name-ticker-row">
+                {Array.from({ length: 4 }, (_, i) => <span key={i}>KUET CSE Innovation Fest<i /></span>)}
+              </span>
+            </span>
+          </span>
         </a>
         <nav aria-label="Sections" className="hidden items-center gap-8 text-[15px] font-medium lg:flex">
           <EventsMenu />

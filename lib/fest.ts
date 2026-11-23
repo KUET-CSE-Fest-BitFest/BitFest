@@ -8,7 +8,7 @@ export const fest = {
   year: "4.0",
   edition: "4th KUET CSE National Fest",
   kicker: "4th KUET CSE National Fest",
-  motto: "AI for Mankind, Society and the SDGs",
+  motto: "AI for Mankind, Society and the Sustainable Development Goals",
   blurb: "Ten national competitions in programming, AI, data science, research, robotics, innovation, cybersecurity, business and esports. Two days on the KUET campus, Khulna.",
   dates: "5–6 February 2027",
   venue: "KUET campus, Khulna",

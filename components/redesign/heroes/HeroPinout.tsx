@@ -190,14 +190,12 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                   <LidLight kind={lid} />
                 )}
                 {/* 1 · The main title in the middle. 2 · The prize pool along the foot of the lid. */}
-                <h1 className="relative z-[4] whitespace-nowrap text-[11.5cqi] font-semibold leading-[0.98] tracking-[-0.04em]">
-                  <span className="lx-ink-warm">KUET CSE</span>
-                  <br />
-                  <span className="lx-ink-warm">Innovation Fest</span>
+                <h1 className="relative z-[4] whitespace-nowrap text-[17cqi] font-semibold leading-[0.98] tracking-[-0.045em]">
+                  <span className="lx-ink-warm">{fest.name} {fest.year}</span>
                 </h1>
                 <p className="absolute inset-x-0 bottom-[7%] z-[4] whitespace-nowrap text-[5.4cqi] font-medium tracking-[-0.01em] text-cream/85 [filter:drop-shadow(0_2px_6px_rgba(3,10,20,0.9))_drop-shadow(0_0_18px_rgba(3,10,20,0.65))]"><PoolOdometer value={`${fest.prizePool} BDT`} className="text-[1.3em] font-semibold tracking-[-0.025em]" /> prize pool</p>
-                {/* The edition heads the lid. */}
-                <p className="absolute inset-x-0 top-[7%] z-[4] text-[13px] font-medium tracking-[-0.005em] text-cream/85 [text-shadow:0_1px_10px_rgba(0,0,0,0.35)] lg:text-[clamp(14px,1.15vw,18px)]">{fest.name} {fest.year}</p>
+                {/* The dates head the lid. */}
+                <p className="absolute inset-x-0 top-[7%] z-[4] text-[13px] font-medium tracking-[-0.005em] text-cream/85 [text-shadow:0_1px_10px_rgba(0,0,0,0.35)] lg:text-[clamp(14px,1.15vw,18px)]">{fest.dates}</p>
               </div>
             ) : (
               <>
