@@ -109,7 +109,7 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
 
         <div className="relative my-6 flex flex-1 flex-col items-center justify-center gap-6 lg:my-4 lg:gap-7">
           {/* 3 · The motto, above the chip in the accent. */}
-          <p className="hero-in rd-motto relative z-[5] text-balance text-center text-[clamp(16px,4.6vw,19px)] font-semibold leading-[1.3] tracking-[-0.015em] lg:text-[clamp(17px,1.4vw,22px)]" style={{ animationDelay: "0.3s" }}>{fest.motto}</p>
+          <p className="hero-in rd-motto relative z-[5] text-balance text-center text-[clamp(17px,5vw,21px)] font-semibold leading-[1.25] tracking-[-0.02em] lg:text-[clamp(22px,1.9vw,30px)]" style={{ animationDelay: "0.3s" }}>AI for Mankind, Society and the<br />Sustainable Development Goals</p>
           <div className="chip relative">
             {/* What the chip sits in, and the light. */}
             {seat === "socket" && (
