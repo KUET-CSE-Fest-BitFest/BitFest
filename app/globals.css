@@ -1134,7 +1134,7 @@ button:hover > .faq-toggle[data-on="false"] { color: var(--color-ink); box-shado
    own parts: the board ring and deep well (name box, side panel), the chip's corner pads, green light. */
 .hof { display: none; }
 :root[data-gf] .ts-slide .lx-rim, :root[data-gf] .ts-slide .ts-shade { display: none; }
-:root[data-gf] .ts-slide img { inset: var(--fr-t, 14px) var(--fr, 14px) var(--fr-b, 14px) var(--fr, 14px); width: auto; height: auto; }
+:root[data-gf] .ts-slide img { inset: var(--fr-t, 14px) var(--fr, 14px) var(--fr-b, 14px) var(--fr, 14px); width: calc(100% - 2 * var(--fr, 14px)); height: calc(100% - var(--fr-t, 14px) - var(--fr-b, 14px)); }
 :root[data-gf] .hof { display: block; position: absolute; inset: 0; z-index: 3; pointer-events: none; }
 :root[data-gf] .hof > * { display: none; }
 .hof-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--color-orange); box-shadow: 0 0 10px 1px var(--color-orange); }
