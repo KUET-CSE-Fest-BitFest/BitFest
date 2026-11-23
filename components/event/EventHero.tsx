@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { events, fest, pad2 } from "@/lib/fest";
+import { events, fest } from "@/lib/fest";
 import { Button } from "@/components/ui/Button";
 import BottomLight from "@/components/redesign/heroes/BottomLight";
 import { hasRulebook } from "@/lib/eventPages";
@@ -28,8 +28,7 @@ export default function EventHero({
   under?: ReactNode;
   badge?: ReactNode;
 }) {
-  const i = events.findIndex((e) => e.slug === slug);
-  const e = events[i];
+  const e = events.find((x) => x.slug === slug)!;
   // With a panel under the buttons the hero may grow past one screen on very short phones, so the
   // panel is never cut; otherwise it is exactly one screen tall.
   return (
@@ -51,7 +50,7 @@ export default function EventHero({
             (the scene's players are also kept out of this area). */}
         {scene && <div aria-hidden className="hero-copy-shade absolute inset-x-0 -bottom-[180px] -top-[120px] -z-10" />}
         <p className="hero-in text-[15px] font-medium text-soft">
-          <span className="text-orange">Pin {pad2(i + 1)}</span> · {e.kind} · {e.day} on the KUET campus
+          <span className="text-orange">{e.kind}</span> · {e.day} on the KUET campus
         </p>
         <h1 className="mt-4 text-[clamp(60px,min(9vw,13vh),140px)] font-semibold leading-[0.9] tracking-[-0.05em]">
           <span className="lx-ink-warm">{e.name}</span>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { events, fest, money, pad2 } from "@/lib/fest";
+import { events, fest, money } from "@/lib/fest";
 import ContestLink from "@/components/redesign/ui/ContestLink";
 import ChipGlow, { type GlowId } from "./ChipGlow";
 import WarmLight from "./rebrand/WarmLight";
@@ -238,8 +238,7 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                       className={`flex w-max flex-col ${left ? "items-end text-right" : "items-start"}`}
                     >
                       <span className="text-[12px] tabular-nums">
-                        <span className={on ? "text-orange" : "text-dim"}>Pin {pad2(i + 1)}</span>
-                        <span className="text-dim"> · {on ? `${e.day} · ${money(e.pool)} BDT` : e.kind}</span>
+                        <span className={on ? "text-orange" : "text-dim"}>{on ? `${e.day} · ${money(e.pool)} BDT` : e.kind}</span>
                       </span>
                       <span className={`text-[17px] font-semibold transition-colors ${on ? "text-orange" : "text-cream-hi"}`}>{e.name}</span>
                     </ContestLink>

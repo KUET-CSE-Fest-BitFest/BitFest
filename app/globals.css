@@ -1081,3 +1081,39 @@ button:hover > .faq-toggle[data-on="false"] { color: var(--color-ink); box-shado
 :root:has(.rd-theme) .ps-hero .ps-tile::after { content: ""; position: absolute; z-index: 3; top: 8px; left: 16%; right: 16%; height: 2px; border-radius: 2px; background: var(--color-accent-hi); box-shadow: 0 0 10px 2px color-mix(in oklab, var(--color-orange) 70%, transparent), 0 8px 26px 6px color-mix(in oklab, var(--color-orange) 22%, transparent); pointer-events: none; }
 :root:has(.rd-theme) .ps-hero .ps-tile::before { content: ""; position: absolute; z-index: 3; inset: 8px; border-radius: 6px; background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,0.09) 47%, transparent 56%); pointer-events: none; }
 :root:has(.rd-theme) .ps-hero .ps-cap { position: absolute; z-index: 4; left: 16px; bottom: 16px; display: flex; gap: 6px; align-items: center; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; color: var(--color-cream-hi); background: color-mix(in oklab, var(--rd-lid) 82%, transparent); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-rim) 18%, transparent); pointer-events: none; }
+
+/* Contest pages: the side panel (EventSidebar). A board ring round a deep well, like the name box; the
+   ten contests hang off a circuit trace as pins. */
+.es-ring { padding: 3px; border-radius: 22px; background: var(--rd-board); box-shadow: inset 0 0 0 1px var(--color-line-2), inset 0 1px 0 rgba(240,247,250,0.06); }
+.es-well { position: relative; overflow: hidden; border-radius: 19px; background: var(--rd-lid); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-orange) 14%, transparent), inset 0 2px 8px rgba(2,6,13,0.5); }
+.es-head { border-bottom: 1px solid var(--color-line); }
+.es-foot { border-top: 1px solid var(--color-line); }
+.es-scroll { scrollbar-width: thin; scrollbar-color: var(--color-line-2) transparent; overscroll-behavior: contain; }
+.es-rail::before { content: ""; position: absolute; left: 19px; top: 22px; bottom: 22px; width: 1px; background: var(--color-line-2); }
+.es-pin { transition: background-color 0.25s ease; }
+.es-pin:hover { background: color-mix(in oklab, var(--rd-sub1) 60%, transparent); }
+.es-pin[data-on="true"] { background: color-mix(in oklab, var(--color-orange) 9%, transparent); }
+.es-dot { position: absolute; left: 15px; top: 50%; width: 9px; height: 9px; translate: 0 -50%; border-radius: 50%; background: var(--rd-lid); box-shadow: 0 0 0 1.5px var(--color-line-2); transition: background-color 0.25s ease, box-shadow 0.25s ease; }
+.es-pin:hover .es-dot { box-shadow: 0 0 0 1.5px var(--color-orange); }
+.es-pin[data-on="true"] .es-dot { background: var(--color-orange); box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-orange) 25%, transparent), 0 0 12px 2px color-mix(in oklab, var(--color-orange) 60%, transparent); }
+.es-cta { display: flex; width: 100%; height: 48px; border-radius: 12px; font-size: 15px; }
+.es-cta .btn-label { flex: 1; justify-content: center; padding-left: 44px; }
+.es-cta .btn-cell { width: 44px; }
+.es-drawer { visibility: hidden; pointer-events: none; transition: visibility 0s linear 0.35s; }
+.es-drawer[data-open="true"] { visibility: visible; pointer-events: auto; transition-delay: 0s; }
+.es-drawer > button { opacity: 0; transition: opacity 0.3s ease; }
+.es-drawer[data-open="true"] > button { opacity: 1; }
+.es-drawer-panel { transform: translateX(calc(-100% - 16px)); transition: transform 0.35s cubic-bezier(0.2, 0.75, 0.2, 1); }
+.es-drawer[data-open="true"] .es-drawer-panel { transform: none; }
+@media (prefers-reduced-motion: reduce) { .es-drawer, .es-drawer > button, .es-drawer-panel { transition: none; } }
+
+/* Home hero: the green bottom light glows over the photo strip, not behind it. Screen blending keeps it
+   reading as light on the photos. */
+#hero .bottom-light:not(.is-contained) { z-index: 6; mix-blend-mode: screen; }
+/* The name ticker is all capitals: trim the line box to cap height so the letters sit in the true
+   middle of the box (without the trim, the empty descender space pushes them up). */
+.name-ticker-row > span { line-height: 1; text-box: trim-both cap alphabetic; }
+@supports not (text-box: trim-both cap alphabetic) { .name-ticker-row > span { padding-top: 0.12em; } }
+/* The name ticker inside the contest pages' side panel: the panel's full width, a little shorter. */
+.es-head .name-ticker { width: 100%; height: 40px; }
+.es-head .name-ticker-row > span { font-size: 13px; }
