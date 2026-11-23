@@ -23,12 +23,6 @@ export default function PrizeStrip({ variant = "gallery" }: { variant?: "gallery
   const [onScreen, setOnScreen] = useState(false);
   const [open, setOpen] = useState<number | null>(null);
 
-  // TEMPORARY ?frame= switch while choosing the hero strip's photo frames.
-  useEffect(() => {
-    const f = new URLSearchParams(location.search).get("frame");
-    if (f) document.documentElement.dataset.frame = f;
-  }, []);
-
   useEffect(() => {
     const el = root.current;
     if (!el) return;

@@ -74,12 +74,6 @@ export default function HomeNav({ links = HOME_LINKS, sub, cta = { href: "#sched
     return () => window.removeEventListener("scroll", on);
   }, []);
 
-  // TEMPORARY: ?tk=a|b|c picks the name box design while one is chosen.
-  useEffect(() => {
-    const tk = new URLSearchParams(window.location.search).get("tk");
-    if (tk) document.documentElement.dataset.tk = tk;
-  }, []);
-
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${open ? "border-b border-line bg-bg" : solid ? "border-b border-line bg-bg/95" : "border-b border-transparent"}`}>
       <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-6 md:px-14">
@@ -88,8 +82,6 @@ export default function HomeNav({ links = HOME_LINKS, sub, cta = { href: "#sched
           {/* The fest's full name in a small box beside the logo, running as a ticker. */}
           <span aria-hidden className="name-ticker hidden sm:flex">
             <span className="name-ticker-win">
-              <span className="tk-glow" />
-              <span className="tk-led" />
               <span className="tk-mask">
                 <span className="name-ticker-row">
                   {Array.from({ length: 4 }, (_, i) => <span key={i}>KUET CSE Innovation Fest<i /></span>)}
