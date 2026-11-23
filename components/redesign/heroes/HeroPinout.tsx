@@ -243,7 +243,7 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                         <span className={on ? "text-orange" : "text-dim"}>Pin {pad2(i + 1)}</span>
                         <span className="text-dim"> · {on ? `${e.day} · ${money(e.pool)} BDT` : e.kind}</span>
                       </span>
-                      <span className={`text-[17px] font-semibold transition-colors ${on ? "text-ink" : "text-muted"}`}>{e.name}</span>
+                      <span className={`text-[17px] font-semibold transition-colors ${on ? "text-orange" : "text-cream-hi"}`}>{e.name}</span>
                     </ContestLink>
                   </li>
                 );
