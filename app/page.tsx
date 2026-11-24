@@ -53,7 +53,7 @@ export default function Home() {
   return (
     <div className="rd-theme contents">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(festJsonLd) }} />
-      <HomePage nav="side" hero={<HeroPinout glow="orbit" seat="board" lid="live" />} />
+      <HomePage hero={<HeroPinout glow="orbit" seat="board" lid="live" />} />
     </div>
   );
 }
