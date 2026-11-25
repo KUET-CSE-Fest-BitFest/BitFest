@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: /
+Disallow: /r4
+
+Host: https://kuetbitfest2027.com
+Sitemap: https://kuetbitfest2027.com/sitemap.xml
