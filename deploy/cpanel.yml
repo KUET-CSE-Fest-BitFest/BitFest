@@ -1,8 +1,8 @@
 ---
 # Copied to the root of the `cpanel` branch as .cpanel.yml by .github/workflows/cpanel-build.yml.
 # cPanel runs these tasks on "Deploy HEAD Commit" (Git Version Control): the built site replaces
-# public_html, removed pages disappear, and cPanel's own folders are left alone.
+# public_html, removed pages disappear, and cPanel's own files (.well-known, cgi-bin, .user.ini) are left alone.
 deployment:
   tasks:
     - export DEPLOYPATH=/home/csefestkuet/public_html/
-    - /usr/bin/rsync -a --delete --exclude=.git --exclude=.cpanel.yml --exclude=.well-known --exclude=cgi-bin ./ $DEPLOYPATH
+    - /usr/bin/rsync -a --delete --exclude=.git --exclude=.cpanel.yml --exclude=.well-known --exclude=cgi-bin --exclude=.user.ini ./ $DEPLOYPATH
