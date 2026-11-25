@@ -2,5 +2,5 @@ User-Agent: *
 Allow: /
 Disallow: /r4
 
-Host: https://kuetbitfest2027.com
-Sitemap: https://kuetbitfest2027.com/sitemap.xml
+Host: https://csefest.kuet.ac.bd
+Sitemap: https://csefest.kuet.ac.bd/sitemap.xml
