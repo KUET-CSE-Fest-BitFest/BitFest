@@ -3,7 +3,7 @@ import HomePage from "@/components/redesign/HomePage";
 import HeroPinout from "@/components/redesign/heroes/HeroPinout";
 import { CONTEST_PAGES_LIVE, events, festDescription } from "@/lib/fest";
 
-const SITE = "https://kuetbitfest2027.com";
+const SITE = "https://csefest.kuet.ac.bd";
 const kuet = {
   "@type": "Place",
   name: "Khulna University of Engineering & Technology (KUET)",

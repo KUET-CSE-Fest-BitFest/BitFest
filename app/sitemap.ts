@@ -3,7 +3,7 @@ import { CONTEST_PAGES_LIVE, events } from "@/lib/fest";
 
 export const dynamic = "force-static";
 
-const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://kuetbitfest2027.com";
+const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://csefest.kuet.ac.bd";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

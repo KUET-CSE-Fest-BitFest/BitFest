@@ -10,7 +10,7 @@ const title = "BitFest 4.0 · 4th KUET CSE National Fest";
 const description = festDescription;
 
 // Social previews and canonicals need absolute URLs. NEXT_PUBLIC_SITE_URL overrides the production domain.
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://kuetbitfest2027.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://csefest.kuet.ac.bd";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

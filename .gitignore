@@ -6,4 +6,3 @@ next-env.d.ts
 .next-prod
 .DS_Store
 .env*
-.wrangler

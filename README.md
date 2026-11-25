@@ -31,15 +31,17 @@ npm run build && npm start
 
 Content comes from the BitFest 2027 sponsorship proposal (Department of CSE, KUET).
 
-## Deploy (Cloudflare)
+## Deploy (cPanel)
 
-The site is a static export (`output: "export"` → `out/`) served as a Cloudflare Worker with static assets
-(`wrangler.jsonc`), live at https://kuetbitfest2027.com.
+The site is a static export (`output: "export"` → `out/`) hosted on the BdREN cPanel account `csefestkuet`,
+live at https://csefest.kuet.ac.bd.
 
-```bash
-npm run deploy   # next build && wrangler deploy
-```
+1. Push to `main`. The **Build for cPanel** workflow (`.github/workflows/cpanel-build.yml`) builds the site and
+   commits the result to the `cpanel` branch (about 2 minutes). Never edit `cpanel` by hand.
+2. In cPanel → Git Version Control → `BitFest` → Manage → Pull or Deploy: **Update from Remote**, then
+   **Deploy HEAD Commit**. `.cpanel.yml` (from `deploy/cpanel.yml`) copies the build into `public_html`.
 
-With Workers Builds connected to the repo: build command `npm run build`, deploy command `npx wrangler deploy`.
+Server rules (clean URLs, 404 page, caching, compression) are in `public/.htaccess`, with longer cache times
+in `public/past/.htaccess`, `public/og/.htaccess` and the `_next/static/.htaccess` the workflow writes.
 SEO lives in `app/layout.tsx` (site-wide metadata, `metadataBase`), `app/robots.ts`, `app/sitemap.ts`, the
 JSON-LD in `app/page.tsx`, and each contest's `generateMetadata`. Set `NEXT_PUBLIC_SITE_URL` to change the domain.

@@ -1,0 +1,4 @@
+# Social preview cards: a day.
+<IfModule mod_headers.c>
+  Header set Cache-Control "public, max-age=86400"
+</IfModule>
