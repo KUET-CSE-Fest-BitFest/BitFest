@@ -1,0 +1,51 @@
+# Builds the static site on every push to main and commits the result to the `cpanel` branch.
+# cPanel (Git Version Control) pulls that branch and copies it into public_html; see README.
+name: Build for cPanel
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cpanel-build
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+      - run: npx next build
+
+      - name: Commit the build to the cpanel branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git fetch --depth=1 origin cpanel; then
+            git worktree add -B cpanel ../site FETCH_HEAD
+          else
+            git worktree add --detach ../site
+            git -C ../site checkout --orphan cpanel
+            git -C ../site rm -rfq .
+          fi
+          rsync -a --delete --exclude=.git out/ ../site/
+          cp deploy/cpanel.yml ../site/.cpanel.yml
+          cd ../site
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes in the build."
+            exit 0
+          fi
+          git commit -qm "Site build from ${GITHUB_SHA::7}"
+          git push origin cpanel
