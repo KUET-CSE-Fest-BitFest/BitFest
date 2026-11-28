@@ -18,7 +18,13 @@ const TOP = 18; // pins across top and bottom
 /** The contests in pin order, six down each side; AI-Driven Solutions (the longest name) closes the
     right side. The ICT Olympiad (for school students) has its own pin at the foot of the chip. */
 const BOTTOM = events.find((e) => e.slug === "ict-olympiad")!;
-const PINS = [...events.filter((e) => e !== BOTTOM && e.slug !== "ai-solutions"), events.find((e) => e.slug === "ai-solutions")!];
+const ORDER = [
+  "ai-hackathon", "imagine-ai", "project-showcase", "iupc", "3mt", "it-case", // left
+  "ctf", "datathon", "lfr", "soccer-bot", "gaming", "ai-solutions", // right
+];
+const PINS = ORDER.map((slug) => events.find((e) => e.slug === slug)!);
+/** Names set on two lines in the hero. */
+const PIN_NAME: Record<string, string> = { "it-case": "Tech Business Case\nCompetition" };
 const PER = Math.floor(PINS.length / 2); // contests down the left side; the rest go down the right
 const BI = PINS.length; // the bottom pin's index in the active cycle
 /** Where on its side contest i sits: each side spreads its own contests over the full height, so the
@@ -262,7 +268,7 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                       className={`relative flex w-max max-w-[250px] flex-col ${left ? "items-end text-right" : "items-start text-left"}`}
                     >
                       {/* The name, with its category and day under it; the lit pin turns both green. */}
-                      <span className={`text-balance text-[15px] font-semibold leading-[1.2] transition-colors ${on ? "text-orange" : "text-cream-hi"}`}>{e.name}</span>
+                      <span className={`whitespace-pre-line text-balance text-[15px] font-semibold leading-[1.2] transition-colors ${on ? "text-orange" : "text-cream-hi"}`}>{PIN_NAME[e.slug] ?? e.name}</span>
                       <span className={`pin-sub mt-0.5 whitespace-nowrap text-[12px] tabular-nums transition-colors ${on ? "text-orange/85" : "text-dim"}`}>{SHOW_PRIZES ? `${e.day} · ${money(e.pool)} BDT` : e.day === "Online" ? `${e.kind} · online` : `${e.kind} · ${e.day}`}</span>
                     </ContestLink>
                   </li>

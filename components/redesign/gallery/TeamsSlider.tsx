@@ -136,6 +136,7 @@ export default function TeamsSlider() {
                     sizes="(max-width: 767px) 88vw, min(68vw, 1000px)"
                     alt={p.caption}
                     draggable={false}
+                    loading="lazy"
                     decoding="async"
                     className="absolute inset-0 h-full w-full object-cover"
                   />

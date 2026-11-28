@@ -1,5 +1,5 @@
 import Image from "next/image";
-import logo from "./kuet-logo.png";
+import logo from "./kuet-logo.webp";
 
 /* KUET's crest (the university's logo, as supplied), shown after the BitFest logo. */
 export default function KuetLogo({ className = "h-[40px] w-auto sm:h-[50px]" }: { className?: string }) {
