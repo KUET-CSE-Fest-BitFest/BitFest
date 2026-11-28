@@ -13,7 +13,9 @@ export const fest = {
   blurb: "13 competitions in 8 categories: artificial intelligence, innovation, programming, research, cybersecurity, entrepreneurship, robotics and gaming. Online rounds in January, then two days of finals on the KUET campus, Khulna.",
   dates: "5–6 February 2027",
   venue: "KUET campus, Khulna",
-  prizePool: "810K",
+  /** The total shown on the hero chip. The final proposal totals BDT 8,10,000 across the 13
+      competitions; the organizers chose to show 700K on the site. */
+  prizePool: "700K",
   email: "bitfest@cse.kuet.ac.bd",
   phone: "+880 1723-593626",
   facebook: "https://www.facebook.com/BitFestCSE",

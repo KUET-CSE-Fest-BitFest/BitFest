@@ -81,7 +81,7 @@ export default function HomeNav({ links = HOME_LINKS, sub, cta = { href: "#sched
         <a href="/" aria-label={`${fest.name} ${fest.year}, KUET CSE Innovation Fest, home`} className="flex items-center gap-3">
           <BitfestLogo />
           {/* KUET's crest after the BitFest logo. */}
-          <KuetLogo className="h-[38px] w-auto sm:h-[48px]" />
+          <KuetLogo className="h-[32px] w-auto sm:h-[40px]" />
           {/* The fest's full name in a small box beside the logo, running as a ticker. */}
           <span aria-hidden className="name-ticker hidden sm:flex">
             <span className="name-ticker-win">

@@ -1009,7 +1009,7 @@ button:hover > .faq-toggle[data-on="false"] { color: var(--color-ink); box-shado
 .ps-hero .ps-tile .lx-rim { display: none; }
 @media (min-width: 1024px) {
   /* As tall as the screen allows under the chip (which keeps a 330px floor), up to 236px. */
-  :root:has(.rd-theme) .ps-hero .ps-tile { height: clamp(150px, calc(100svh - 550px), 236px); }
+  :root:has(.rd-theme) .ps-hero .ps-tile { height: clamp(140px, calc(100svh - 572px), 228px); }
   :root:has(.rd-theme) .chip { width: min(36vw, calc(min(480px, (100svh - 570px) * 0.86) * 1.1)); }
 }
 .ps-hero .ps-row { animation-duration: 120s; }

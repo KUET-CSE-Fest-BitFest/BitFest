@@ -15,9 +15,12 @@ import BottomLight from "./BottomLight";
 
 const SIDE = 20; // pins down each side
 const TOP = 18; // pins across top and bottom
-/** The contests in pin order: AI-Driven Solutions (the longest name) closes the right side. */
-const PINS = [...events.slice(1), events[0]];
+/** The contests in pin order, six down each side; AI-Driven Solutions (the longest name) closes the
+    right side. The ICT Olympiad (for school students) has its own pin at the foot of the chip. */
+const BOTTOM = events.find((e) => e.slug === "ict-olympiad")!;
+const PINS = [...events.filter((e) => e !== BOTTOM && e.slug !== "ai-solutions"), events.find((e) => e.slug === "ai-solutions")!];
 const PER = Math.floor(PINS.length / 2); // contests down the left side; the rest go down the right
+const BI = PINS.length; // the bottom pin's index in the active cycle
 /** Where on its side contest i sits: each side spreads its own contests over the full height, so the
     two columns start and end level even when one has a contest more (13 = 7 + 6). */
 const slot = (i: number) => {
@@ -88,7 +91,7 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
   const sec = useRef<HTMLElement>(null);
   // A hovered contest swings the live lid's light out toward that pin.
   const focus: [number, number] | null =
-    hovered === null ? null : [hovered < PER ? -0.25 : 1.25, (7 + (86 * slot(hovered)) / (SIDE - 1) - 10.5) / 79];
+    hovered === null ? null : hovered === BI ? [0.5, 1.3] : [hovered < PER ? -0.25 : 1.25, (7 + (86 * slot(hovered)) / (SIDE - 1) - 10.5) / 79];
 
   // Step through the pins; pause while a label is hovered or focused.
   useEffect(() => {
@@ -166,6 +169,14 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                 </div>
               );
             })}
+            {/* The ICT Olympiad's pin, straight down from the middle of the chip's foot. */}
+            <span
+              aria-hidden
+              className={`lead-in absolute left-1/2 z-[1] w-px -translate-x-1/2 origin-top transition-colors duration-300 ${active === BI ? "bg-orange" : "bg-white/15"}`}
+              style={{ top: "89.5%", height: "calc(10.5% + 8px)", animationDelay: "0.5s" }}
+            >
+              <span className={`absolute -bottom-[2px] left-1/2 h-[5px] w-[5px] -translate-x-1/2 rounded-full transition-[background-color,box-shadow] duration-300 ${active === BI ? "bg-orange shadow-[0_0_10px_color-mix(in_oklab,var(--color-orange)_80%,transparent)]" : "bg-white/30"}`} />
+            </span>
 
             {/* Substrate, via ring, capacitors. */}
             <div aria-hidden className={`absolute inset-0 z-[3] ${seat === "dissolve" ? "seat-dissolve-mask" : ""}`}>
@@ -204,12 +215,8 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                   <span className="lx-ink-warm">{fest.year}</span>
                 </h1>
                 <p className="absolute inset-x-0 bottom-[7%] z-[4] whitespace-nowrap text-[5.4cqi] font-medium tracking-[-0.01em] text-cream/85 [filter:drop-shadow(0_2px_6px_rgba(3,10,20,0.9))_drop-shadow(0_0_18px_rgba(3,10,20,0.65))]">
-                  {SHOW_PRIZES ? (
-                    <><PoolOdometer value={`${fest.prizePool} BDT`} className="text-[1.3em] font-semibold tracking-[-0.025em]" /> prize pool</>
-                  ) : (
-                    // Prize money is hidden for now: the lid's foot gives the size of the fest instead.
-                    <><span className="text-[1.3em] font-semibold tracking-[-0.025em] text-cream-hi">{events.length}</span> competitions · <span className="text-[1.3em] font-semibold tracking-[-0.025em] text-cream-hi">8</span> categories</>
-                  )}
+                  {/* The prize pool stays on the chip even while the rest of the prize money is hidden. */}
+                  <PoolOdometer value={`${fest.prizePool} BDT`} className="text-[1.3em] font-semibold tracking-[-0.025em]" /> prize pool
                 </p>
                 {/* The dates head the lid. */}
                 <p className="absolute inset-x-0 top-[7%] z-[4] text-[13px] font-medium tracking-[-0.005em] text-cream/85 [text-shadow:0_1px_10px_rgba(0,0,0,0.35)] lg:text-[clamp(14px,1.15vw,18px)]">{fest.dates}</p>
@@ -264,6 +271,19 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                   </li>
                 );
               })}
+              {/* The ICT Olympiad, under the chip. */}
+              <li className="hero-in absolute left-1/2 -translate-x-1/2" style={{ animationDelay: "0.8s", top: "calc(100% + 11px)" }}>
+                <ContestLink
+                  e={BOTTOM}
+                  onPointerEnter={() => pick(BI)}
+                  onPointerLeave={() => pick(-1)}
+                  onFocus={() => pick(BI)}
+                  onBlur={() => pick(-1)}
+                  className="relative flex w-max items-center text-center"
+                >
+                  <span className={`text-[17px] font-semibold leading-none transition-colors ${active === BI ? "text-orange" : "text-cream-hi"}`}>{BOTTOM.name}</span>
+                </ContestLink>
+              </li>
             </ul>
           </div>
         </div>
