@@ -14,7 +14,9 @@ import SoccerHero from "@/components/soccer/Hero";
 import CtfHero from "@/components/contests/CtfHero";
 import CaseHero from "@/components/contests/CaseHero";
 import GamingHero from "@/components/contests/GamingHero";
-import { plainHero } from "@/components/contests/PlainHero";
+import AiSolutionsHero from "@/components/contests/AiSolutionsHero";
+import ImagineAiHero from "@/components/contests/ImagineAiHero";
+import IctOlympiadHero from "@/components/contests/IctOlympiadHero";
 
 // Each contest's own live hero; the rest of the page is shared.
 const HEROES: Record<string, ComponentType> = {
@@ -28,9 +30,9 @@ const HEROES: Record<string, ComponentType> = {
   ctf: CtfHero,
   "it-case": CaseHero,
   gaming: GamingHero,
-  "ai-solutions": plainHero("ai-solutions"),
-  "imagine-ai": plainHero("imagine-ai"),
-  "ict-olympiad": plainHero("ict-olympiad"),
+  "ai-solutions": AiSolutionsHero,
+  "imagine-ai": ImagineAiHero,
+  "ict-olympiad": IctOlympiadHero,
 };
 
 /** Contests with their own social card in public/og; the rest use the festival's. */
