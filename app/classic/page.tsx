@@ -6,7 +6,7 @@ import { festDescription } from "@/lib/fest";
 /* Backup: the first landing page (orange on dark), as it was before the redesign became the home
    page. Built from components/home; kept out of search results. */
 export const metadata: Metadata = {
-  title: "BitFest 4.0 · 4th KUET CSE National Fest",
+  title: "BitFest 4.0 · 4th KUET CSE Innovation Festival",
   description: festDescription,
   robots: { index: false, follow: false },
 };

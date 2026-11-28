@@ -6,9 +6,10 @@ import EventPrizes from "@/components/event/EventPrizes";
 import EventFaq from "@/components/event/EventFaq";
 import EventCta from "@/components/event/EventCta";
 import { registerCta, type EventPage } from "@/lib/eventPages";
+import { SHOW_PRIZES } from "@/lib/fest";
 
 /* Every contest page, in the landing page's slate blue and green (.rd-theme): the side panel with every
-   contest and the home page's links (no top nav), the contest's own hero, About with the timeline, prize money, questions and the closing call, then the
+   contest and the home page's links (no top nav), the contest's own hero, About with the timeline, prize money (while SHOW_PRIZES), questions and the closing call, then the
    footer revealed underneath. */
 export default function EventPageLayout({ page, name, hero }: { page: EventPage; name: string; hero: ReactNode }) {
   return (
@@ -20,7 +21,8 @@ export default function EventPageLayout({ page, name, hero }: { page: EventPage;
         {/* The hero; contest links on the home page open these pages. */}
         <div id="hero">{hero}</div>
         <EventAbout page={page} />
-        <EventPrizes page={page} />
+        {/* Prize money is hidden for now (SHOW_PRIZES in lib/fest). */}
+        {SHOW_PRIZES && <EventPrizes page={page} />}
         <EventFaq name={name} faqs={page.faqs} />
         <section className="relative pb-24 pt-4 md:pb-32">
           <div className="mx-auto max-w-[1440px] px-6 md:px-14">

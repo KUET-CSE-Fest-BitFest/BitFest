@@ -45,7 +45,7 @@ function Scorecard() {
     <HeroPanel
       title="Jury scorecard"
       meta="Sample case"
-      label="A jury scorecard for the IT Business Case final: a team defends its case while four criteria are scored and totalled."
+      label="A jury scorecard for the Tech Business Case final: a team defends its case while four criteria are scored and totalled."
       right={<><LiveDot /><span>Q&amp;A</span><span className="tabular-nums text-cream-hi">{mm}</span></>}
     >
       <div ref={ref} key={k} className="grid gap-6 px-4 py-5 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-10 md:px-6 md:py-6">

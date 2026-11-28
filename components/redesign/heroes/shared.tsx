@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { fest } from "@/lib/fest";
+import { fest, SHOW_PRIZES, events } from "@/lib/fest";
 import { Button, TextLink } from "@/components/redesign/ui/Button";
 import { fitCanvas } from "@/lib/hooks";
 
@@ -16,8 +16,8 @@ export function HeroActions({ className = "", style }: { className?: string; sty
 
 export function FestFacts({ className = "" }: { className?: string }) {
   const items = [
-    ["Prize pool", `${fest.prizePool} BDT`],
-    ["Events", "8"],
+    ...(SHOW_PRIZES ? [["Prize pool", `${fest.prizePool} BDT`]] : []),
+    ["Competitions", String(events.length)],
     ["Dates", fest.dates.replace("February", "Feb")],
   ];
   return (

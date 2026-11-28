@@ -70,7 +70,7 @@ export default function HomeFooter() {
             <div className="flex flex-col gap-4">
               <span className="text-xl font-bold tracking-[0.04em]">BITFEST<span className="text-orange"> 4.0</span></span>
               <p className="max-w-[320px] leading-relaxed text-soft">
-                The 4th KUET CSE National Fest. Organised by the Department of Computer Science and Engineering, KUET, Khulna.
+                The 4th KUET CSE Innovation Festival. Organised by the Department of Computer Science and Engineering, KUET, Khulna.
               </p>
             </div>
             {cols.map((c) => (

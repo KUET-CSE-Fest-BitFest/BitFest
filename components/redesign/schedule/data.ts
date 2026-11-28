@@ -25,7 +25,7 @@ export const range = (m: Milestone) => {
 /** The milestone's own wording, unless it only repeats its kind. */
 export const detail = (m: Milestone) => (m.label === KIND_LABEL[m.kind] || m.label === "Registration" ? "" : m.label);
 
-/** Everything that touches a day (offset from 30 Nov). */
+/** Everything that touches a day (offset from 7 Dec). */
 export const onDay = (d: number) => ITEMS.filter((m) => d >= m.from && d <= (m.to ?? m.from));
 
 /** Days that start something, in order: the dates worth stepping through. */

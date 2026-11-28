@@ -50,7 +50,7 @@ export default function EventHero({
             (the scene's players are also kept out of this area). */}
         {scene && <div aria-hidden className="hero-copy-shade absolute inset-x-0 -bottom-[180px] -top-[120px] -z-10" />}
         <p className="hero-in text-[15px] font-medium text-soft">
-          <span className="text-orange">{e.kind}</span> · {e.day} on the KUET campus
+          <span className="text-orange">{e.kind}</span> · {e.day === "Online" ? "Online, entries due 25 January" : `${e.day} on the KUET campus`}
         </p>
         <h1 className="mt-4 text-[clamp(60px,min(9vw,13vh),140px)] font-semibold leading-[0.9] tracking-[-0.05em]">
           <span className="lx-ink-warm">{e.name}</span>

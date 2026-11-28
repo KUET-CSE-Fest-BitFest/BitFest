@@ -80,7 +80,7 @@ function Board() {
     const id = window.setInterval(() => {
       if (!visible || hoverRef.current !== null) return;
       tick.current++;
-      // The clock: the preliminary runs ten days (13–22 January); a day every eight submissions. After
+      // The clock: the preliminary runs ten days (20–29 January); a day every eight submissions. After
       // day 10 the round closes and a new run starts.
       if (tick.current % 8 === 0) {
         if (dayRef.current >= 10) {

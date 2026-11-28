@@ -1,10 +1,10 @@
-import { events, fest, money, prizes, schedule } from "@/lib/fest";
+import { events, isOnline, money, prizes, schedule, SHOW_PRIZES, fest } from "@/lib/fest";
 import ContestLink from "@/components/redesign/ui/ContestLink";
 import SectionHead from "../SectionHead";
 import { range } from "./data";
 
 /* 01 · Key dates, as one card per contest: what it is and the team rules, then the
-   final's date and the prize pool along the bottom. A card stays dark until pointed at; then its
+   final's date and, along the bottom, the prize pool (SHOW_PRIZES) or else how many teams it takes. A card stays dark until pointed at; then its
    top-right light fades in. Cards become links to the contest pages once those are public
    (ContestLink). */
 export default function ContestCards() {
@@ -12,7 +12,7 @@ export default function ContestCards() {
     <section id="schedule" className="relative scroll-mt-20 overflow-hidden py-20 md:py-36">
       <div aria-hidden className="hero-dots pointer-events-none absolute inset-0 opacity-60" />
       <div className="relative mx-auto flex max-w-[1440px] flex-col gap-12 px-6 md:gap-16 md:px-14">
-        <SectionHead n="01" label="Key dates" title="Every road ends on campus" sub={`Registration runs from 30 November to 12 January, and online rounds from 13 to 22 January. Every final is on the KUET campus on 5 and 6 February, with ${fest.prizePool} BDT in prizes.`} />
+        <SectionHead n="01" label="Key dates" title="Every road ends on campus" sub={`Registration runs from 7 December to 19 January, and online rounds from 20 to 29 January. Every onsite final is on the KUET campus on 5 and 6 February${SHOW_PRIZES ? `, with ${fest.prizePool} BDT in prizes` : ""}.`} />
 
         <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
           {events.map((e) => {
@@ -29,25 +29,37 @@ export default function ContestCards() {
                   <p className="relative z-[4] text-[13px] font-medium text-cream/75">
                     {e.kind}
                     {round && <span className="text-cream/55"> · Online round {range(round)}</span>}
+                    {isOnline(e) && <span className="text-cream/55"> · Online, entries due 25 Jan</span>}
                   </p>
                   {/* Name and team rules sit together; the date and prize line
                       closes every card at the same height. */}
                   <div className="relative z-[4] mt-auto flex flex-col gap-1 pt-10">
                     <span className="lx-ink-warm text-[clamp(26px,2.1vw,32px)] font-semibold leading-[1.02] tracking-[-0.04em]">{e.name}</span>
-                    <span className="mt-2 text-[13px] tabular-nums text-cream/60">Team {e.team} · {e.fee} · {e.onsite} onsite · {e.club}</span>
+                    <span className="mt-2 text-[13px] tabular-nums text-cream/60">{e.team === "1" ? "Individual" : /^\d/.test(e.team) ? `Team ${e.team}` : `Team of ${e.team.toLowerCase()}`} · {e.fee} · {e.club}</span>
                   </div>
                   <div className="relative z-[4] mt-5 grid grid-cols-2 gap-4 border-t border-rim/14 pt-4">
                     <span className="flex flex-col gap-1">
-                      <span className="text-[12px] font-medium text-cream/65">Final</span>
+                      <span className="text-[12px] font-medium text-cream/65">{isOnline(e) ? "Winners" : "Final"}</span>
                       <span className="whitespace-nowrap text-[24px] font-semibold leading-none tracking-[-0.035em] tabular-nums text-cream-hi">{final ? range(final) : "5–6 Feb"}</span>
                     </span>
+                    {SHOW_PRIZES ? (
                     <span className="flex flex-col gap-1">
-                      <span className="text-[12px] font-medium text-cream/65">Prize pool</span>
-                      <span className="whitespace-nowrap text-[24px] font-semibold leading-none tracking-[-0.035em] tabular-nums text-peach">
-                        {prize?.total ? money(`${prize.total}K`) : "TBA"}
-                        <span className="ml-1 text-[12px] font-medium tracking-normal text-cream/55">BDT</span>
+                        <span className="text-[12px] font-medium text-cream/65">Prize pool</span>
+                        <span className="whitespace-nowrap text-[24px] font-semibold leading-none tracking-[-0.035em] tabular-nums text-peach">
+                          {prize?.total ? money(`${prize.total}K`) : "TBA"}
+                          <span className="ml-1 text-[12px] font-medium tracking-normal text-cream/55">BDT</span>
+                        </span>
                       </span>
-                    </span>
+                    ) : (
+                      // Prize money is hidden for now: the second cell says how many it takes instead.
+                      <span className="flex flex-col gap-1">
+                        <span className="text-[12px] font-medium text-cream/65">{isOnline(e) ? "Entry" : "Onsite"}</span>
+                        <span className="whitespace-nowrap text-[24px] font-semibold leading-none tracking-[-0.035em] tabular-nums text-cream-hi">
+                          {e.onsite.split(" ")[0]}
+                          {e.onsite.includes(" ") && <span className="ml-1 text-[12px] font-medium tracking-normal text-cream/55">{e.onsite.split(" ").slice(1).join(" ")}</span>}
+                        </span>
+                      </span>
+                    )}
                   </div>
                 </ContestLink>
               </li>

@@ -45,7 +45,7 @@ function Problems() {
     while ((x -= w[p]) > 0) p++;
     const ok = Math.random() < EASE[p] * 1.15;
     const id = 18204 + n.current++;
-    if (ok) setSolved((s) => s.map((v, i) => (i === p ? Math.min(150, v + 1) : v)));
+    if (ok) setSolved((s) => s.map((v, i) => (i === p ? Math.min(140, v + 1) : v)));
     setFlash({ p, ok, n: id });
     setRuns((r) => [{ id, team: TEAMS[Math.floor(Math.random() * TEAMS.length)], p, ok, verdict: ok ? "Accepted" : WRONG[id % WRONG.length] }, ...r].slice(0, 3));
   }, ref);
@@ -53,7 +53,7 @@ function Problems() {
   return (
     <HeroPanel
       title="Main contest"
-      meta="150 teams"
+      meta="140 teams"
       label="The IUPC problem set during the main contest: twelve problems with the number of teams that solved each, a contest clock and the judge's latest verdicts."
       right={<><LiveDot /><span className="tabular-nums">{clock(left)}</span><span className="hidden sm:inline">left</span></>}
     >
@@ -72,7 +72,7 @@ function Problems() {
                   <span className={hit?.ok ? "text-orange" : "text-cream/85"}>{solved[i]}</span> solved
                 </span>
                 <span aria-hidden className="relative h-[2px] overflow-hidden rounded-full bg-[rgba(219,231,238,0.08)]">
-                  <span className="absolute inset-y-0 left-0 origin-left rounded-full transition-transform duration-500" style={{ width: "100%", transform: `scaleX(${solved[i] / 150})`, background: BALLOON[i], opacity: 0.8 }} />
+                  <span className="absolute inset-y-0 left-0 origin-left rounded-full transition-transform duration-500" style={{ width: "100%", transform: `scaleX(${solved[i] / 140})`, background: BALLOON[i], opacity: 0.8 }} />
                 </span>
               </li>
             );

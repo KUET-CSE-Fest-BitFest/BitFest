@@ -2,10 +2,11 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { pastPhotos as P } from "@/lib/pastPhotos";
+import { heroPhotos as P } from "@/lib/pastPhotos";
 import { pad2 } from "./GalleryHead";
 
-/* Prize night as an endless strip: two rows of photos drift on their own in opposite directions.
+/* BitFest 2025 as an endless strip (the opening, the stage and the Project Showcase; lib/pastPhotos
+   heroPhotos): two rows of photos drift on their own in opposite directions.
    Pointing at the strip stops both rows; clicking a photo opens it large (arrows and Esc work there).
    The rows are one CSS animation each (transform only); they rest while off screen, and stand still
    under reduced motion. Photos load once the strip comes near. */
@@ -16,8 +17,8 @@ type Lenis = { stop: () => void; start: () => void };
 
 export default function PrizeStrip({ variant = "gallery" }: { variant?: "gallery" | "hero" }) {
   const hero = variant === "hero";
-  // In the hero it is one row of every photo, on screen from the first moment.
-  const rows = hero ? [P] : ROWS;
+  // In the hero it is one row of every photo (twice, so it outruns wide screens), on screen from the first moment.
+  const rows = hero ? [[...P, ...P]] : ROWS;
   const root = useRef<HTMLDivElement>(null);
   const [near, setNear] = useState(hero);
   const [onScreen, setOnScreen] = useState(false);
@@ -59,7 +60,7 @@ export default function PrizeStrip({ variant = "gallery" }: { variant?: "gallery
                         <img src={p.src} srcSet={`${p.small} 400w, ${p.src} 680w`} sizes={hero ? "(max-width: 1023px) 220px, 320px" : "(max-width: 767px) 220px, 340px"} alt="" draggable={false} decoding="async" className="h-full w-full object-cover" />
                       )}
                     </button>
-                    {hero && <span aria-hidden className="ps-cap"><span className="tabular-nums text-orange">{pad2(idx + 1)}</span>Prize night · 2025</span>}
+                    {hero && <span aria-hidden className="ps-cap"><span className="tabular-nums text-orange">{pad2(idx + 1)}</span>{p.cap} · 2025</span>}
                     <span className="lx lx-rim z-[2]" />
                   </li>
                 );

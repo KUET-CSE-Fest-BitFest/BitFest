@@ -42,3 +42,14 @@ export const teamPhotos = TEAM_CAPTIONS.map((caption, i) => {
   const n = String(i + 1).padStart(2, "0");
   return { sm: `/past/teams-${n}-sm.webp`, md: `/past/teams-${n}-md.webp`, lg: `/past/teams-${n}-lg.webp`, caption };
 });
+
+// The home hero's photo strip: BitFest 2025's opening, stage and Project Showcase (chosen by the
+// organizers), cropped to 4:3 and saved as WebP at 400, 680 and 1440 wide. `cap` is the tile's label.
+export const heroPhotos = [
+  { src: "/past/hero-01.webp", large: "/past/hero-01-lg.webp", small: "/past/hero-01-sm.webp", w: 680, h: 510, smallW: 400, cap: "Opening ceremony", alt: "Guests release the BitFest 2025 balloons and banner at the opening" },
+  { src: "/past/hero-02.webp", large: "/past/hero-02-lg.webp", small: "/past/hero-02-sm.webp", w: 680, h: 510, smallW: 400, cap: "Project Showcase", alt: "Judges at a Project Showcase stall at BitFest 2025" },
+  { src: "/past/hero-03.webp", large: "/past/hero-03-lg.webp", small: "/past/hero-03-sm.webp", w: 680, h: 510, smallW: 400, cap: "Opening session", alt: "The opening session on stage at BitFest 2025" },
+  { src: "/past/hero-04.webp", large: "/past/hero-04-lg.webp", small: "/past/hero-04-sm.webp", w: 680, h: 510, smallW: 400, cap: "Opening session", alt: "A guest speaks at the BitFest 2025 opening session" },
+  { src: "/past/hero-05.webp", large: "/past/hero-05-lg.webp", small: "/past/hero-05-sm.webp", w: 680, h: 510, smallW: 400, cap: "Guests on stage", alt: "Guests on stage at the BitFest 2025 opening session" },
+  { src: "/past/hero-06.webp", large: "/past/hero-06-lg.webp", small: "/past/hero-06-sm.webp", w: 680, h: 510, smallW: 400, cap: "Opening session", alt: "A guest speaks at the BitFest 2025 opening session" },
+];

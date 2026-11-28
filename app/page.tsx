@@ -15,9 +15,9 @@ const organizer = { "@type": "Organization", name: "Department of CSE, KUET", ur
 const festJsonLd = {
   "@context": "https://schema.org",
   "@type": "Event",
-  name: "BitFest 4.0 · 4th KUET CSE National Fest",
+  name: "BitFest 4.0 · 4th KUET CSE Innovation Festival",
   description:
-    "Ten national competitions in programming, AI, data science, research, robotics, cybersecurity, business and esports at KUET, Khulna.",
+    "13 competitions in 8 categories: artificial intelligence, innovation, programming, research, cybersecurity, entrepreneurship, robotics and gaming, at KUET, Khulna.",
   startDate: "2027-02-05",
   endDate: "2027-02-06",
   eventStatus: "https://schema.org/EventScheduled",
@@ -30,18 +30,19 @@ const festJsonLd = {
     "@type": "Event",
     name: e.name,
     description: e.line,
-    startDate: e.day.startsWith("5 ") ? "2027-02-05" : "2027-02-06",
+    // The two online-only AI competitions: entries due 25 January, winners at the closing ceremony.
+    startDate: e.day === "Online" ? "2027-01-25" : e.day.startsWith("5 ") ? "2027-02-05" : "2027-02-06",
     eventStatus: "https://schema.org/EventScheduled",
-    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-    location: kuet,
-    image: [`${SITE}/og/${e.slug}.jpg`],
+    eventAttendanceMode: e.day === "Online" ? "https://schema.org/OnlineEventAttendanceMode" : "https://schema.org/OfflineEventAttendanceMode",
+    location: e.day === "Online" ? { "@type": "VirtualLocation", url: CONTEST_PAGES_LIVE ? `${SITE}/events/${e.slug}` : SITE } : kuet,
+    image: [`${SITE}/og/${["ai-solutions", "imagine-ai", "ict-olympiad"].includes(e.slug) ? "home" : e.slug}.jpg`],
     url: CONTEST_PAGES_LIVE ? `${SITE}/events/${e.slug}` : SITE,
     organizer,
   })),
 };
 
 export const metadata: Metadata = {
-  title: "BitFest 4.0 · 4th KUET CSE National Fest",
+  title: "BitFest 4.0 · 4th KUET CSE Innovation Festival",
   description: festDescription,
   alternates: { canonical: "/" },
 };

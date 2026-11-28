@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { events, fest, pad2 } from "@/lib/fest";
 import BitfestLogo from "@/components/redesign/ui/BitfestLogo";
+import KuetLogo from "@/components/redesign/ui/KuetLogo";
 import { Button } from "@/components/redesign/ui/Button";
 
 /* The site's navigation on the landing page and every contest page: one lit panel down the left, like the hero chip's board. The ten
@@ -30,7 +31,10 @@ function Panel({ slug, register, onPick }: { slug?: string; register: { href: st
     <div className="es-ring flex h-full w-full">
       <div className="es-well flex min-h-0 w-full flex-col">
         <a href="/" onClick={onPick} aria-label={`${fest.name} ${fest.year}, KUET CSE Innovation Fest, home`} className="es-head flex flex-col items-start gap-3 px-4 pb-3 pt-4">
-          <BitfestLogo className="ml-1 h-[50px] w-auto" />
+          <span className="ml-1 flex items-center gap-3">
+            <BitfestLogo className="h-[50px] w-auto" />
+            <KuetLogo className="h-[44px] w-auto" />
+          </span>
           {/* The landing page's name ticker, under the logo. */}
           <span aria-hidden className="name-ticker flex">
             <span className="name-ticker-win">
@@ -127,7 +131,7 @@ export default function EventSidebar({ slug, register }: { slug?: string; regist
       {/* Phones and tablets: a top bar; the menu slides the same panel in. */}
       <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-bg/95 lg:hidden">
         <div className="flex h-[72px] items-center justify-between px-6 md:px-14">
-          <a href="/" aria-label={`${fest.name} ${fest.year} home`}><BitfestLogo className="h-[46px] w-auto" /></a>
+          <a href="/" aria-label={`${fest.name} ${fest.year} home`} className="flex items-center gap-3"><BitfestLogo className="h-[46px] w-auto" /><KuetLogo className="h-[38px] w-auto" /></a>
           <div className="flex items-center gap-3">
             <Button href={register.href} size="sm" className="nav-btn">Register</Button>
             <button ref={menuBtn} type="button" aria-expanded={open} aria-controls="event-menu" aria-label="Contests and pages" onClick={() => setOpen(true)} className="grid h-11 w-11 place-items-center rounded-[10px] border border-line-2 text-ink">

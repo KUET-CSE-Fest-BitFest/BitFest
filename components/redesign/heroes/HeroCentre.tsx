@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { events, fest, pad2 } from "@/lib/fest";
+import { events, fest, pad2, SHOW_PRIZES } from "@/lib/fest";
 import ContestLink from "@/components/redesign/ui/ContestLink";
 import PoolOdometer from "./PoolOdometer";
 import BottomLight from "./BottomLight";
@@ -55,7 +55,7 @@ export default function HeroCentre() {
         <span aria-hidden className="lx lx-rim" />
         <div className="relative z-[4] flex flex-1 flex-col">
           <div className="flex flex-1 flex-col items-center justify-center gap-6 px-6 pt-8 text-center lg:gap-7">
-            <p className="text-[13px] font-medium text-cream/70 lg:text-[14px]">{fest.name} {fest.year} · ten national contests</p>
+            <p className="text-[13px] font-medium text-cream/70 lg:text-[14px]">{fest.name} {fest.year} · {events.length} competitions</p>
             {/* The full name in capitals on two lines; the motto sits right under it as the subtitle. */}
             <div className="flex flex-col items-center gap-4 lg:gap-5">
               <h1 className="whitespace-nowrap text-[clamp(30px,9.4vw,40px)] md:text-[clamp(40px,5.6vw,96px)] font-semibold uppercase leading-[0.95] tracking-[-0.035em]">
@@ -64,7 +64,7 @@ export default function HeroCentre() {
               <p className="rd-motto text-balance text-[clamp(16px,1.5vw,22px)] font-semibold tracking-[-0.015em]">{fest.motto}</p>
             </div>
             <p className="text-[clamp(20px,2.1vw,32px)] font-medium tracking-[-0.01em] text-cream/85 [filter:drop-shadow(0_2px_6px_rgba(3,10,20,0.9))]">
-              <PoolOdometer value={`${fest.prizePool} BDT`} className="text-[1.3em] font-semibold tracking-[-0.025em]" /> prize pool
+              {SHOW_PRIZES ? <><PoolOdometer value={`${fest.prizePool} BDT`} className="text-[1.3em] font-semibold tracking-[-0.025em]" /> prize pool</> : <><span className="text-[1.3em] font-semibold tracking-[-0.025em]">{events.length}</span> competitions · <span className="text-[1.3em] font-semibold tracking-[-0.025em]">8</span> categories</>}
             </p>
             <HeroActions className="mt-2 justify-center" />
           </div>

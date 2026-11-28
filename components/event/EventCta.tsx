@@ -12,7 +12,7 @@ export default function EventCta({ page }: { page: EventPage }) {
       </div>
       <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
         <RegisterButton href={page.registerHref} />
-        <TextLink href="/#schedule">All ten contests</TextLink>
+        <TextLink href="/#schedule">All competitions</TextLink>
       </div>
     </div>
   );

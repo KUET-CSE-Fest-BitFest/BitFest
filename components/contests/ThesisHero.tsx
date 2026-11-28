@@ -49,7 +49,7 @@ function Talk() {
     <HeroPanel
       title="Presentations"
       meta="One slide each"
-      label="A 3 Minute Thesis presentation: a single research slide and a three-minute countdown ring."
+      label="A Three-Minute Thesis presentation: a single research slide and a three-minute countdown ring."
       right={<><LiveDot /><span className="tabular-nums">Pair {String(k + 1).padStart(2, "0")} of 30</span></>}
     >
       <div ref={ref} className="grid items-center gap-5 px-4 py-5 sm:grid-cols-[minmax(0,1fr)_auto] md:gap-10 md:px-6 md:py-6">

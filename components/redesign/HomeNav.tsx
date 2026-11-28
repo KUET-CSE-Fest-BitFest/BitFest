@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import BitfestLogo from "@/components/redesign/ui/BitfestLogo";
+import KuetLogo from "@/components/redesign/ui/KuetLogo";
 import { events, fest } from "@/lib/fest";
 import ContestLink from "@/components/redesign/ui/ContestLink";
 import { Button } from "@/components/redesign/ui/Button";
@@ -14,7 +15,7 @@ const HOME_LINKS: NavLink[] = [
   { href: "#faq", label: "FAQ" },
 ];
 
-/** Events: one panel, the ten contests in two columns. Opens on hover or click, closes on leaving,
+/** Events: one panel, every contest in two columns. Opens on hover or click, closes on leaving,
     Escape or a click elsewhere; rows rise in one after another and light on hover. */
 function EventsMenu() {
   const [open, setOpen] = useState(false);
@@ -54,7 +55,7 @@ function EventsMenu() {
             ))}
           </ul>
           <div className="relative z-[4] mt-2 flex items-center justify-between border-t border-rim/12 px-4 pb-1 pt-3 text-[13px]">
-            <span className="text-muted">Ten contests · finals on campus, {fest.dates}</span>
+            <span className="text-muted">{events.length} competitions · finals on campus, {fest.dates}</span>
             <a href="/#schedule" onClick={() => setOpen(false)} className="font-medium text-orange transition-opacity hover:opacity-80">Key dates →</a>
           </div>
         </div>
@@ -79,6 +80,8 @@ export default function HomeNav({ links = HOME_LINKS, sub, cta = { href: "#sched
       <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-6 md:px-14">
         <a href="/" aria-label={`${fest.name} ${fest.year}, KUET CSE Innovation Fest, home`} className="flex items-center gap-3">
           <BitfestLogo />
+          {/* KUET's crest after the BitFest logo. */}
+          <KuetLogo className="h-[38px] w-auto sm:h-[48px]" />
           {/* The fest's full name in a small box beside the logo, running as a ticker. */}
           <span aria-hidden className="name-ticker hidden sm:flex">
             <span className="name-ticker-win">

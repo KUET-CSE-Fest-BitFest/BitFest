@@ -6,7 +6,7 @@ import { festDescription } from "@/lib/fest";
 /* The redesign, which is now also the landing page (/). Kept at this address so links shared
    while it was being built still work. Out of search results; / is the canonical page. */
 export const metadata: Metadata = {
-  title: "BitFest 4.0 · 4th KUET CSE National Fest",
+  title: "BitFest 4.0 · 4th KUET CSE Innovation Festival",
   description: festDescription,
   robots: { index: false, follow: false },
 };

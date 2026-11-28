@@ -14,6 +14,7 @@ import SoccerHero from "@/components/soccer/Hero";
 import CtfHero from "@/components/contests/CtfHero";
 import CaseHero from "@/components/contests/CaseHero";
 import GamingHero from "@/components/contests/GamingHero";
+import { plainHero } from "@/components/contests/PlainHero";
 
 // Each contest's own live hero; the rest of the page is shared.
 const HEROES: Record<string, ComponentType> = {
@@ -27,7 +28,13 @@ const HEROES: Record<string, ComponentType> = {
   ctf: CtfHero,
   "it-case": CaseHero,
   gaming: GamingHero,
+  "ai-solutions": plainHero("ai-solutions"),
+  "imagine-ai": plainHero("imagine-ai"),
+  "ict-olympiad": plainHero("ict-olympiad"),
 };
+
+/** Contests with their own social card in public/og; the rest use the festival's. */
+const OG = new Set(["iupc", "ai-hackathon", "datathon", "3mt", "project-showcase", "lfr", "soccer-bot", "ctf", "it-case", "gaming"]);
 
 export const dynamicParams = false;
 
@@ -42,7 +49,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!e || !page) return {};
   const title = `${e.name} · ${fest.name} ${fest.year}`;
   // Each contest has its own 1200x630 card in public/og (name, final date, prize money, team size).
-  const image = { url: `/og/${slug}.jpg`, width: 1200, height: 630, alt: `${e.name} at ${fest.name} ${fest.year}, ${fest.dates} at ${fest.venue}.` };
+  const image = { url: OG.has(slug) ? `/og/${slug}.jpg` : "/og/home.jpg", width: 1200, height: 630, alt: `${e.name} at ${fest.name} ${fest.year}, ${fest.dates} at ${fest.venue}.` };
   return {
     title,
     description: page.description,

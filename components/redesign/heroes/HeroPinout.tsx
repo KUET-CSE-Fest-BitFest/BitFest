@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { events, fest, money } from "@/lib/fest";
+import { events, fest, money, SHOW_PRIZES } from "@/lib/fest";
 import ContestLink from "@/components/redesign/ui/ContestLink";
 import ChipGlow, { type GlowId } from "./ChipGlow";
 import WarmLight from "./rebrand/WarmLight";
@@ -16,7 +16,13 @@ import BottomLight from "./BottomLight";
 const SIDE = 20; // pins down each side
 const TOP = 18; // pins across top and bottom
 const PER = Math.ceil(events.length / 2); // contests down each side
-const EV_IDX = Array.from({ length: PER }, (_, k) => 1.5 + (k * 16) / (PER - 1)); // where on the side each one sits
+/** Where on its side contest i sits: each side spreads its own contests over the full height, so the
+    two columns start and end level even when one has a contest more (13 = 7 + 6). */
+const slot = (i: number) => {
+  const left = i < PER;
+  const count = left ? PER : events.length - PER;
+  return 0.5 + ((left ? i : i - PER) * 18) / Math.max(1, count - 1);
+};
 const yOf = (i: number) => `${7 + (86 * i) / (SIDE - 1)}%`;
 const xOf = (i: number) => `${8 + (84 * i) / (TOP - 1)}%`;
 
@@ -80,7 +86,7 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
   const sec = useRef<HTMLElement>(null);
   // A hovered contest swings the live lid's light out toward that pin.
   const focus: [number, number] | null =
-    hovered === null ? null : [hovered < PER ? -0.25 : 1.25, (7 + (86 * EV_IDX[hovered % PER]) / (SIDE - 1) - 10.5) / 79];
+    hovered === null ? null : [hovered < PER ? -0.25 : 1.25, (7 + (86 * slot(hovered)) / (SIDE - 1) - 10.5) / 79];
 
   // Step through the pins; pause while a label is hovered or focused.
   useEffect(() => {
@@ -109,7 +115,7 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
 
         <div className="relative my-6 flex flex-1 flex-col items-center justify-center gap-6 lg:my-4 lg:gap-7">
           {/* 3 · The motto, above the chip in the accent. */}
-          <p className="hero-in rd-motto relative z-[5] text-balance text-center text-[clamp(17px,5vw,21px)] font-semibold leading-[1.25] tracking-[-0.02em] lg:text-[clamp(22px,1.9vw,30px)]" style={{ animationDelay: "0.3s" }}>AI for Mankind, Society and the<br />Sustainable Development Goals</p>
+          <p className="hero-in rd-motto relative z-[5] text-balance text-center text-[clamp(17px,5vw,21px)] font-semibold leading-[1.25] tracking-[-0.02em] lg:text-[clamp(22px,1.9vw,30px)]" style={{ animationDelay: "0.3s" }}>AI for Mankind, Society and the<br />Sustainable Development</p>
           <div className="chip relative">
             {/* What the chip sits in, and the light. */}
             {seat === "socket" && (
@@ -141,7 +147,7 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                 dot. On phones the lines stay but the moving lights are left out. */}
             {events.map((e, ev) => {
               const left = ev < PER;
-              const y = yOf(EV_IDX[ev % PER]);
+              const y = yOf(slot(ev));
               const on = ev === active;
               const from = left ? { right: "calc(100% - var(--inset-x))" } : { left: "calc(100% - var(--inset-x))" };
               return (
@@ -195,7 +201,14 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                   <br />
                   <span className="lx-ink-warm">{fest.year}</span>
                 </h1>
-                <p className="absolute inset-x-0 bottom-[7%] z-[4] whitespace-nowrap text-[5.4cqi] font-medium tracking-[-0.01em] text-cream/85 [filter:drop-shadow(0_2px_6px_rgba(3,10,20,0.9))_drop-shadow(0_0_18px_rgba(3,10,20,0.65))]"><PoolOdometer value={`${fest.prizePool} BDT`} className="text-[1.3em] font-semibold tracking-[-0.025em]" /> prize pool</p>
+                <p className="absolute inset-x-0 bottom-[7%] z-[4] whitespace-nowrap text-[5.4cqi] font-medium tracking-[-0.01em] text-cream/85 [filter:drop-shadow(0_2px_6px_rgba(3,10,20,0.9))_drop-shadow(0_0_18px_rgba(3,10,20,0.65))]">
+                  {SHOW_PRIZES ? (
+                    <><PoolOdometer value={`${fest.prizePool} BDT`} className="text-[1.3em] font-semibold tracking-[-0.025em]" /> prize pool</>
+                  ) : (
+                    // Prize money is hidden for now: the lid's foot gives the size of the fest instead.
+                    <><span className="text-[1.3em] font-semibold tracking-[-0.025em] text-cream-hi">{events.length}</span> competitions · <span className="text-[1.3em] font-semibold tracking-[-0.025em] text-cream-hi">8</span> categories</>
+                  )}
+                </p>
                 {/* The dates head the lid. */}
                 <p className="absolute inset-x-0 top-[7%] z-[4] text-[13px] font-medium tracking-[-0.005em] text-cream/85 [text-shadow:0_1px_10px_rgba(0,0,0,0.35)] lg:text-[clamp(14px,1.15vw,18px)]">{fest.dates}</p>
               </div>
@@ -229,7 +242,7 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                   <li
                     key={e.slug}
                     className="hero-in absolute -translate-y-1/2"
-                    style={{ animationDelay: `${0.4 + (i % PER) * 0.06}s`, top: yOf(EV_IDX[i % PER]), ...(left ? { right: "calc(100% + var(--pin) + var(--lead) + 14px)" } : { left: "calc(100% + var(--pin) + var(--lead) + 14px)" }) }}
+                    style={{ animationDelay: `${0.4 + (i % PER) * 0.06}s`, top: yOf(slot(i)), ...(left ? { right: "calc(100% + var(--pin) + var(--lead) + 14px)" } : { left: "calc(100% + var(--pin) + var(--lead) + 14px)" }) }}
                   >
                     <ContestLink
                       e={e}
@@ -240,7 +253,7 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                       className={`flex w-max flex-col ${left ? "items-end text-right" : "items-start"}`}
                     >
                       <span className="text-[12px] tabular-nums">
-                        <span className={on ? "text-orange" : "text-dim"}>{on ? `${e.day} · ${money(e.pool)} BDT` : e.kind}</span>
+                        <span className={on ? "text-orange" : "text-dim"}>{on ? (SHOW_PRIZES ? `${e.day} · ${money(e.pool)} BDT` : e.day === "Online" ? "Online · entries due 25 Jan" : `${e.day} on campus`) : e.kind}</span>
                       </span>
                       <span className={`text-[17px] font-semibold transition-colors ${on ? "text-orange" : "text-cream-hi"}`}>{e.name}</span>
                     </ContestLink>
