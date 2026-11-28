@@ -263,7 +263,7 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                     >
                       {/* The name, with its category and day under it; the lit pin turns both green. */}
                       <span className={`text-balance text-[15px] font-semibold leading-[1.2] transition-colors ${on ? "text-orange" : "text-cream-hi"}`}>{e.name}</span>
-                      <span className={`mt-0.5 whitespace-nowrap text-[12px] tabular-nums transition-colors ${on ? "text-orange/85" : "text-dim"}`}>{SHOW_PRIZES ? `${e.day} · ${money(e.pool)} BDT` : e.day === "Online" ? `${e.kind} · online` : `${e.kind} · ${e.day}`}</span>
+                      <span className={`pin-sub mt-0.5 whitespace-nowrap text-[12px] tabular-nums transition-colors ${on ? "text-orange/85" : "text-dim"}`}>{SHOW_PRIZES ? `${e.day} · ${money(e.pool)} BDT` : e.day === "Online" ? `${e.kind} · online` : `${e.kind} · ${e.day}`}</span>
                     </ContestLink>
                   </li>
                 );
@@ -279,7 +279,7 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                   className="relative flex w-max flex-col items-center text-center"
                 >
                   <span className={`text-[15px] font-semibold leading-[1.2] transition-colors ${active === BI ? "text-orange" : "text-cream-hi"}`}>{BOTTOM.name}</span>
-                  <span className={`mt-0.5 whitespace-nowrap text-[12px] tabular-nums transition-colors ${active === BI ? "text-orange/85" : "text-dim"}`}>{BOTTOM.kind} · {BOTTOM.day} · school students</span>
+                  <span className={`pin-sub mt-0.5 whitespace-nowrap text-[12px] tabular-nums transition-colors ${active === BI ? "text-orange/85" : "text-dim"}`}>{BOTTOM.kind} · {BOTTOM.day} · school students</span>
                 </ContestLink>
               </li>
             </ul>
