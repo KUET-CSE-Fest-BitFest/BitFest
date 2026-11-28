@@ -118,9 +118,9 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
 
       <div className="relative mx-auto flex w-full max-w-[1332px] flex-1 flex-col">
 
-        <div className="relative my-6 flex flex-1 flex-col items-center justify-center gap-6 lg:my-4 lg:gap-7">
+        <div className="relative my-6 flex flex-1 flex-col items-center justify-center gap-6 lg:mb-10 lg:mt-0 lg:gap-5">
           {/* 3 · The motto, above the chip in the accent. */}
-          <p className="hero-in rd-motto relative z-[5] text-balance text-center text-[clamp(17px,5vw,21px)] font-semibold leading-[1.25] tracking-[-0.02em] lg:text-[clamp(22px,1.9vw,30px)]" style={{ animationDelay: "0.3s" }}>AI for Mankind, Society and the<br />Sustainable Development</p>
+          <p className="hero-in rd-motto relative z-[5] text-balance text-center text-[clamp(17px,5vw,21px)] font-semibold leading-[1.25] tracking-[-0.02em] lg:text-[clamp(19px,1.55vw,25px)]" style={{ animationDelay: "0.3s" }}>AI for Mankind, Society and the<br />Sustainable Development</p>
           <div className="chip relative">
             {/* What the chip sits in, and the light. */}
             {seat === "socket" && (
@@ -261,12 +261,9 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                       onBlur={() => pick(-1)}
                       className={`relative flex w-max flex-col ${left ? "items-end text-right" : "items-start"}`}
                     >
-                      {/* One name per pin, centred on its line; the lit pin shows its day (or category on
-                          hover) just above, without moving the name. */}
-                      <span className={`absolute bottom-full whitespace-nowrap pb-0.5 text-[12px] tabular-nums transition-opacity duration-300 ${left ? "right-0" : "left-0"} ${on ? "opacity-100" : "opacity-0"}`}>
-                        <span className="text-orange">{SHOW_PRIZES ? `${e.day} · ${money(e.pool)} BDT` : e.day === "Online" ? "Online · entries due 25 Jan" : `${e.kind} · ${e.day}`}</span>
-                      </span>
-                      <span className={`text-[17px] font-semibold transition-colors ${on ? "text-orange" : "text-cream-hi"}`}>{e.name}</span>
+                      {/* The name, with its category and day under it; the lit pin turns both green. */}
+                      <span className={`text-[15px] font-semibold leading-[1.2] transition-colors ${on ? "text-orange" : "text-cream-hi"}`}>{e.name}</span>
+                      <span className={`mt-0.5 whitespace-nowrap text-[12px] tabular-nums transition-colors ${on ? "text-orange/85" : "text-dim"}`}>{SHOW_PRIZES ? `${e.day} · ${money(e.pool)} BDT` : e.day === "Online" ? `${e.kind} · online` : `${e.kind} · ${e.day}`}</span>
                     </ContestLink>
                   </li>
                 );
@@ -279,9 +276,10 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                   onPointerLeave={() => pick(-1)}
                   onFocus={() => pick(BI)}
                   onBlur={() => pick(-1)}
-                  className="relative flex w-max items-center text-center"
+                  className="relative flex w-max flex-col items-center text-center"
                 >
-                  <span className={`text-[17px] font-semibold leading-none transition-colors ${active === BI ? "text-orange" : "text-cream-hi"}`}>{BOTTOM.name}</span>
+                  <span className={`text-[15px] font-semibold leading-[1.2] transition-colors ${active === BI ? "text-orange" : "text-cream-hi"}`}>{BOTTOM.name}</span>
+                  <span className={`mt-0.5 whitespace-nowrap text-[12px] tabular-nums transition-colors ${active === BI ? "text-orange/85" : "text-dim"}`}>{BOTTOM.kind} · {BOTTOM.day} · school students</span>
                 </ContestLink>
               </li>
             </ul>
