@@ -83,7 +83,9 @@ function Panel({ slug, register, onPick }: { slug?: string; register: { href: st
   );
 }
 
-export default function EventSidebar({ slug, register }: { slug?: string; register: { href: string; label: string } }) {
+/** `mobileOnly`: just the phone and tablet bar and its menu (the landing page keeps its own top nav on
+    wide screens). */
+export default function EventSidebar({ slug, register, mobileOnly = false }: { slug?: string; register: { href: string; label: string }; mobileOnly?: boolean }) {
   const [open, setOpen] = useState(false);
   const menuBtn = useRef<HTMLButtonElement>(null);
   const closeBtn = useRef<HTMLButtonElement>(null);
@@ -124,9 +126,11 @@ export default function EventSidebar({ slug, register }: { slug?: string; regist
   return (
     <>
       {/* Wide screens: the panel stays put down the left. */}
-      <aside className="es-side fixed bottom-4 left-4 top-4 z-50 hidden w-[272px] lg:flex">
-        <Panel slug={slug} register={register} />
-      </aside>
+      {!mobileOnly && (
+        <aside className="es-side fixed bottom-4 left-4 top-4 z-50 hidden w-[272px] lg:flex">
+          <Panel slug={slug} register={register} />
+        </aside>
+      )}
 
       {/* Phones and tablets: a top bar; the menu slides the same panel in. */}
       <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-bg/95 lg:hidden">

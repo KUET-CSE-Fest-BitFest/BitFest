@@ -14,7 +14,15 @@ export default function HomePage({ hero, nav = "top" }: { hero: ReactNode; nav?:
   const side = nav === "side";
   return (
     <>
-      {side ? <EventSidebar register={{ href: "#schedule", label: "Register" }} /> : <HomeNav />}
+      {side ? (
+        <EventSidebar register={{ href: "#schedule", label: "Register" }} />
+      ) : (
+        <>
+          {/* Wide screens: the top nav. Phones and tablets: the contest pages' bar and slide-in menu. */}
+          <div className="hidden lg:contents"><HomeNav /></div>
+          <EventSidebar mobileOnly register={{ href: "#schedule", label: "Register" }} />
+        </>
+      )}
       {/* Wide screens with the side panel: the page sits to its right. */}
       <div className={side ? "lg:pl-[304px]" : "contents"}>
       {/* The page sits above the footer, which it reveals as it scrolls away (see HomeFooter). */}
