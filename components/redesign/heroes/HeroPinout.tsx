@@ -15,12 +15,14 @@ import BottomLight from "./BottomLight";
 
 const SIDE = 20; // pins down each side
 const TOP = 18; // pins across top and bottom
-const PER = Math.ceil(events.length / 2); // contests down each side
+/** The contests in pin order: AI-Driven Solutions (the longest name) closes the right side. */
+const PINS = [...events.slice(1), events[0]];
+const PER = Math.floor(PINS.length / 2); // contests down the left side; the rest go down the right
 /** Where on its side contest i sits: each side spreads its own contests over the full height, so the
     two columns start and end level even when one has a contest more (13 = 7 + 6). */
 const slot = (i: number) => {
   const left = i < PER;
-  const count = left ? PER : events.length - PER;
+  const count = left ? PER : PINS.length - PER;
   return 0.5 + ((left ? i : i - PER) * 18) / Math.max(1, count - 1);
 };
 const yOf = (i: number) => `${7 + (86 * i) / (SIDE - 1)}%`;
@@ -145,7 +147,7 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                 signals start just outside the seat's frame line (12px out) and are clipped there, so a
                 light never travels across that line; each one fades out about 56px short of its pin's end
                 dot. On phones the lines stay but the moving lights are left out. */}
-            {events.map((e, ev) => {
+            {PINS.map((e, ev) => {
               const left = ev < PER;
               const y = yOf(slot(ev));
               const on = ev === active;
@@ -235,7 +237,7 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
 
             {/* Pin labels (desktop). */}
             <ul className="hidden lg:block">
-              {events.map((e, i) => {
+              {PINS.map((e, i) => {
                 const left = i < PER;
                 const on = active === i;
                 return (
@@ -250,10 +252,12 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                       onPointerLeave={() => pick(-1)}
                       onFocus={() => pick(i)}
                       onBlur={() => pick(-1)}
-                      className={`flex w-max flex-col ${left ? "items-end text-right" : "items-start"}`}
+                      className={`relative flex w-max flex-col ${left ? "items-end text-right" : "items-start"}`}
                     >
-                      <span className="text-[12px] tabular-nums">
-                        <span className={on ? "text-orange" : "text-dim"}>{on ? (SHOW_PRIZES ? `${e.day} · ${money(e.pool)} BDT` : e.day === "Online" ? "Online · entries due 25 Jan" : `${e.day} on campus`) : e.kind}</span>
+                      {/* One name per pin, centred on its line; the lit pin shows its day (or category on
+                          hover) just above, without moving the name. */}
+                      <span className={`absolute bottom-full whitespace-nowrap pb-0.5 text-[12px] tabular-nums transition-opacity duration-300 ${left ? "right-0" : "left-0"} ${on ? "opacity-100" : "opacity-0"}`}>
+                        <span className="text-orange">{SHOW_PRIZES ? `${e.day} · ${money(e.pool)} BDT` : e.day === "Online" ? "Online · entries due 25 Jan" : `${e.kind} · ${e.day}`}</span>
                       </span>
                       <span className={`text-[17px] font-semibold transition-colors ${on ? "text-orange" : "text-cream-hi"}`}>{e.name}</span>
                     </ContestLink>
