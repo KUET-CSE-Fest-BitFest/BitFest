@@ -268,7 +268,7 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                       className={`relative flex w-max max-w-[250px] flex-col ${left ? "items-end text-right" : "items-start text-left"}`}
                     >
                       {/* The name, with its category and day under it; the lit pin turns both green. */}
-                      <span className={`whitespace-pre-line text-balance text-[15px] font-semibold leading-[1.2] transition-colors ${on ? "text-orange" : "text-cream-hi"}`}>{PIN_NAME[e.slug] ?? e.name}</span>
+                      <span className={`pin-name whitespace-pre-line text-balance text-[15px] font-semibold leading-[1.2] transition-colors ${on ? "text-orange" : "text-cream-hi"}`}>{PIN_NAME[e.slug] ?? e.name}</span>
                       <span className={`pin-sub mt-0.5 whitespace-nowrap text-[12px] tabular-nums transition-colors ${on ? "text-orange/85" : "text-dim"}`}>{SHOW_PRIZES ? `${e.day} · ${money(e.pool)} BDT` : e.day === "Online" ? `${e.kind} · online` : `${e.kind} · ${e.day}`}</span>
                     </ContestLink>
                   </li>
@@ -284,7 +284,7 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                   onBlur={() => pick(-1)}
                   className="relative flex w-max flex-col items-center text-center"
                 >
-                  <span className={`text-[15px] font-semibold leading-[1.2] transition-colors ${active === BI ? "text-orange" : "text-cream-hi"}`}>{BOTTOM.name}</span>
+                  <span className={`pin-name text-[15px] font-semibold leading-[1.2] transition-colors ${active === BI ? "text-orange" : "text-cream-hi"}`}>{BOTTOM.name}</span>
                   <span className={`pin-sub mt-0.5 whitespace-nowrap text-[12px] tabular-nums transition-colors ${active === BI ? "text-orange/85" : "text-dim"}`}>{BOTTOM.kind} · {BOTTOM.day} · school students</span>
                 </ContestLink>
               </li>

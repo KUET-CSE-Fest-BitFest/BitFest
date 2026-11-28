@@ -1164,3 +1164,4 @@ button:hover > .faq-toggle[data-on="false"] { color: var(--color-ink); box-shado
 :root:has(.rd-theme) .ps-hero .ps-cap { white-space: nowrap; max-width: calc(100% - 24px); overflow: hidden; text-overflow: ellipsis; }
 /* Hero pins: the category and day line under each name shows only on screens wider than 1920px. */
 @media (max-width: 1920px) { .pin-sub { display: none; } }
+@media (min-width: 1921px) { .pin-name { font-size: 17px; } }
