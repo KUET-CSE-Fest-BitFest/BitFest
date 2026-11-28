@@ -172,8 +172,8 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
             {/* The ICT Olympiad's pin, straight down from the middle of the chip's foot. */}
             <span
               aria-hidden
-              className={`lead-in absolute left-1/2 z-[1] w-px -translate-x-1/2 origin-top transition-colors duration-300 ${active === BI ? "bg-orange" : "bg-white/15"}`}
-              style={{ top: "89.5%", height: "calc(10.5% + 8px)", animationDelay: "0.5s" }}
+              className={`lead-in absolute left-1/2 z-[4] w-px -translate-x-1/2 origin-top transition-colors duration-300 ${active === BI ? "bg-orange" : "bg-white/15"}`}
+              style={{ top: "100%", height: "24px", animationDelay: "0.5s" }}
             >
               <span className={`absolute -bottom-[2px] left-1/2 h-[5px] w-[5px] -translate-x-1/2 rounded-full transition-[background-color,box-shadow] duration-300 ${active === BI ? "bg-orange shadow-[0_0_10px_color-mix(in_oklab,var(--color-orange)_80%,transparent)]" : "bg-white/30"}`} />
             </span>
@@ -250,7 +250,7 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                 return (
                   <li
                     key={e.slug}
-                    className="hero-in absolute -translate-y-1/2"
+                    className="hero-in absolute -translate-y-[9px]"
                     style={{ animationDelay: `${0.4 + (i % PER) * 0.06}s`, top: yOf(slot(i)), ...(left ? { right: "calc(100% + var(--pin) + var(--lead) + 14px)" } : { left: "calc(100% + var(--pin) + var(--lead) + 14px)" }) }}
                   >
                     <ContestLink
@@ -259,17 +259,17 @@ export default function HeroPinout({ glow = "orbit", seat = "float", lid = "meta
                       onPointerLeave={() => pick(-1)}
                       onFocus={() => pick(i)}
                       onBlur={() => pick(-1)}
-                      className={`relative flex w-max flex-col ${left ? "items-end text-right" : "items-start"}`}
+                      className={`relative flex w-max max-w-[250px] flex-col ${left ? "items-end text-right" : "items-start text-left"}`}
                     >
                       {/* The name, with its category and day under it; the lit pin turns both green. */}
-                      <span className={`text-[15px] font-semibold leading-[1.2] transition-colors ${on ? "text-orange" : "text-cream-hi"}`}>{e.name}</span>
+                      <span className={`text-balance text-[15px] font-semibold leading-[1.2] transition-colors ${on ? "text-orange" : "text-cream-hi"}`}>{e.name}</span>
                       <span className={`mt-0.5 whitespace-nowrap text-[12px] tabular-nums transition-colors ${on ? "text-orange/85" : "text-dim"}`}>{SHOW_PRIZES ? `${e.day} · ${money(e.pool)} BDT` : e.day === "Online" ? `${e.kind} · online` : `${e.kind} · ${e.day}`}</span>
                     </ContestLink>
                   </li>
                 );
               })}
               {/* The ICT Olympiad, under the chip. */}
-              <li className="hero-in absolute left-1/2 -translate-x-1/2" style={{ animationDelay: "0.8s", top: "calc(100% + 11px)" }}>
+              <li className="hero-in absolute left-1/2 -translate-x-1/2" style={{ animationDelay: "0.8s", top: "calc(100% + 31px)" }}>
                 <ContestLink
                   e={BOTTOM}
                   onPointerEnter={() => pick(BI)}

@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionHead from "@/components/ui/SectionHead";
 import { useCountUp, useInView } from "@/lib/hooks";
 import type { EventPage } from "@/lib/eventPages";
-import { PRIZES_ANNOUNCED } from "@/lib/fest";
+import { PRIZES_ANNOUNCED, SHOW_PRIZES } from "@/lib/fest";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,6 +19,16 @@ const PLACES = ["Champion", "1st runner-up", "2nd runner-up"];
 function Total({ total, active }: { total: number; active: boolean }) {
   // "??" until prizes are announced (the count-up shows text as it is).
   const v = useCountUp(PRIZES_ANNOUNCED ? `${total}K` : "??", active, 1400);
+  // While the prize money is hidden (SHOW_PRIZES), the lid just says it is coming.
+  if (!SHOW_PRIZES)
+    return (
+      <li data-lid className="lidx relative flex min-h-[260px] flex-col justify-between gap-12 rounded-[18px] p-7 md:col-span-3 md:min-h-[320px] md:p-10">
+        <span className="podium-light lx lx-corner lx-tr lx-warm" style={{ width: "58%" }} />
+        <span className="lx lx-rim" />
+        <span className="relative z-[4] text-[13px] font-medium text-cream/80">Prize money</span>
+        <span className="lx-ink-warm relative z-[4] font-semibold leading-none tracking-[-0.05em] text-[clamp(56px,9vw,140px)]">Coming soon</span>
+      </li>
+    );
   return (
     <li data-lid className="lidx relative flex min-h-[300px] flex-col justify-between gap-12 rounded-[18px] p-7 md:col-span-3 md:min-h-[360px] md:p-10">
       <span className="podium-light lx lx-corner lx-tr lx-warm" style={{ width: "58%" }} />
@@ -84,13 +94,13 @@ export default function EventPrizes({ page }: { page: EventPage }) {
     <section id="prizes" className="relative scroll-mt-20 overflow-hidden py-20 md:py-36">
       <div aria-hidden className="hero-dots pointer-events-none absolute inset-0 opacity-50" />
       <div className="relative mx-auto flex max-w-[1440px] flex-col gap-16 px-6 md:px-14">
-        <SectionHead n="02" eyebrow="Prize money" title={page.prizes.places && PRIZES_ANNOUNCED ? `BDT ${page.prizes.total},000 in prizes` : "Cash prizes for the best teams"} sub={page.prizes.note} />
+        <SectionHead n="02" eyebrow="Prize money" title={page.prizes.places && PRIZES_ANNOUNCED ? `BDT ${page.prizes.total},000 in prizes` : "Cash prizes for the best teams"} sub={SHOW_PRIZES ? page.prizes.note : undefined} />
         <ol
           ref={(el) => { ref.current = el; listRef.current = el; }}
           data-in={arrived}
           className="podium grid gap-4 md:grid-cols-3 md:items-end"
         >
-          {page.prizes.places
+          {page.prizes.places && SHOW_PRIZES
             ? page.prizes.places.map((amount, i) => <Lid key={i} i={i} amount={amount} active={arrived} />)
             : <Total total={page.prizes.total} active={arrived} />}
         </ol>

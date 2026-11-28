@@ -38,10 +38,24 @@ const TEAM_CAPTIONS = [
   "Heads down on a problem set",
   "One more for the album",
 ];
-export const teamPhotos = TEAM_CAPTIONS.map((caption, i) => {
+// "From the last edition": the organizers' BitFest 2025 photos (opening, stage, robots, showcase,
+// hackathon) lead the slider, then the team photos. Cropped to 3:2, WebP at 640, 1080 and 1600 wide.
+const editionPhotos = [
+  { sm: "/past/edition-01-sm.webp", md: "/past/edition-01-md.webp", lg: "/past/edition-01-lg.webp", caption: "Guests release the balloons at the opening" },
+  { sm: "/past/edition-02-sm.webp", md: "/past/edition-02-md.webp", lg: "/past/edition-02-lg.webp", caption: "The opening session in the auditorium" },
+  { sm: "/past/edition-03-sm.webp", md: "/past/edition-03-md.webp", lg: "/past/edition-03-lg.webp", caption: "The opening outside the auditorium" },
+  { sm: "/past/edition-04-sm.webp", md: "/past/edition-04-md.webp", lg: "/past/edition-04-lg.webp", caption: "A Line Following Robot run on the track" },
+  { sm: "/past/edition-05-sm.webp", md: "/past/edition-05-md.webp", lg: "/past/edition-05-lg.webp", caption: "A team explains its project to the judges" },
+  { sm: "/past/edition-06-sm.webp", md: "/past/edition-06-md.webp", lg: "/past/edition-06-lg.webp", caption: "Guests on stage at the opening session" },
+  { sm: "/past/edition-07-sm.webp", md: "/past/edition-07-md.webp", lg: "/past/edition-07-lg.webp", caption: "A guest speaks at the opening session" },
+  { sm: "/past/edition-08-sm.webp", md: "/past/edition-08-md.webp", lg: "/past/edition-08-lg.webp", caption: "The hackathon room, heads down" },
+  { sm: "/past/edition-09-sm.webp", md: "/past/edition-09-md.webp", lg: "/past/edition-09-lg.webp", caption: "The opening session on stage" },
+];
+const teamsOnly = TEAM_CAPTIONS.map((caption, i) => {
   const n = String(i + 1).padStart(2, "0");
   return { sm: `/past/teams-${n}-sm.webp`, md: `/past/teams-${n}-md.webp`, lg: `/past/teams-${n}-lg.webp`, caption };
 });
+export const teamPhotos = [...editionPhotos, ...teamsOnly];
 
 // The home hero's photo strip: BitFest 2025's opening, stage and Project Showcase (chosen by the
 // organizers), cropped to 4:3 and saved as WebP at 400, 680 and 1440 wide. `cap` is the tile's label.

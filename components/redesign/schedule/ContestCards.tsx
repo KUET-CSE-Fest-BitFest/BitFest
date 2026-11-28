@@ -4,7 +4,7 @@ import SectionHead from "../SectionHead";
 import { range } from "./data";
 
 /* 01 · Key dates, as one card per contest: what it is and the team rules, then the
-   final's date and, along the bottom, the prize pool (SHOW_PRIZES) or else how many teams it takes. A card stays dark until pointed at; then its
+   final's date and, along the bottom, the prize pool (or "Coming soon" while SHOW_PRIZES is off). A card stays dark until pointed at; then its
    top-right light fades in. Cards become links to the contest pages once those are public
    (ContestLink). */
 export default function ContestCards() {
@@ -51,13 +51,10 @@ export default function ContestCards() {
                         </span>
                       </span>
                     ) : (
-                      // Prize money is hidden for now: the second cell says how many it takes instead.
+                      // Prize money is hidden for now: the cell says it is coming.
                       <span className="flex flex-col gap-1">
-                        <span className="text-[12px] font-medium text-cream/65">{isOnline(e) ? "Entry" : "Onsite"}</span>
-                        <span className="whitespace-nowrap text-[24px] font-semibold leading-none tracking-[-0.035em] tabular-nums text-cream-hi">
-                          {e.onsite.split(" ")[0]}
-                          {e.onsite.includes(" ") && <span className="ml-1 text-[12px] font-medium tracking-normal text-cream/55">{e.onsite.split(" ").slice(1).join(" ")}</span>}
-                        </span>
+                        <span className="text-[12px] font-medium text-cream/65">Prize pool</span>
+                        <span className="whitespace-nowrap text-[18px] font-semibold leading-[24px] tracking-[-0.02em] text-peach">Coming soon</span>
                       </span>
                     )}
                   </div>

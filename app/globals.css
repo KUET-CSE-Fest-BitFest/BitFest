@@ -1009,7 +1009,7 @@ button:hover > .faq-toggle[data-on="false"] { color: var(--color-ink); box-shado
 .ps-hero .ps-tile .lx-rim { display: none; }
 @media (min-width: 1024px) {
   /* As tall as the screen allows under the chip (which keeps a 330px floor), up to 236px. */
-  :root:has(.rd-theme) .ps-hero .ps-tile { height: clamp(140px, calc(100svh - 572px), 228px); }
+  :root:has(.rd-theme) .ps-hero .ps-tile { height: clamp(132px, calc(100svh - 588px), 228px); }
   :root:has(.rd-theme) .chip { width: min(36vw, calc(min(480px, (100svh - 570px) * 0.86) * 1.1)); }
 }
 .ps-hero .ps-row { animation-duration: 120s; }
@@ -1101,7 +1101,11 @@ button:hover > .faq-toggle[data-on="false"] { color: var(--color-ink); box-shado
 .es-head { border-bottom: 1px solid var(--color-line); }
 .es-foot { border-top: 1px solid var(--color-line); }
 .es-scroll { scrollbar-width: thin; scrollbar-color: var(--color-line-2) transparent; overscroll-behavior: contain; }
-.es-rail::before { content: ""; position: absolute; left: 19px; top: 22px; bottom: 22px; width: 1px; background: var(--color-line-2); }
+/* The trace runs from the first contest's dot to the last one's: each row draws its own piece (rows
+   can be one or two lines tall), the first starting and the last ending at its dot. */
+.es-rail > li::before { content: ""; position: absolute; left: 19px; top: 0; bottom: -2px; width: 1px; background: var(--color-line-2); }
+.es-rail > li:first-child::before { top: 50%; }
+.es-rail > li:last-child::before { bottom: 50%; }
 .es-pin { transition: background-color 0.25s ease; }
 .es-pin:hover { background: color-mix(in oklab, var(--rd-sub1) 60%, transparent); }
 .es-pin[data-on="true"] { background: color-mix(in oklab, var(--color-orange) 9%, transparent); }
@@ -1155,3 +1159,6 @@ button:hover > .faq-toggle[data-on="false"] { color: var(--color-ink); box-shado
 :root:has(.rd-theme) .faq-search:focus-within { box-shadow: inset 0 0 0 1.5px var(--color-orange); }
 /* The box draws the focus ring; the field inside it draws none, so there is one green ring, not two. */
 .faq-search input:focus, .faq-search input:focus-visible { outline: none; box-shadow: none; }
+
+/* Hero photo labels stay on one line, even on the shortest screens. */
+:root:has(.rd-theme) .ps-hero .ps-cap { white-space: nowrap; max-width: calc(100% - 24px); overflow: hidden; text-overflow: ellipsis; }
